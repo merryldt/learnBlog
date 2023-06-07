@@ -1,6 +1,6 @@
 ---
 article: false
-title: 每日仪式
+title: 每日必读
 icon: check
 ---
 
