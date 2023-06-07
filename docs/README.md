@@ -1,6 +1,6 @@
 ---
 article: false
-title: LearnData 开源笔记
+title: 魔力社区
 icon: note
 ---
 
