@@ -6,15 +6,333 @@
     <link>https://newzone.top/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Wed, 07 Jun 2023 11:26:32 GMT</pubDate>
-    <lastBuildDate>Wed, 07 Jun 2023 11:26:32 GMT</lastBuildDate>
+    <pubDate>Thu, 08 Jun 2023 13:28:30 GMT</pubDate>
+    <lastBuildDate>Thu, 08 Jun 2023 13:28:30 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>工具</category>
     <category>自动化</category>
     <category>系统</category>
     <category>网络</category>
-    <category>服务器</category>
+    <item>
+      <title>Mysql 优化</title>
+      <link>https://newzone.top/moyu/mysql/01_order_by.html</link>
+      <guid>https://newzone.top/moyu/mysql/01_order_by.html</guid>
+      <source url="https://newzone.top/rss.xml">Mysql 优化</source>
+      <description>title: mysql order by 优化 | 分析 subtitle: order by 的分析之路 category: mysql tag: 摸鱼 order: 0.1 Mysql 优化 order by 语句怎么优化？ 例子 表结构： CREATE TABLE `sys_user` ( `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT &amp;apos;用户ID&amp;apos;, `dept_id` bigint DEFAULT NULL COMMENT &amp;apos;部门ID&amp;apos;, `user_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户账号&amp;apos;, `nick_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户昵称&amp;apos;, `email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;用户邮箱&amp;apos;, `phonenumber` varchar(11) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;手机号码&amp;apos;, `create_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;创建者&amp;apos;, `create_time` datetime DEFAULT NULL COMMENT &amp;apos;创建时间&amp;apos;, `update_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;更新者&amp;apos;, `update_time` datetime DEFAULT NULL COMMENT &amp;apos;更新时间&amp;apos;, `remark` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT &amp;apos;备注&amp;apos;, PRIMARY KEY (`user_id`), KEY `idx_emial` (`email`) USING BTREE ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT=&amp;apos;用户信息表&amp;apos;;</description>
+      <pubDate>Thu, 08 Jun 2023 13:26:42 GMT</pubDate>
+      <content:encoded><![CDATA[<hr>
+<p>title: mysql order by 优化 | 分析
+subtitle: order by 的分析之路
+category:</p>
+<ul>
+<li>mysql
+tag:</li>
+<li>摸鱼
+order: 0.1</li>
+</ul>
+<hr>
+<h1> Mysql 优化</h1>
+<h1> <strong><strong>order by 语句怎么优化？</strong></strong></h1>
+<h3> 例子</h3>
+<h3> 表结构：</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 执行sql:</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3> explain的结果如下:</h3>
+<p>
+Extra列中有Using filesort说明进行了排序，<strong>排序这个动作有可能在内存中完成，也有可能在磁盘中完成</strong></p>
+<p>那么对记录根据user_name字段排序是如何做到的呢？</p>
+<h2> 优化1:排序的字段增加索引</h2>
+<h3> 1. 增加email,user_name  作为一个联合索引。</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><figcaption></figcaption></figure>
+<p>执行过程：</p>
+<ol>
+<li>从 索引(email,user_name) 找到第一个满足email='ry@qq.com’条件的主键id ;</li>
+<li>根据id 查找到整行数据，取出 email,user_name,nick_name  三个字段的值，作为结果集的一部分直接返回；</li>
+<li>从  索引(email,user_name) 找到下一个记录的主键id;</li>
+<li>重复步骤2，3，找到所有满足条件的记录的前1000行返回客户端</li>
+</ol>
+<h3> 2. 增加email,user_name,nick_name 索引字段：</h3>
+<p>email,user_name,nick_name 作为一个联合索引；</p>
+<p><strong>覆盖索引是指，索引上的信息足够满足查询请求，不需要再回到主键索引上去取数据。</strong></p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><figcaption></figcaption></figure>
+<p>执行过程：</p>
+<ol>
+<li>从 索引(email,user_name,nick_name) 找到第一个满足email='ry@qq.com’条件的记录，取出 email,user_name,nick_name  三个字段的值，作为结果集的一部分直接返回；</li>
+<li>从  索引(email,user_name,nick_name) 找到下一个记录，取出 email,user_name,nick_name  三个字段的值，作为结果集的一部分直接返回;</li>
+<li>重复步骤2，3，找到所有满足条件的记录的前1000行返回客户端</li>
+</ol>
+<p>当然，在实际过程中不可能为了每个查询都是用覆盖索引，把语句涉及到的字段都加上索引，因为索引的维护也是需要代价的。这就需要根据实际情况去权衡。</p>
+<h1> 全字段和rowid 排序：</h1>
+<h3> 查看mysql版本：</h3>
+<p>select version();</p>
+<h3> max_length_for_sort_data</h3>
+<ol>
+<li>MySQL中专门控制用于排序的行数据的长度的一个参数。它的意思是，如果单行的长度超过这个值，MySQL就认为单行太大，要换一个算法。</li>
+<li>MySQL 8.0.20 之前有用。从 8.0.20 开始，&nbsp;由于优化器更改使其过时且无效；所以设置也没有用了。</li>
+</ol>
+<p>show variables like '%max_length_for_sort_data%';</p>
+<p>
+排序模式sort_mode：</p>
+<ul>
+<li>&lt;varlen_sort_key,rowid&gt;：使用了rowid排序模式</li>
+<li>&lt;varlen_sort_key, additional_fields&gt;：使用了全字段排序模式</li>
+<li>&lt;varlen_sort_key, packed_additional_fields&gt;：使用了打包字段排序模式（与全字段排序模式工作原理一致，不同点在于会将字段紧密的排列在一起，而不是固定长度的空间）通俗的讲就是比如：一个字段定义为VARCHAR(32)，不打包占用32字节，打包后可能占用 20字节。</li>
+</ul>
+<h2> 全字段排序</h2>
+<p>把所有需要查询的字段放到内存排完序后直接返回。
+</p>
+<p>过程：</p>
+<ol>
+<li>初始化 sort buffer，从 email 索引找满足email=ry@qq.com 条件的主键id</li>
+<li>根据主键id回表找到对应的记录，取出 email,user_name,nick_name  三个字段的值，存入 sort buffer</li>
+<li>从 email 索引找到下一个记录的主键</li>
+<li>重复步骤2，3，找到所有满足条件的记录</li>
+<li>对 sort buffer 中的数据按照字段 user_name 排序，排序结果取前1000行返回客户端</li>
+</ol>
+<p>注意：</p>
+<p>按user_name排序这个动作，可能在内存中完成，也可能需要使用外部排序。这取决于排序需要的内存大小和 sort_buffer_size（mysql为排序开辟的内存大小，即sort buffer）的大小；如果需要的内存大小大于sort_buffer_size， 则需要利用磁盘文件排序。</p>
+<h3> 1. 执行sql:</h3>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>确保可以出现Extra中出现Using filesort：此时建议，可以去掉所有的索引，或者创建比较复杂比较多的数据。
+</p>
+<h3> 2. 执行trace,记得执行的sql 不要带Explain:</h3>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 结果：</h3>
+<p>mysql 8.0.25  的结果：</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
+<li>这里主要看filesort_summary即可。</li>
+<li>sort_mode ： &lt;fixed_sort_key, packed_additional_fields&gt; 使用的打包全字段排序模式。也就是全字段排序模式；</li>
+<li>num_rows_found 97629，有这么多行数据参与了排序。</li>
+<li>row_size: 4546 每一行数据的大小</li>
+</ol>
+<p>mysql 5.6的结果：</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
+<li>examined_rows: 97629, -- 参与排序的行</li>
+<li>sort_mode : "&lt;sort_key, additional_fields&gt;" 全字段排序</li>
+<li>number_of_tmp_files  -- 使用临时文件的个数，这个值如果为0代表全部使用的sort_buffer内存排序，否则使用的磁盘文件排序</li>
+<li>sort_buffer_size  缓存大小</li>
+</ol>
+<h2> rowid字段排序</h2>
+<p>把需要排序的字段和每一行数据对应的唯一标识[rowid]放到内存排序，然后通过rowid找到对应的数据返回。
+</p>
+<p>过程：</p>
+<ol>
+<li>初始化 sort buffer，从 email 索引找满足email=ry@qq.com 条件的主键id</li>
+<li>根据主键id回表找到对应的记录，取出 email,user_name 两个字段的值，存入 sort buffer</li>
+<li>从 email 索引找到下一个记录的主键</li>
+<li>重复步骤2，3，找到所有满足条件的记录</li>
+<li>对 sort buffer 中的数据按照字段 user_name 排序，排序结果取前1000行</li>
+<li>按照id的值回到原表中取出email,user_name和nick_name三个字段返回给客户端。</li>
+</ol>
+<h3> 1. 执行sql:</h3>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>确保可以出现Extra中出现Using filesort：此时建议，可以去掉所有的索引，或者创建比较复杂比较多的数据。</p>
+<figure><figcaption></figcaption></figure>
+<h3> 2. 执行trace,记得执行的sql 不要带Explain:</h3>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 结果：</h3>
+<p>mysql 8.0.25  的结果,因为新版本max_length_for_sort_data不生效了，修改也无法展示rowi的排序。。：</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
+<li>这里主要看filesort_summary即可。</li>
+<li>sort_mode ： &lt;fixed_sort_key, packed_additional_fields&gt; 使用的打包全字段排序模式。也就是全字段排序模式；</li>
+<li>num_rows_found 97629，有这么多行数据参与了排序。</li>
+<li>row_size: 4546 每一行数据的大小</li>
+</ol>
+<p>mysql 5.6的结果：</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
+<li>examined_rows: 97629, -- 参与排序的行</li>
+<li>sort_mode : "&lt;sort_key, rowid&gt;"  rowid 字段排序</li>
+<li>number_of_tmp_files  -- 使用临时文件的个数，这个值如果为0代表全部使用的sort_buffer内存排序，否则使用的磁盘文件排序</li>
+<li>sort_buffer_size  缓存大小</li>
+</ol>
+<h2> 系统属性：</h2>
+<p>系统属性，一定要注意mysql 的版本，这些信息，在不同的版本中，有不同的问题。</p>
+<h3> sort_buffer_size</h3>
+<p>sort_buffer_size，就是MySQL为排序开辟的内存（sort_buffer）的大小。如果要排序的数据量小于sort_buffer_size，排序就在内存中完成。但如果排序数据量太大，内存放不下，则不得不利用磁盘临时文件辅助排序。</p>
+<h3> max_length_for_sort_data</h3>
+<p>MySQL中专门控制用于排序的行数据的长度的一个参数。它的意思是，如果单行的长度超过这个值，MySQL就认为单行太大，要换一个算法。</p>
+<h3> tmp_table_size</h3>
+<p>tmp_table_size这个配置限制了内存临时表的大小，默认值是16M。如果临时表大小超过了tmp_table_size，那么内存临时表就会转成磁盘临时表。</p>
+<h2> <strong><strong>全字段排序 VS rowid排序：</strong></strong></h2>
+<ol>
+<li>如果MySQL实在是担心排序内存太小，会影响排序效率，才会采用rowid排序算法，这样排序过程中一次可以排序更多行，但是需要再回到原表去取数据。</li>
+<li>如果MySQL认为内存足够大，会优先选择全字段排序，把需要的字段都放到sort_buffer中，这样排序后就会直接从内存里面返回查询结果了，不用再回到原表去取数据。</li>
+<li>MySQL的一个设计思想：<strong>如果内存够，就要多利用内存，尽量减少磁盘访问。</strong></li>
+</ol>
+<h1> 临时表排序：</h1>
+<h3> 排序算法：</h3>
+<ol>
+<li>优先队列排序算法；（MySQL 5.6版本引入的一个新的排序算法）</li>
+<li>归并排序算法；</li>
+</ol>
+<p>当explain 执行后，Extra 中出现 Using temporary 和 Using filesort；</p>
+<p>Extra字段显示Using temporary，表示的是需要使用临时表；Using filesort，表示的是需要执行排序操作。</p>
+<p><strong>对于InnoDB表来说</strong>，执行全字段排序会减少磁盘访问，因此会被优先选择。</p>
+<h3> 内存临时表：</h3>
+<p><strong>对于内存表，回表过程只是简单地根据数据行的位置，直接访问内存得到数据，根本不会导致多访问磁盘</strong>。优化器没有了这一层顾虑，那么它会优先考虑的，就是用于排序的行越少越好了，所以，MySQL这时就会选择rowid排序。</p>
+<h3> 磁盘临时表：</h3>
+<p>磁盘临时表使用的引擎默认是InnoDB，是由参数internal_tmp_disk_storage_engine控制的。</p>
+<p>当使用磁盘临时表的时候，对应的就是一个没有显式索引的InnoDB表的排序过程。</p>
+<h2> 控制参数，查看日志：</h2>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 计算扫描行数：</h3>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>sort_buffer_size超过了需要排序的数据量的大小，number_of_tmp_files就是0，表示排序可以直接在内存中完成。</p>
+<p>否则就需要放在临时文件中排序。sort_buffer_size越小，需要分成的份数越多，number_of_tmp_files的值就越大。</p>
+<h1> 分析<strong><strong>执行的神器-Optimizer Trace</strong></strong>：</h1>
+<h2> 版本：mysql 8.0.25</h2>
+<h2> 介绍OPTIMIZER_TRACE</h2>
+<ol>
+<li>explain 可以把帮助我们看到执行计划，optimizer_trace 可以帮助我们更细致的了解</li>
+<li>一个跟踪功能，跟踪执行的语句的解析优化执行的过程，并将跟踪到的信息记录到INFORMATION_SCHEMA.OPTIMIZER_TRACE表中。</li>
+<li>MySQL从5.6开始提供了相关的功能，但是MySQL默认关闭它；</li>
+</ol>
+<h2> 命令：</h2>
+<h3> 查看 optimizer_trace</h3>
+<p>show variables like '%optimizer_trace%' ;
+</p>
+<ol>
+<li>
+<p>optimizer_trace</p>
+<p>enabled=on,  启用/禁用optimizer_trace功能。</p>
+<p>one_line=off   决定了跟踪信息的存储方式，为on表示使用单行存储; 单行存储结果中没有空格，不能以json形式打开。不建议使用。</p>
+</li>
+<li>
+<p>optimizer_trace_features</p>
+<ol>
+<li>greedy_search=on, range_optimizer=on, dynamic_range=on, repeated_subselect=on</li>
+<li>表示打印的信息，默认打开所有。</li>
+</ol>
+</li>
+<li>
+<p>optimizer_trace_limit</p>
+<ol>
+<li>1</li>
+<li>存储信息的条数</li>
+</ol>
+</li>
+<li>
+<p>optimizer_trace_max_mem_size</p>
+<ol>
+<li>16384 optimizer_trace内存的大小，如果跟踪信息超过这个大小，信息将会被截断。</li>
+</ol>
+</li>
+<li>
+<p>optimizer_trace_offset</p>
+<ol>
+<li>-1</li>
+<li>指的是查询最近的一条查询。结合3 的意思就是，optimizer_trace 中只存储最后执行的一行的结果集。</li>
+</ol>
+</li>
+</ol>
+<h3> 如何使用？</h3>
+<ol>
+<li>
+<p>开启</p>
+<ol>
+<li>会话或者是全局开启；</li>
+<li>会话开启： set session optimizer_trace='enabled=on';</li>
+<li>全局开启： SET optimizer_trace='enabled=on';</li>
+</ol>
+</li>
+<li>
+<p>执行;一定要同时执行。</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<li>
+<p>结果展示,整个分为3个阶段：</p>
+<ol>
+<li>join_preparation(准备阶段)</li>
+<li>join_optimization(优化阶段)</li>
+<li>join_execution(执行阶段)</li>
+</ol>
+</li>
+</ol>
+<figure><figcaption>optimizer_trace 执行 大纲图</figcaption></figure>
+
+<h2> join_optimization(优化阶段)</h2>
+<figure><figcaption></figcaption></figure>
+<p>主要介绍4个</p>
+<ol>
+<li>ref_optimizer_key_uses ：如果优化器认为查询可以使用ref的话，在这里列出可以使用的索引。</li>
+<li>rows_estimation ：估算表行数和扫描的代价。如果查询中存在range扫描的话，对range扫描进行计划分析及代价估算。</li>
+<li>considered_execution_plans ：对比各可行计划的代价，选择相对最优的执行计划。</li>
+<li>attaching_conditions_to_tables ：添加附加条件，使得条件尽可能筛选单表数据。</li>
+</ol>
+<h3> ref_optimizer_key_uses</h3>
+<p>列出了所有可用的ref类型的索引。如果是使用了组合索引的多个部分，在ref_optimizer_key_uses下会列出多个结构体。</p>
+<h3> rows_estimation</h3>
+<figure><figcaption></figcaption></figure>
+<ol>
+<li>table_scan： 全表扫描的行数(rows)以及所需要的代价(cost)。</li>
+<li>potential_range_indexes： 该阶段会列出表中所有的索引并分析其是否可用，并且还会列出索引中可用的列字段。</li>
+<li>group_index_range： 评估在使用了GROUP BY或者是DISTINCT的时候是否有适合的索引可用。</li>
+</ol>
+<h3> considered_execution_plans</h3>
+<figure><figcaption></figcaption></figure>
+<ol>
+<li>table：分析的表对象名称及其别名。</li>
+<li>plan_prefix：前置的执行计划（格式：顺序ID：表名）。 如果 test t1 left join test2 t2 ,  这里会显示 0:”t1”</li>
+<li>best_access_path：当前最优的执行顺序信息结果集
+<ol>
+<li>considered_access_paths 数组
+<ol>
+<li>rows_to_scan: 95943  扫描行数</li>
+<li>access_type: scan   表示使用索引的方式。可参照为explain中的type字段</li>
+<li>cost 成本</li>
+<li>chosen ： true 表示最终使用了该方案，如果是false，不使用；</li>
+</ol>
+</li>
+<li>condition_filtering_pct：类似于explain中的filtered列，这是一个估算值。</li>
+<li>rows_for_plan：该执行计划最终的扫描行数，这里的行数其实也是估算值。</li>
+<li>cost_for_plan：该执行计划的执行代价，由considered_access_paths的cost相加而得。</li>
+<li>chosen：是否选择了该执行计划。</li>
+</ol>
+</li>
+</ol>
+<h2> 这里只重点分析：join_execution(执行阶段)</h2>
+<figure><figcaption></figcaption></figure>
+<ol>
+<li>
+<p>sorting_table: 排序表</p>
+</li>
+<li>
+<p>filesort_information 排序的字段</p>
+</li>
+<li>
+<p>filesort_priority_queue_optimization  优先队列优化排序，一般在使用limit 子句的时候会使用优先队列</p>
+</li>
+<li>
+<p>filesort_execution：执行文件排序。</p>
+</li>
+<li>
+<p>filesort_summary：文件排序汇总信息。</p>
+<ol>
+<li>memory_available.  可用内存，可以理解为是sort_buffer_size设置的值</li>
+<li>num_rows_found     有多少条数据参与排序，越小越好</li>
+<li>num_initial_chunks_spilled_to_disk  产生了几个临时文件，0表示完全基于内存排序</li>
+<li>sort_mode：
+<ul>
+<li>&lt;varlen_sort_key,rowid&gt;：使用了rowid排序模式</li>
+<li>&lt;varlen_sort_key, additional_fields&gt;：使用了全字段排序模式</li>
+<li>&lt;varlen_sort_key, packed_additional_fields&gt;：使用了打包字段排序模式</li>
+</ul>
+</li>
+</ol>
+<p>e:  peak_memory_used      <strong>表示排序过程中任意时刻使用的最大内存。</strong></p>
+</li>
+</ol>
+<h1> 当 order by 语句执行的比较慢时，我们可以通过如下方法来进行优化</h1>
+<h2> 1. 不要用 * 作为查询列表，只返回需要的列</h2>
+<h2> 2. 尽量让排序的字段可以使用索引，避免filesort发生；</h2>
+<h2> 3. 如果出现filesort，对其优化</h2>
+<ol>
+<li>首先查看自己的mysql 版本；</li>
+<li>其实不赞成这里的优化，因为修改的是全局变量，可能这里好了，其他的sql 受影响了。</li>
+<li>可以调整参数：
+<ol>
+<li>max_length_for_sort_data ； 修改其大小，可以让mysql 排序选择 全局排序还是rowid 字段排序。(从 8.0.20 开始废弃了)</li>
+<li>sort_buffer_size  增加&nbsp;<code>[sort_buffer_size](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_sort_buffer_size)</code>&nbsp;变量值。理想情况下，该值应该足够大，以便整个结果集适合排序缓冲区（以避免写入磁盘和合并过程）。</li>
+<li>增加&nbsp;<code>[read_rnd_buffer_size](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_read_rnd_buffer_size)</code>&nbsp;变量值以便一次读取更多行。</li>
+</ol>
+</li>
+</ol>
+<h2> 4. 从业务角度考虑，拆解sql</h2>
+]]></content:encoded>
+    </item>
     <item>
       <title>电脑上实现微信双开，无需网页版或第三方软件</title>
       <link>https://newzone.top/posts/2017-04-18-wechat_multi_open.html</link>
@@ -319,67 +637,6 @@ MSOCache 其它的目录下内容同样根据注册表的内容把它指示的�
 </ol>
 ]]></content:encoded>
       <enclosure url="https://pic2.zhimg.com/v2-658d5433201b79da169a520f4b19d495_r.jpg" type="image/jpeg"/>
-    </item>
-    <item>
-      <title>小型网站管理员，快放弃 CDN！</title>
-      <link>https://newzone.top/posts/2018-01-19-forget_the_cdn.html</link>
-      <guid>https://newzone.top/posts/2018-01-19-forget_the_cdn.html</guid>
-      <source url="https://newzone.top/rss.xml">小型网站管理员，快放弃 CDN！</source>
-      <description>CDN 的全称是 Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN 系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet 网络拥挤的状况，提高用户访问网站的响应速度。 国内 CDN 有阿里云、腾讯、百度、网宿、七牛云、又拍云等。</description>
-      <category>服务器</category>
-      <pubDate>Fri, 19 Jan 2018 12:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<blockquote>
-<p>CDN 的全称是 Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN 系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet 网络拥挤的状况，提高用户访问网站的响应速度。</p>
-</blockquote>
-<p>国内 CDN 有阿里云、腾讯、百度、网宿、七牛云、又拍云等。</p>
-<p>这里以阿里云 CDN 为例。我之前使用阿里云全站 CDN，一直以为速度会加快。但命中率只有 7%，在更换为 ECS 后，命中率更降为 2%。</p>
-<p>更可怕的是，我提交工单后才得到的事实。<strong>CDN 运营商会根据 DNS 分配就近分配 CDN 节点，抓取网站缓存。</strong></p>
-<p>第一反应：「不错啊。如果网站在北京，访客在上海，直接访问上海的节点，速度必然要快一些。」</p>
-<p>但事实并没有这么完美。<strong>CDN 是根据本地 DNS 来分配节点。</strong></p>
-<p>你从上海放出访问申请，DNS 有可能帮你分配去广东的节点。极端情况下，有可能分配到不同运营商，<strong>导致无法打开网站。</strong></p>
-<p>我进行了三个测试，本地网络环境都是上海电信，更换了 DNS 设置。</p>
-<p>第一次测试使用 114DNS，分配了广州鹏博士网络，网站打不开。提交工单后，客服反映<strong>这个节点是局域网节点，只有鹏博士网络才能打开。</strong></p>
-<p>第二次测试使用电信默认 DNS，分配苏州电信，网站正常。</p>
-<p>第三次测试使用阿里云 DNS，分配杭州电信，网站正常</p>
-<p>后面两次虽然都能打开网站，但没有一个分配在上海电信，这种加速又能快多少呢？</p>
-<p>在网站<strong>配置足够、流量不大（日均访客 1000 以内）</strong> 时，不建议使用全站 CDN，这只会拖累访问体验。小网站只适合将图片部署在 CDN。</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>雇个机器人帮你干活</title>
-      <link>https://newzone.top/posts/2018-01-31-hire_a_robot.html</link>
-      <guid>https://newzone.top/posts/2018-01-31-hire_a_robot.html</guid>
-      <source url="https://newzone.top/rss.xml">雇个机器人帮你干活</source>
-      <description>机器人会取代你工作！ 计算云会取代你工作！ AI 会取代你的工作！ 我相信科技终究有一天会消灭所有工作，但我们这代人的无奈就是很难等到这一天。 作为懒人、宅男，等不及了怎么办？ 既然还没被取代，那就雇个机器人帮你干活！ 我每天第一件事是去各个网站看热门新闻、行业资料。以前是用 RSS，但 RSS 被视为落后，越来越多的网站不再提供 RSS 源。离开 RSS，我就一直没找到更合适的方法去将内容聚合起来，不得不在一个个网站间疲于奔命，逐渐不再看内容。</description>
-      <category>自动化</category>
-      <pubDate>Wed, 31 Jan 2018 22:51:00 GMT</pubDate>
-      <content:encoded><![CDATA[<blockquote>
-<p>机器人会取代你工作！
-计算云会取代你工作！
-AI 会取代你的工作！</p>
-</blockquote>
-<p>我相信科技终究有一天会消灭所有工作，但我们这代人的无奈就是很难等到这一天。</p>
-<p>作为懒人、宅男，等不及了怎么办？</p>
-<p>既然还没被取代，那就<strong>雇个机器人帮你干活</strong>！</p>
-<p>我每天第一件事是去各个网站看热门新闻、行业资料。以前是用 RSS，但 RSS 被视为落后，越来越多的网站不再提供 RSS 源。离开 RSS，我就一直没找到更合适的方法去将内容聚合起来，不得不在一个个网站间疲于奔命，逐渐不再看内容。</p>
-<blockquote>
-<p>RSS(Really Simple Syndication) 是一种描述和同步网站内容的格式，是使用最广泛的 XML 应用。简易信息聚合（也叫聚合内容）是一种 RSS 基于 XML 标准，在互联网上被广泛采用的内容包装和投递协议。</p>
-</blockquote>
-<ul class="task-list-container">
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" id="task-item-0" disabled="disabled"><label class="task-list-item-label" for="task-item-0"> 增加 <code>Alfred</code> 搜索</label></li>
-</ul>
-<p><strong>直到遇到了我的第一个机器人雇员 <a href="https://github.com/huginn/huginn" target="_blank" rel="noopener noreferrer">Huginn</a></strong></p>
-<blockquote>
-<p>Huginn 是一个可以创建为你在线执行自动化任务的系统。Huginn 可以读取网页，监测事件并且执行符合你需求的动作。Huginn 通过 agents 创建并执行任务（事件流）。你可以将它看作是一个运行在你自己服务器上的 IFTTT 或 Zapier。</p>
-</blockquote>
-<p>Huginn 帮我将所有信息聚合成 RSS，24 小时帮我获取我要的内容。</p>
-<ul>
-<li><a href="http://news.163.com/rank" target="_blank" rel="noopener noreferrer">网易热门新闻</a>：抓取网易顶贴最多的 100 条新闻</li>
-<li><a href="http://top.baidu.com/buzz?b=1" target="_blank" rel="noopener noreferrer">百度实时热点</a>：实时更新每天的百度热点</li>
-<li><a href="https://www.guokr.com/" target="_blank" rel="noopener noreferrer">果壳网</a>：果壳首页推荐，官方更新速度较慢，刚好可以了解些奇思妙想</li>
-<li>工作类：梅花、SocialBeta、数英网、艾瑞网</li>
-</ul>
-]]></content:encoded>
     </item>
   </channel>
 </rss>
