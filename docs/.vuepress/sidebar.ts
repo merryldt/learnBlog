@@ -8,6 +8,23 @@ export default sidebar([
   // { text: "读书笔记", icon: "read", link: "https://newzone.top/reading/" },
   // 指定显示页面
   {
+    text: "🧰 摸鱼技能",
+    icon: "",
+    prefix: "/moyu/",
+    link: "",
+    collapsible: true,
+    children:[
+      {
+        text: "mysql",
+        icon: "load",
+        prefix: "mysql/",
+        link: "",
+        collapsible: true,
+        children: "structure",
+      }
+    ],
+  },
+  {
     text: "🧰 应用手册",
     icon: "",
     prefix: "/apps/",
