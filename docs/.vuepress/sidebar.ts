@@ -37,6 +37,14 @@ export default sidebar([
       "AppNotes.md",
       "Chrome.md",
       {
+        text: "chatgpt教程",
+        icon: "load",
+        prefix: "chatgptintroduce/",
+        link: "",
+        collapsible: true,
+        children: "structure",
+      },
+      {
         text: "直播手册",
         icon: "load",
         prefix: "livestreaming/",
