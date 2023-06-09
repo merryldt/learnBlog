@@ -6,11 +6,12 @@
     <link>https://newzone.top/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 09 Jun 2023 14:58:52 GMT</pubDate>
-    <lastBuildDate>Fri, 09 Jun 2023 14:58:52 GMT</lastBuildDate>
+    <pubDate>Fri, 09 Jun 2023 15:10:29 GMT</pubDate>
+    <lastBuildDate>Fri, 09 Jun 2023 15:10:29 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>chatgpt</category>
+    <category>mysql</category>
     <category>工具</category>
     <category>自动化</category>
     <category>系统</category>
@@ -279,24 +280,14 @@ A. 根据动力来源分类：
 ]]></content:encoded>
     </item>
     <item>
-      <title>Mysql 优化</title>
+      <title>mysql order by 优化 | 分析</title>
       <link>https://newzone.top/moyu/mysql/01_order_by.html</link>
       <guid>https://newzone.top/moyu/mysql/01_order_by.html</guid>
-      <source url="https://newzone.top/rss.xml">Mysql 优化</source>
-      <description>title: mysql order by 优化 | 分析 subtitle: order by 的分析之路 category: mysql tag: 摸鱼 order: 0.1 Mysql 优化 order by 语句怎么优化？ 例子 表结构： CREATE TABLE `sys_user` ( `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT &amp;apos;用户ID&amp;apos;, `dept_id` bigint DEFAULT NULL COMMENT &amp;apos;部门ID&amp;apos;, `user_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户账号&amp;apos;, `nick_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户昵称&amp;apos;, `email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;用户邮箱&amp;apos;, `phonenumber` varchar(11) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;手机号码&amp;apos;, `create_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;创建者&amp;apos;, `create_time` datetime DEFAULT NULL COMMENT &amp;apos;创建时间&amp;apos;, `update_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;更新者&amp;apos;, `update_time` datetime DEFAULT NULL COMMENT &amp;apos;更新时间&amp;apos;, `remark` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT &amp;apos;备注&amp;apos;, PRIMARY KEY (`user_id`), KEY `idx_emial` (`email`) USING BTREE ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT=&amp;apos;用户信息表&amp;apos;;</description>
+      <source url="https://newzone.top/rss.xml">mysql order by 优化 | 分析</source>
+      <description>Mysql order by 优化 order by 语句怎么优化？ 例子 表结构： CREATE TABLE `sys_user` ( `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT &amp;apos;用户ID&amp;apos;, `dept_id` bigint DEFAULT NULL COMMENT &amp;apos;部门ID&amp;apos;, `user_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户账号&amp;apos;, `nick_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户昵称&amp;apos;, `email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;用户邮箱&amp;apos;, `phonenumber` varchar(11) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;手机号码&amp;apos;, `create_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;创建者&amp;apos;, `create_time` datetime DEFAULT NULL COMMENT &amp;apos;创建时间&amp;apos;, `update_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;更新者&amp;apos;, `update_time` datetime DEFAULT NULL COMMENT &amp;apos;更新时间&amp;apos;, `remark` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT &amp;apos;备注&amp;apos;, PRIMARY KEY (`user_id`), KEY `idx_emial` (`email`) USING BTREE ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT=&amp;apos;用户信息表&amp;apos;;</description>
+      <category>mysql</category>
       <pubDate>Thu, 08 Jun 2023 13:26:42 GMT</pubDate>
-      <content:encoded><![CDATA[<hr>
-<p>title: mysql order by 优化 | 分析
-subtitle: order by 的分析之路
-category:</p>
-<ul>
-<li>mysql
-tag:</li>
-<li>摸鱼
-order: 0.1</li>
-</ul>
-<hr>
-<h1> Mysql 优化</h1>
+      <content:encoded><![CDATA[<h1> Mysql order by 优化</h1>
 <h1> <strong><strong>order by 语句怎么优化？</strong></strong></h1>
 <h3> 例子</h3>
 <h3> 表结构：</h3>
