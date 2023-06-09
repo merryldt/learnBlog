@@ -71,16 +71,16 @@ export default hopeTheme({
     intro: "/intro.html",
     roundAvatar: true,
     medias: {
-      GitHub: "https://github.com/rockbenben",
-      Zhihu: "https://www.zhihu.com/people/qingwhat",
-      少数派: [
-        "https://sspai.com/u/zqj05i4v/posts",
-        path.resolve(__dirname, "icons/sspai.svg"),
-      ],
-      Wechat: "https://img.newzone.top/wechat.svg",
-      Email: "mailto:learndata@newzone.top",
-      Discord: "https://discord.gg/PZTQfJ4GjX",
-      RSS: "https://newzone.top/rss.xml",
+      GitHub: "https://github.com/merryldt/merryldt.github.io"
+      // Zhihu: "https://www.zhihu.com/people/qingwhat",
+      // 少数派: [
+      //   "https://sspai.com/u/zqj05i4v/posts",
+      //   path.resolve(__dirname, "icons/sspai.svg"),
+      // ],
+      // Wechat: "https://img.newzone.top/wechat.svg",
+      // Email: "mailto:learndata@newzone.top",
+      // Discord: "https://discord.gg/PZTQfJ4GjX",
+      // RSS: "https://newzone.top/rss.xml",
     },
   },
 
