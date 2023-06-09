@@ -1,4 +1,3 @@
-
 ---
 title: mysql order by 优化 | 分析
 subtitle: order by 的分析之路
@@ -9,7 +8,7 @@ tag:
 order: 0.1
 ---
 
-# Mysql 优化
+# Mysql order by 优化
 
 # ****order by 语句怎么优化？****
 
