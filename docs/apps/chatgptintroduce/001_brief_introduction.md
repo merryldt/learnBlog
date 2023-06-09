@@ -1,5 +1,12 @@
-
-[TOC]
+---
+title: chatgpt 简介
+subtitle: 从基础开始了解chatgpt
+category:
+  - chatgpt
+tag:
+  - chatgpt
+order: 0.1
+---
 
 ## 1. ChatGPT介绍
 
