@@ -6,8 +6,8 @@
     <link>https://newzone.top/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 09 Jun 2023 14:37:24 GMT</pubDate>
-    <lastBuildDate>Fri, 09 Jun 2023 14:37:24 GMT</lastBuildDate>
+    <pubDate>Fri, 09 Jun 2023 14:58:52 GMT</pubDate>
+    <lastBuildDate>Fri, 09 Jun 2023 14:58:52 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>chatgpt</category>
@@ -15,14 +15,14 @@
     <category>自动化</category>
     <category>系统</category>
     <item>
-      <title></title>
+      <title>chatgpt 简介</title>
       <link>https://newzone.top/apps/chatgptintroduce/001_brief_introduction.html</link>
       <guid>https://newzone.top/apps/chatgptintroduce/001_brief_introduction.html</guid>
-      <source url="https://newzone.top/rss.xml"></source>
-      <description>[TOC] 1. ChatGPT介绍 ChatGPT 是⼀种基于深度学习的⾃然语⾔处理技术，它可以⽣成⾼质量的⾃然语⾔⽂本。该技术是由 OpenAI 团队开发，旨在使计算机能够像⼈类⼀样理解和产⽣⾃然语⾔。ChatGPT 使⽤了深度神经⽹络和⾃然语⾔处理技术，通过对⼤量语⾔数据的学习和建模，实现了⾃然语⾔⽣成和对话系统的⾃动化。 ChatGPT 的核⼼是⼀个神经⽹络模型，该模型可以根据已有的语⾔数据集⾃动学习语⾔的规律和模式，并使⽤这些知识来⽣成新的⽂本。与传统的⾃然语⾔处理技术相⽐，ChatGPT 不需要⼿动编写规则或者特征⼯程，它可以⾃动从⼤规模的语⾔数据中学习到规律和模式，并将这些知识应⽤于⽣成新的⽂本。 ChatGPT 在⾃然语⾔⽣成和对话系统领域有着⼴泛的应⽤，可以⽤于⽣成新闻报道、⼩说、诗歌、对话系统、客服机器⼈等。它可以⾃动为⽤户⽣成复杂的⾃然语⾔⽂本，从⽽⼤⼤提⾼了⾃然语⾔处理的效率和质量。</description>
+      <source url="https://newzone.top/rss.xml">chatgpt 简介</source>
+      <description>1. ChatGPT介绍 ChatGPT 是⼀种基于深度学习的⾃然语⾔处理技术，它可以⽣成⾼质量的⾃然语⾔⽂本。该技术是由 OpenAI 团队开发，旨在使计算机能够像⼈类⼀样理解和产⽣⾃然语⾔。ChatGPT 使⽤了深度神经⽹络和⾃然语⾔处理技术，通过对⼤量语⾔数据的学习和建模，实现了⾃然语⾔⽣成和对话系统的⾃动化。 ChatGPT 的核⼼是⼀个神经⽹络模型，该模型可以根据已有的语⾔数据集⾃动学习语⾔的规律和模式，并使⽤这些知识来⽣成新的⽂本。与传统的⾃然语⾔处理技术相⽐，ChatGPT 不需要⼿动编写规则或者特征⼯程，它可以⾃动从⼤规模的语⾔数据中学习到规律和模式，并将这些知识应⽤于⽣成新的⽂本。 ChatGPT 在⾃然语⾔⽣成和对话系统领域有着⼴泛的应⽤，可以⽤于⽣成新闻报道、⼩说、诗歌、对话系统、客服机器⼈等。它可以⾃动为⽤户⽣成复杂的⾃然语⾔⽂本，从⽽⼤⼤提⾼了⾃然语⾔处理的效率和质量。</description>
+      <category>chatgpt</category>
       <pubDate>Fri, 09 Jun 2023 14:35:20 GMT</pubDate>
-      <content:encoded><![CDATA[<p>[TOC]</p>
-<h2> 1. ChatGPT介绍</h2>
+      <content:encoded><![CDATA[<h2> 1. ChatGPT介绍</h2>
 <ul>
 <li>
 <p>ChatGPT 是⼀种基于深度学习的⾃然语⾔处理技术，它可以⽣成⾼质量的⾃然语⾔⽂本。该技术是由 OpenAI 团队开发，旨在使计算机能够像⼈类⼀样理解和产⽣⾃然语⾔。ChatGPT 使⽤了深度神经⽹络和⾃然语⾔处理技术，通过对⼤量语⾔数据的学习和建模，实现了⾃然语⾔⽣成和对话系统的⾃动化。</p>
