@@ -6,10 +6,11 @@
     <link>https://newzone.top/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 09 Jun 2023 11:42:39 GMT</pubDate>
-    <lastBuildDate>Fri, 09 Jun 2023 11:42:39 GMT</lastBuildDate>
+    <pubDate>Fri, 09 Jun 2023 13:39:30 GMT</pubDate>
+    <lastBuildDate>Fri, 09 Jun 2023 13:39:30 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+    <category>chatgpt</category>
     <category>工具</category>
     <category>自动化</category>
     <category>系统</category>
@@ -119,14 +120,14 @@
 ]]></content:encoded>
     </item>
     <item>
-      <title></title>
+      <title>你能用chatgpt 做什么？</title>
       <link>https://newzone.top/apps/chatgptintroduce/002-I_can_do_what_chatgpt.html</link>
       <guid>https://newzone.top/apps/chatgptintroduce/002-I_can_do_what_chatgpt.html</guid>
-      <source url="https://newzone.top/rss.xml"></source>
-      <description>[TOC] 1. 灵魂三连问 你是否已经了解chatgpt ? 你是否知道你想要用它做什么？ 你是否已经想了想？ 2. ChatGPT 可能为你带来什么 带来潜在客户： 此时此刻gpt 的热度依旧很高，你可以利用它引流，包括但不限于公众号、视频号、抖音等等； 做一个消息的搬运工，及时获取最新的消息,传播给大家，构建社群等。 如果你还具备开发能力，是否可以做一些开源的项目，让大家认识你。 创建新的收入流： 可以利用它写文章，画图，生成有特点的文章或者视频，为你引流，从来带来收入。 可以利用gpt 和剪映生成视频，发布于tk,投放商品链接。赚取佣金。 认识新朋友:</description>
+      <source url="https://newzone.top/rss.xml">你能用chatgpt 做什么？</source>
+      <description>1. 灵魂三连问 你是否已经了解chatgpt ? 你是否知道你想要用它做什么？ 你是否已经想了想？ 2. ChatGPT 可能为你带来什么 带来潜在客户： 此时此刻gpt 的热度依旧很高，你可以利用它引流，包括但不限于公众号、视频号、抖音等等； 做一个消息的搬运工，及时获取最新的消息,传播给大家，构建社群等。 如果你还具备开发能力，是否可以做一些开源的项目，让大家认识你。 创建新的收入流： 可以利用它写文章，画图，生成有特点的文章或者视频，为你引流，从来带来收入。 可以利用gpt 和剪映生成视频，发布于tk,投放商品链接。赚取佣金。 认识新朋友:</description>
+      <category>chatgpt</category>
       <pubDate>Fri, 09 Jun 2023 11:40:36 GMT</pubDate>
-      <content:encoded><![CDATA[<p>[TOC]</p>
-<h2> 1. 灵魂三连问</h2>
+      <content:encoded><![CDATA[<h2> 1. 灵魂三连问</h2>
 <ul>
 <li>你是否已经了解chatgpt ?</li>
 <li>你是否知道你想要用它做什么？</li>
