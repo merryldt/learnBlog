@@ -1,5 +1,12 @@
-
-[TOC]
+---
+title: 你能用chatgpt 做什么？
+subtitle: 仔细想想chatgpt 可以用来做什么？
+category:
+  - chatgpt
+tag:
+  - chatgpt
+order: 0.1
+---
 
 ## 1. 灵魂三连问
 * 你是否已经了解chatgpt ?
