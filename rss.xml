@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="https://newzone.top/rss.xsl"?>
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="https://merryldt.github.io/rss.xsl"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <atom:link href="https://newzone.top/rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://merryldt.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     <title>魔力社区</title>
-    <link>https://newzone.top/</link>
+    <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Thu, 06 Jul 2023 11:22:24 GMT</pubDate>
-    <lastBuildDate>Thu, 06 Jul 2023 11:22:24 GMT</lastBuildDate>
+    <pubDate>Thu, 06 Jul 2023 11:31:19 GMT</pubDate>
+    <lastBuildDate>Thu, 06 Jul 2023 11:31:19 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>chatgpt</category>
@@ -16,9 +16,9 @@
     <category>自动化</category>
     <item>
       <title>chatgpt 简介</title>
-      <link>https://newzone.top/apps/chatgptintroduce/001_brief_introduction.html</link>
-      <guid>https://newzone.top/apps/chatgptintroduce/001_brief_introduction.html</guid>
-      <source url="https://newzone.top/rss.xml">chatgpt 简介</source>
+      <link>https://merryldt.github.io/apps/chatgptintroduce/001_brief_introduction.html</link>
+      <guid>https://merryldt.github.io/apps/chatgptintroduce/001_brief_introduction.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">chatgpt 简介</source>
       <description>1. ChatGPT介绍 ChatGPT 是⼀种基于深度学习的⾃然语⾔处理技术，它可以⽣成⾼质量的⾃然语⾔⽂本。该技术是由 OpenAI 团队开发，旨在使计算机能够像⼈类⼀样理解和产⽣⾃然语⾔。ChatGPT 使⽤了深度神经⽹络和⾃然语⾔处理技术，通过对⼤量语⾔数据的学习和建模，实现了⾃然语⾔⽣成和对话系统的⾃动化。 ChatGPT 的核⼼是⼀个神经⽹络模型，该模型可以根据已有的语⾔数据集⾃动学习语⾔的规律和模式，并使⽤这些知识来⽣成新的⽂本。与传统的⾃然语⾔处理技术相⽐，ChatGPT 不需要⼿动编写规则或者特征⼯程，它可以⾃动从⼤规模的语⾔数据中学习到规律和模式，并将这些知识应⽤于⽣成新的⽂本。 ChatGPT 在⾃然语⾔⽣成和对话系统领域有着⼴泛的应⽤，可以⽤于⽣成新闻报道、⼩说、诗歌、对话系统、客服机器⼈等。它可以⾃动为⽤户⽣成复杂的⾃然语⾔⽂本，从⽽⼤⼤提⾼了⾃然语⾔处理的效率和质量。</description>
       <category>chatgpt</category>
       <pubDate>Fri, 09 Jun 2023 14:35:20 GMT</pubDate>
@@ -121,9 +121,9 @@
     </item>
     <item>
       <title>你能用chatgpt 做什么？</title>
-      <link>https://newzone.top/apps/chatgptintroduce/002_I_can_do_what_chatgpt.html</link>
-      <guid>https://newzone.top/apps/chatgptintroduce/002_I_can_do_what_chatgpt.html</guid>
-      <source url="https://newzone.top/rss.xml">你能用chatgpt 做什么？</source>
+      <link>https://merryldt.github.io/apps/chatgptintroduce/002_I_can_do_what_chatgpt.html</link>
+      <guid>https://merryldt.github.io/apps/chatgptintroduce/002_I_can_do_what_chatgpt.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">你能用chatgpt 做什么？</source>
       <description>1. 灵魂三连问 你是否已经了解chatgpt ? 你是否知道你想要用它做什么？ 你是否已经想了想？ 2. ChatGPT 可能为你带来什么 带来潜在客户： 此时此刻gpt 的热度依旧很高，你可以利用它引流，包括但不限于公众号、视频号、抖音等等； 做一个消息的搬运工，及时获取最新的消息,传播给大家，构建社群等。 如果你还具备开发能力，是否可以做一些开源的项目，让大家认识你。 创建新的收入流： 可以利用它写文章，画图，生成有特点的文章或者视频，为你引流，从来带来收入。 可以利用gpt 和剪映生成视频，发布于tk,投放商品链接。赚取佣金。 认识新朋友:</description>
       <category>chatgpt</category>
       <pubDate>Fri, 09 Jun 2023 14:16:00 GMT</pubDate>
@@ -280,9 +280,9 @@ A. 根据动力来源分类：
     </item>
     <item>
       <title>mysql order by 优化 | 分析</title>
-      <link>https://newzone.top/moyu/mysql/01_order_by.html</link>
-      <guid>https://newzone.top/moyu/mysql/01_order_by.html</guid>
-      <source url="https://newzone.top/rss.xml">mysql order by 优化 | 分析</source>
+      <link>https://merryldt.github.io/moyu/mysql/01_order_by.html</link>
+      <guid>https://merryldt.github.io/moyu/mysql/01_order_by.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">mysql order by 优化 | 分析</source>
       <description>Mysql order by 优化 order by 语句怎么优化？ 例子 表结构： CREATE TABLE `sys_user` ( `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT &amp;apos;用户ID&amp;apos;, `dept_id` bigint DEFAULT NULL COMMENT &amp;apos;部门ID&amp;apos;, `user_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户账号&amp;apos;, `nick_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户昵称&amp;apos;, `email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;用户邮箱&amp;apos;, `phonenumber` varchar(11) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;手机号码&amp;apos;, `create_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;创建者&amp;apos;, `create_time` datetime DEFAULT NULL COMMENT &amp;apos;创建时间&amp;apos;, `update_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;更新者&amp;apos;, `update_time` datetime DEFAULT NULL COMMENT &amp;apos;更新时间&amp;apos;, `remark` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT &amp;apos;备注&amp;apos;, PRIMARY KEY (`user_id`), KEY `idx_emial` (`email`) USING BTREE ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT=&amp;apos;用户信息表&amp;apos;;</description>
       <category>mysql</category>
       <pubDate>Thu, 08 Jun 2023 13:26:42 GMT</pubDate>
@@ -589,9 +589,9 @@ Extra列中有Using filesort说明进行了排序，<strong>排序这个动作�
     </item>
     <item>
       <title>电脑上实现微信双开，无需网页版或第三方软件</title>
-      <link>https://newzone.top/posts/2017-04-18-wechat_multi_open.html</link>
-      <guid>https://newzone.top/posts/2017-04-18-wechat_multi_open.html</guid>
-      <source url="https://newzone.top/rss.xml">电脑上实现微信双开，无需网页版或第三方软件</source>
+      <link>https://merryldt.github.io/posts/2017-04-18-wechat_multi_open.html</link>
+      <guid>https://merryldt.github.io/posts/2017-04-18-wechat_multi_open.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">电脑上实现微信双开，无需网页版或第三方软件</source>
       <description>由于工作原因，有时候我们需要在电脑上登录多个微信。但微信限制一个客户端只能登陆一个账号，PC 端 + 网页版就成了通用方案，操作效率下降许多。 其实我们还有更好的办法。在微信 PC 版之余，同时安装微信 For Windows，就能实现客户端双开！ 微信 For Windows 安装 打开「运行」对话框，输入并启动「应用商店」或「Microsoft Store」，搜索并安装 微信 For Windows。</description>
       <category>工具</category>
       <pubDate>Tue, 18 Apr 2017 00:00:00 GMT</pubDate>
@@ -619,9 +619,9 @@ Extra列中有Using filesort说明进行了排序，<strong>排序这个动作�
     </item>
     <item>
       <title>RSS 入门篇：Feed43&amp;FeedEx-为静态网页定制 RSS 源</title>
-      <link>https://newzone.top/posts/2017-04-22-rss_feed43_feedex.html</link>
-      <guid>https://newzone.top/posts/2017-04-22-rss_feed43_feedex.html</guid>
-      <source url="https://newzone.top/rss.xml">RSS 入门篇：Feed43&amp;FeedEx-为静态网页定制 RSS 源</source>
+      <link>https://merryldt.github.io/posts/2017-04-22-rss_feed43_feedex.html</link>
+      <guid>https://merryldt.github.io/posts/2017-04-22-rss_feed43_feedex.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">RSS 入门篇：Feed43&amp;FeedEx-为静态网页定制 RSS 源</source>
       <description>迷上 IFTTT 等自动化应用后，我需要为各种不同的网页定制 RSS 源。其中，最容易入门的工具是 FEED43。本文是一篇介绍如何使用 FEED43 定制 RSS 源的入门指南。 ► 开始烧制属于自己的 feed 1. 进入网页 FEED43 不需要注册，点击「Create your own feed」即可使用。</description>
       <category>自动化</category>
       <pubDate>Sat, 22 Apr 2017 12:54:00 GMT</pubDate>
