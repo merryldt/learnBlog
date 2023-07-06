@@ -7,13 +7,13 @@ const __dirname = getDirname(import.meta.url);
 
 export default hopeTheme({
   // 主题选项：https://theme-hope.vuejs.press/zh/config/theme/layout.html
-  hostname: "https://newzone.top",
+  hostname: "https://merryldt.github.io/",
 
   iconAssets: "iconfont",
 
   author: {
-    name: "清顺",
-    url: "https://newzone.top",
+    name: "坎布里奇",
+    url: "https://merryldt.github.io/",
   },
 
   logo: "/logo.svg",
@@ -65,9 +65,9 @@ export default hopeTheme({
   // 主题功能选项：https://theme-hope.vuejs.press/zh/config/theme/feature.html
   blog: {
     articleInfo: ["Date", "PageView", "Category", "Tag", "ReadingTime"],
-    name: "清顺",
+    name: "坎布里奇",
     avatar: "/avatar_self.webp",
-    description: "迷信新工具，热衷于研究开源软件、心理学理论，定期分享探索成果",
+    description: "满满好奇心的小猿一枚",
     intro: "/intro.html",
     roundAvatar: true,
     medias: {
