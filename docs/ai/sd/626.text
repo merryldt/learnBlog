@@ -1,0 +1,56 @@
+(masterpiece), (best quality), (ultra detailed), grey hair,long hair, blue eyes, little black dress, intricate dress, lace, silver trim, (art nouveau), sapphire, blue rose dress ornament standing in a field of flowers with long hair and a flower in her hair, facial expression of smile
+Negative prompt: easynegative,ng_deepnegative_v1_75t,(worst quality:2),(low quality:2),(normal quality:2),lowres,bad anatomy,bad hands,normal quality,((monochrome)),((grayscale)),((watermark)),
+Eta: 0.2, ENSD: 31337, Size: 512x768, Seed: 1211471556, 
+
+Model: beautifulRealistic_brav5, Steps: 150, Sampler: DPM++ SDE Karras, CFG scale: 6.5, Clip skip: 2, Model hash: ac68270450, 
+
+
+Hires steps: 15, Hires upscale: 2, Hires upscaler: 4x-UltraSharp, Face restoration: CodeFormer, Denoising strength: 0.4
+
+
+
+
+
+
+
+
+
+一：参数介绍：
+标准参数设置，sampler（采样方法）：Euler a（k_euler_ancestral），迭代次数28，CFG：11。
+
+设置更改：
+
+Stop At last layers of CLIP model 改为 2
+
+eta(noise multiplier) for ancestral samplers 改为 0.68
+
+Eta noise seed delta 设为 31337
+
+显存10G以下推荐勾选训练栏下的Move VAE and CLIP以节省显存。
+
+取消勾选deepbooru按字母顺序排序
+
+Euler（euler_ancestral）比Euler a迭代慢，增加迭代次数可达到Euler a效果。
+
+迭代步数增加不能解决人物手脚异常增多的问题。
+
+人脸修复没啥用，有人还会出bug，不要开。
+
+高分辨率修复会改变画面内容，据说加了1girl权重再修复可以解决出现多人的问题。
+
+图片大小 ：人像肖像 512x768，风景画 768×512，可按比例加大或减小。生成的画面内容对图片大小也敏感，所以一般按着比例来比较靠谱。
+
+ 
+
+使用小tips：
+
+1. DDIM 与 Euler 适合长迭代下产生细节较好的图片，而Euler a属于短迭代与较好效果的常用折中选择。较新的sampler DPM++2S A 也有较好的效果。
+
+2. 记得设置在图片中保存信息。
+
+3. 出图结果为黑色一般是因为显存不足，把出图大小减小。
+
+4. 显卡不行的情况下，想一次出多图，可以选择加大batch count，这样每一个batch结束都会保存出图。加batch size会因为集中生成图片爆显存，然后颗粒无收。
+
+5. 想要高清细节大图，单单加迭代步数和加大图片有上限，且产出慢，大图需高显存。一般策略是中等出图，再导入到后处理界面，使用ESRGAN_4x放大器，再把GFPGAN可见度拉满。可适当调节参数或者换放大器试着玩玩。
+

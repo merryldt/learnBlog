@@ -1,0 +1,194 @@
+---
+article: false
+title: 在Mac M1 上安装人工智能绘画工具Stable Diffusion
+icon: linter
+order: 1
+---
+
+# 概述
+
+# mac m1 安装
+
+# 背景：
+
+ai 绘图已经火了一段时间，有诸如Midjourney 等网站可以使用，比如Midjourney初期还可以免费体验25次，后来就取消了。多亏我们这个时代，总有一群默默奉献的人，为我们提供了穷人也可以使用的ai 绘图；
+
+Stable Diffusion ，作为ai 绘图的通用算法， 无需美术基础，也不用经年累月的刻苦练习，只需要一台电脑，你就可以成为一个绘画小能手。
+
+stable-diffusion-webui，截至目前一个拥有83.6 start 的项目。只需要下载安装，下载使用模型文件，打开页面，就可以创作。
+
+安装完成的样子：
+
+![Untitled](./img/sd_01.png)
+
+安装Stable Diffusion看似是一件很简单的事情，但是如果第一次安装，可能还是会遇到各种各样的问题，耗费时间。因此本教程将一步一步带领大家来完成安装。
+
+# 操作的电脑：
+
+为什么特意说这个呢，因为我在安装的过程过，搜到过很多帖子，按照方法就可以尝试，没有注意系统的区别，导致浪费了很多时间。再这里提醒大家一下，无论装什么软件，系统和版本一定要多留意。
+
+1. Mac ；
+2. M1芯片，操作系统macOS  Ventura (13)
+
+![Untitled](./img/sd_011.png)
+
+# 安装：
+
+## 1.**先安装homebrew**
+
+### 1. 安装
+
+/bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh))">
+
+执行完后，发现brew ，还是命令找不到。
+
+### 2. 还要配置：
+
+![Untitled](./img/sd_b1.png)
+
+编辑
+
+复制该内容到 vim ~/.zprofile：
+
+```
+echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/spuer/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/spuer/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+```
+
+source ~/.zprofile ，生效
+
+原因：
+
+从`macOS Catalina`(10.15.x) 版开始，`Mac`使用`zsh`作为默认`Shell`，对应文件是`.zprofile`。所以需要配置。
+
+### 命令集合：
+
+1. 安装命令：
+    
+    官网地址： [The Missing Package Manager for macOS (or Linux) — Homebrew](https://brew.sh/)
+    
+    /bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh))">
+    
+2. 卸载命令：
+    
+    /bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh))">
+    
+3. 安装完后，还需要配置一下：
+
+### 出现的问题：
+
+**Error: Another active Homebrew update process is already in progress**
+
+出现的原因： 可能因为之前安装过，有文件残留；
+
+解决： 删除文件。rm -rf /usr/local/homebrew 值的注意的是： 查看自己的homebrew 的文件所在地，不一定是这个地址。
+
+如果找不到的话，执行卸载命令，卸载如果能删除的干净的话，就删除了。如果删除不了，会提示你：
+
+![Untitled](./img/sd_b2.png)
+
+楼主之前写的教程： [https://juejin.cn/post/7202583557751210041](https://juejin.cn/post/7202583557751210041)
+
+## 2. **安装python环境**
+
+下载地址： [https://www.python.org/downloads/macos/](https://www.python.org/downloads/macos/)
+
+![Untitled](./img/sd_012.png)
+
+楼主采用的版本：
+
+![Untitled](./img/sd_013.png)
+
+## 3. **下载stable-diffusion-webui项目**
+
+1. 使用git 
+2. 或者直接下载
+
+![Untitled](./img/sd_014.png)
+
+楼主采用git：
+
+```sql
+git clone git@github.com:AUTOMATIC1111/stable-diffusion-webui.git
+```
+
+下载完后，在终端中打开，进入到目录下：
+
+![Untitled](./img/sd_015.png)
+
+## 4. **下载面部重建插件GFPGAN**
+
+地址： [ttps://github.com/TencentARC/GFPGAN](https://github.com/TencentARC/GFPGAN)
+
+![Untitled](./img/sd_016.png)
+
+下载完后，把该文件，放入到stable-diffusion-webui 这个目录中：
+
+![Untitled](./img/sd_017.png)
+
+## 5. **下载models**
+
+模型下载，可以去 [huggingface](https://huggingface.co/models)
+
+[https://huggingface.co/models](https://huggingface.co/models)
+
+这里下载 runwayml/stable-diffusion-v1-5 。
+
+![Untitled](./img/sd_018.png)
+
+进入，点击Files and versions, 选择.ckpt 后缀的。点击下载。看着大小有点吓人哦。
+
+![Untitled](./img/sd_019.png)
+
+下载完成后，放入stable-diffusion-webui 中models ，下的 stable-diffusion中。
+
+![Untitled](./img/sd_0110.png)
+
+# 执行：
+
+从终端进入目录： cd stable-diffusion-webui
+
+运行项目命令：./webui.sh
+
+![Untitled](./img/sd_0111.png)
+
+访问地址：
+
+[http://127.0.0.1:7860/](http://127.0.0.1:7860/)
+
+# 尝试一下：
+
+## 第一次：
+
+咒语：
+
+（masterpiece）， best quality， highest quality， extremely detailed CG unity8k wallpaper， detailed and intricate， original，highres， \\ (16yo)，extremely detailed_eyes， fingernails，sexy，breasts， (eyeliner:0.5)，(blush:0.5)，black hair，hair pulled back， Folded tied hair，simple diamond earrings，detailed skin， looking at viewer，solo， \\ office lady， suits， white shirt，striped miniskirt， (lace black pantyhose)， black heels， LV bags，thighhighs， crossed legs， sitting， \\ street， subway station， shop border， akihabara \(tokyo\)， shibuya \(tokyo\)， shinjuku \(tokyo\)， tree，rain， cloudy， \\ beautifully detailed background，depth of field，loli:0.1，realistic:1.3， (ambient light:1)，(cinematic composition:1.3)，(neon lights:0.1)，(HDR:0.1)，Accent Lighting， (pantyshot:1.2)，fish eye lens
+
+watermark， text， error， blurry， jpeg artifacts， cropped， worst quality， low quality， normal quality， jpeg artifacts， signature， watermark， username， artist name， （worst quality， low quality:1.4）， ((bad anatomy))， watermark， signature， text， logo，contact， ((extra limbs))，(3d)，loli， Six fingers，Low quality fingers，EasyNegative:0.5，monochrome
+
+![Untitled](./img/sd_0112.png)
+
+## 尝试第二次，无咒语：
+
+![Untitled](./img/sd_0113.png)
+
+# 总结：
+
+尝试了各种教程，总是发现，看到的都是美美的，然而自己生成的都很不上镜。目前楼主发现：关键点
+
+1. 咒语。包括 Prompt 和 Negative prompt
+2. 模型： 我用的是 majicmix模型
+3. 下面的一堆参数
+
+总之，需要不断的去尝试，去调整。才能找到合适，适合你自己的
+
+# 因为模型比较大，下载很慢，保存在了云盘，以供获取：
+
+1. 搜索关注；
+2. 回复 sd模型
+
+![Untitled](./img/sd_0114.png)
+
+![Untitled](./img/sd_0115.png)
