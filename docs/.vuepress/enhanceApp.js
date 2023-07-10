@@ -1,5 +1,4 @@
 import ElementUI from 'element-ui';
-const btwPlugin = import('/public/js/btglunis')
 // 使用异步函数也是可以的
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
@@ -14,7 +13,17 @@ export default ({
   Vue.mixin({
     // 混合注入,加载全局文件
     mounted() {
-      import('./public/js/btglunis');
+        const container = document.querySelector('.theme-reco-content.content__default');
+        if (!container) return;
+        container.setAttribute('id', 'container');
+        btw = new BTWPlugin();
+        btw.init({
+          id: 'container',
+          blogId: '31775-1688968394546-491',
+          name: '游牧人坎布里奇',
+          qrcode: 'http://picture.snowflakefloar.cn/blog/admin/jpg/2023/7/10/1688968378919.jpg',
+          keyword: '验证码',
+        });
     },
   });
 };
