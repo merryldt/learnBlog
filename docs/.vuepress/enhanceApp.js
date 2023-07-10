@@ -14,7 +14,7 @@ export default ({
   Vue.mixin({
     // 混合注入,加载全局文件
     mounted() {
-      import('/public/js/btglunis');
+      import('./public/js/btglunis');
     },
   });
 };
