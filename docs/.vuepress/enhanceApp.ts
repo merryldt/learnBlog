@@ -17,8 +17,8 @@ export default defineClientAppEnhance(({
         console.log('container',container)
         if (!container) return;
         container.setAttribute('id', 'container');
-        btw = new BTWPlugin();
-        btw.init({
+        window.btw = new BTWPlugin();
+        window.btw.init({
           id: 'container',
           blogId: '31775-1688968394546-491',
           name: '游牧人坎布里奇',
