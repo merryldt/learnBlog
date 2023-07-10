@@ -1,0 +1,4 @@
+import{_ as e}from"./plugin-vue_export-helper-c27b6911.js";import{o as t,c as a,a as i,b as r}from"./app-5b522f2f.js";const n="/assets/Snipaste_2023-06-09_23-02-24-c9570cf9.png",c={},o=r('<p><strong>遵循一个固定、程序化的流程，有规律地养成习惯</strong>，实现自我提升。</p><h2 id="每日必读" tabindex="-1"><a class="header-anchor" href="#每日必读" aria-hidden="true">#</a> 每日必读</h2><figure><img src="'+n+'" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><h2 id="自律" tabindex="-1"><a class="header-anchor" href="#自律" aria-hidden="true">#</a> 自律</h2><p>离开学校，没有了课程表的安排，没有45分钟的约束。虽说上班也要遵守9点～6点，但是这中间每个小时做什么，没有了要求，只是安排了满满的工作，交给你，这个时间如何安排？ 6点之后的时间呢？又如何安排。</p><p>你可能会说，怎么不是过呢，做呗？</p><p>如果做的同时，可以做的更好，何乐而不为呢，学习安排自己合理的规则，还是有必要的。1111</p>',7);function s(p,d){return t(),a("div",null,[o,i(` <HideArticle/>
+<script setup>
+import HideArticle from '../../compoment/HideArticle.vue'
+<\/script> `)])}const f=e(c,[["render",s],["__file","DailyRoutine.html.vue"]]);export{f as default};
