@@ -3,7 +3,7 @@
   </div>
 </template>
 <script>
- const btwPlugin = require('../public/js/btglunis');
+ const btwPlugin = import('../public/js/btglunis')
   export default {
     name: 'HideArticle',
     data() {
