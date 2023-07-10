@@ -1,5 +1,5 @@
 import ElementUI from 'element-ui';
- 
+const btwPlugin = import('/public/js/btglunis')
 // 使用异步函数也是可以的
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
