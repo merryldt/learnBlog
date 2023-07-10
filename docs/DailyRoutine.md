@@ -15,7 +15,7 @@ icon: check
 你可能会说，怎么不是过呢，做呗？ 
 
 如果做的同时，可以做的更好，何乐而不为呢，学习安排自己合理的规则，还是有必要的。1111
-<HideArticle/>
+<!-- <HideArticle/>
 <script setup>
 import HideArticle from '../../compoment/HideArticle.vue'
-</script>
+</script> -->
