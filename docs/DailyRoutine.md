@@ -15,19 +15,6 @@ icon: check
 你可能会说，怎么不是过呢，做呗？ 
 
 如果做的同时，可以做的更好，何乐而不为呢，学习安排自己合理的规则，还是有必要的。1111
-<script src="https://readmore.openwrite.cn/js/readmore.js" type="text/javascript"></script>
-<script>
-    window.onload = function() {
-    const btw = new BTWPlugin();
-    btw.init({
-        id: 'container',
-        blogId: '31775-1688968394546-491',
-        name: '游牧人坎布里奇',
-        qrcode: 'http://picture.snowflakefloar.cn/blog/admin/jpg/2023/7/10/1688968378919.jpg',
-        keyword: '验证码',
-    });
-    }
-</script>
 <HideArticle/>
 <script setup>
 import HideArticle from '../../compoment/HideArticle.vue'

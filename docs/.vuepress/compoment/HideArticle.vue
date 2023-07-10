@@ -11,9 +11,12 @@
       }
     },
     mounted() {
-      btwPlugin();
+      btwPlugin().then(module => {
+            Vue.use(module.default);
+        })
+      }
     }
-  }
+
 </script>
 <style lang="scss" scoped>
 </style>
