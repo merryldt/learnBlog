@@ -18,5 +18,5 @@ icon: check
 
 <HideArticle/>
 <script setup>
-import HideArticle from '/vuepress/compoents/HideArticle.vue'
+import HideArticle from '/.vuepress/compoents/HideArticle.vue'
 </script>
