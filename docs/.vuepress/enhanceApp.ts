@@ -1,4 +1,4 @@
-import { defineClientAppEnhance } from '@vuepress/client'
+import { defineClientAppEnhance } from 'vuepress'
 
 // 使用异步函数也是可以的
 export default defineClientAppEnhance(({
@@ -13,18 +13,19 @@ export default defineClientAppEnhance(({
   Vue.mixin({
     // 混合注入,加载全局文件
     mounted() {
-        const container = document.querySelector('.theme-reco-content.content__default');
+      window.onload = function() {  const container = document.querySelector('.theme-reco-content.content__default');
         console.log('container',container)
         if (!container) return;
         container.setAttribute('id', 'container');
-        window.btw = new BTWPlugin();
-        window.btw.init({
+        btw = new BTWPlugin();
+        btw.init({
           id: 'container',
           blogId: '31775-1688968394546-491',
           name: '游牧人坎布里奇',
           qrcode: 'http://picture.snowflakefloar.cn/blog/admin/jpg/2023/7/10/1688968378919.jpg',
           keyword: '验证码',
         });
+      }
     },
   });
 });
