@@ -7,6 +7,12 @@ import { searchProPlugin } from "vuepress-plugin-search-pro";
 import theme from "./theme.js";
 
 export default defineUserConfig({
+  head: [
+    [
+      'script',
+      { charset: 'utf-8', src: 'https://readmore.openwrite.cn/js/readmore.js' },
+    ],
+  ],
   // 网站语言，默认为中文
   lang: "zh-CN",
   // 网站标题
