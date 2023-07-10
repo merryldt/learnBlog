@@ -5,7 +5,7 @@
 </template>
  
 <script>
- const btwPlugin = require('../../public/js/btglunis');
+ const btwPlugin = require('/.vuepress/public/js/btglunis');
   export default {
     name: 'HideArticle',
     data() {
