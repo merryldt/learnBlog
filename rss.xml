@@ -6,8 +6,8 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Sat, 15 Jul 2023 09:42:51 GMT</pubDate>
-    <lastBuildDate>Sat, 15 Jul 2023 09:42:51 GMT</lastBuildDate>
+    <pubDate>Sat, 15 Jul 2023 13:34:09 GMT</pubDate>
+    <lastBuildDate>Sat, 15 Jul 2023 13:34:09 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>JVM</category>
@@ -57,6 +57,34 @@ Service-Level Agreement的缩写；指的是系统服务提供者（Provider）�
 </ol>
 <h2> 4. 总结优化经验</h2>
 ]]></content:encoded>
+    </item>
+    <item>
+      <title>jvm的内存结构和对象分配</title>
+      <link>https://merryldt.github.io/moyu/jvm/02_jvm_MemoryStructure.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/02_jvm_MemoryStructure.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">jvm的内存结构和对象分配</source>
+      <category>JVM</category>
+      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
+    </item>
+    <item>
+      <title>垃圾收集方法</title>
+      <link>https://merryldt.github.io/moyu/jvm/03_GarbageCollectionMethod.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/03_GarbageCollectionMethod.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">垃圾收集方法</source>
+      <description>1</description>
+      <category>JVM</category>
+      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> </h1>
+<p>1</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>垃圾收集器</title>
+      <link>https://merryldt.github.io/moyu/jvm/04_GarbageCollector.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/04_GarbageCollector.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">垃圾收集器</source>
+      <category>JVM</category>
+      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
     </item>
     <item>
       <title>常用的GC问题分析工具</title>
