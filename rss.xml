@@ -6,697 +6,183 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Mon, 10 Jul 2023 16:30:14 GMT</pubDate>
-    <lastBuildDate>Mon, 10 Jul 2023 16:30:14 GMT</lastBuildDate>
+    <pubDate>Sat, 15 Jul 2023 09:16:23 GMT</pubDate>
+    <lastBuildDate>Sat, 15 Jul 2023 09:16:23 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-    <category>chatgpt</category>
-    <category>mysql</category>
-    <category>工具</category>
-    <category>自动化</category>
+    <category>JVM</category>
     <item>
-      <title>chatgpt 简介</title>
-      <link>https://merryldt.github.io/apps/chatgptintroduce/001_brief_introduction.html</link>
-      <guid>https://merryldt.github.io/apps/chatgptintroduce/001_brief_introduction.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">chatgpt 简介</source>
-      <description>1. ChatGPT介绍 ChatGPT 是⼀种基于深度学习的⾃然语⾔处理技术，它可以⽣成⾼质量的⾃然语⾔⽂本。该技术是由 OpenAI 团队开发，旨在使计算机能够像⼈类⼀样理解和产⽣⾃然语⾔。ChatGPT 使⽤了深度神经⽹络和⾃然语⾔处理技术，通过对⼤量语⾔数据的学习和建模，实现了⾃然语⾔⽣成和对话系统的⾃动化。 ChatGPT 的核⼼是⼀个神经⽹络模型，该模型可以根据已有的语⾔数据集⾃动学习语⾔的规律和模式，并使⽤这些知识来⽣成新的⽂本。与传统的⾃然语⾔处理技术相⽐，ChatGPT 不需要⼿动编写规则或者特征⼯程，它可以⾃动从⼤规模的语⾔数据中学习到规律和模式，并将这些知识应⽤于⽣成新的⽂本。 ChatGPT 在⾃然语⾔⽣成和对话系统领域有着⼴泛的应⽤，可以⽤于⽣成新闻报道、⼩说、诗歌、对话系统、客服机器⼈等。它可以⾃动为⽤户⽣成复杂的⾃然语⾔⽂本，从⽽⼤⼤提⾼了⾃然语⾔处理的效率和质量。</description>
-      <category>chatgpt</category>
-      <pubDate>Fri, 09 Jun 2023 14:35:20 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 1. ChatGPT介绍</h2>
-<ul>
-<li>
-<p>ChatGPT 是⼀种基于深度学习的⾃然语⾔处理技术，它可以⽣成⾼质量的⾃然语⾔⽂本。该技术是由 OpenAI 团队开发，旨在使计算机能够像⼈类⼀样理解和产⽣⾃然语⾔。ChatGPT 使⽤了深度神经⽹络和⾃然语⾔处理技术，通过对⼤量语⾔数据的学习和建模，实现了⾃然语⾔⽣成和对话系统的⾃动化。</p>
-</li>
-<li>
-<p>ChatGPT 的核⼼是⼀个神经⽹络模型，该模型可以根据已有的语⾔数据集⾃动学习语⾔的规律和模式，并使⽤这些知识来⽣成新的⽂本。与传统的⾃然语⾔处理技术相⽐，ChatGPT 不需要⼿动编写规则或者特征⼯程，它可以⾃动从⼤规模的语⾔数据中学习到规律和模式，并将这些知识应⽤于⽣成新的⽂本。</p>
-</li>
-<li>
-<p>ChatGPT 在⾃然语⾔⽣成和对话系统领域有着⼴泛的应⽤，可以⽤于⽣成新闻报道、⼩说、诗歌、对话系统、客服机器⼈等。它可以⾃动为⽤户⽣成复杂的⾃然语⾔⽂本，从⽽⼤⼤提⾼了⾃然语⾔处理的效率和质量。</p>
-</li>
-</ul>
-<h2> 2. ChatGPT 的应⽤领域和前景ChatGPT 的应⽤领域和前景</h2>
-<ul>
-<li>
-<p>ChatGPT 的应⽤领域⾮常⼴泛，可以应⽤于⽂本⽣成、问答系统、机器翻译、对话系统、客服机器⼈等多种场景。</p>
-</li>
-<li>
-<p>在⽂本⽣成⽅⾯，ChatGPT 可以⾃动为⽤户⽣成各种类型的⾃然语⾔⽂本，包括新闻报道、⼩说、诗歌、评论等。</p>
-</li>
-<li>
-<p>在问答系统⽅⾯，ChatGPT 可以⾃动回答⽤户的问题，提供⾼质量的答案。在机器翻译⽅⾯，ChatGPT 可以将⼀种语⾔翻译成另⼀种语⾔，并保持语⾔的流畅和⾃然。在对话系统和客服机器⼈⽅⾯，ChatGPT 可以与⽤户进⾏⾃然、流畅的对话，提供⾼效、个性化的服务。</p>
-</li>
-<li>
-<p>ChatGPT 的出现为⾃然语⾔处理技术的发展带来了新的机遇和挑战。</p>
-</li>
-<li>
-<p>ChatGPT 可以帮助⼈们更加⾼效、⾃然地与计算机交互，实现更加智能、便捷的⼈机交互体验。同时，ChatGPT 的出现也提出了许多新的问题和挑战，⽐如如何保障语⾔的安全和隐私、如何避免⽂本⽣成的失控等。这些问题需要我们不断地思考和探索，才能实现⾃然语⾔处理技术的可持续发展。</p>
-</li>
-</ul>
-<h2> 3. ChatGPT 的历史和发展</h2>
-<p>ChatGPT是基于OpenAI的GPT-3模型而构建的，它是OpenAI对于以语言为中心的任务开发的一种交互式应用。以下是ChatGPT的历史和发展概述：</p>
+      <title>GC 体系总结</title>
+      <link>https://merryldt.github.io/moyu/jvm/01_total.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/01_total.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">GC 体系总结</source>
+      <description>背景 基础知识介绍 Mutator 应用程序,即垃圾生产者； TLAB Thread Local Allocation Buffer 的缩写，基于CAS 的独享线程(Mutator Threads) 可以优先将对象分配在Eden 中的一块内存，因为是Java 线程独享的内存区没有锁竞争，所以分配速度更快，每个TLAB 都是一个线程独享的。 Card Table 卡表,主要是用来标记卡页的状态，每个卡表项对应一个卡页。当卡页中一个对象引用有写操作时，写屏障将会标记对象所在的卡表状态改为dirty,卡表的本质是用来解决跨代引用的问题。 https://stackoverflow.com/questions/19154607/how-actually-card-table-and-writer-barrier-works SLA（服务等级协议): Service-Level Agreement的缩写；指的是系统服务提供者（Provider）对客户（Customer）的⼀个服务承诺。这是衡量⼀个⼤型分布式系统是否“健康”的常见⽅法。 可⽤性、准确性、系统容量和延迟代完善09999</description>
+      <category>JVM</category>
+      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> 背景</h1>
+<h1> 基础知识介绍</h1>
 <ol>
-<li>
-<p>GPT-1：OpenAI的第一个"生成式预训练模型"（Generative Pre-trained Transformer，GPT）是GPT-1，于2018年发布。它使用了Transformer架构，并通过在大量文本数据上进行无监督的预训练来学习语言模型。</p>
-</li>
-<li>
-<p>GPT-2：GPT-2在2019年发布，它在GPT-1的基础上进行了改进，引入了更大的模型规模和更多的参数。GPT-2在文本生成任务上展现出了惊人的能力，但由于其潜在的滥用风险，OpenAI最初选择限制了其访问。</p>
-</li>
-<li>
-<p>GPT-3：GPT-3于2020年发布，是OpenAI迄今为止规模最大的模型。它包含了1750亿个参数，并在广泛的语言任务上表现出色。GPT-3的训练采用了与GPT-2类似的无监督预训练方法，然后可以通过微调来适应特定的任务。</p>
-</li>
-<li>
-<p>ChatGPT：基于GPT-3模型，OpenAI开发了ChatGPT，旨在支持对话式交互。ChatGPT可以接收用户的输入并生成相关的回复。OpenAI通过不断改进和优化，提高了ChatGPT的可用性、响应性和对话质量，并在不断的迭代中逐步提供给用户。</p>
-</li>
-<li>
-<p>2023 年 3 月 14 日，微软 OpenAI 正式推出了它的最新GPT作品  ChatGPT 4 ，其具备接收图像输入的能力。与其前身  ChatGPT 3 和  ChatGPT-3.5  ChatGPT 3 和  ChatGPT-3.5  ChatGPT 4 为不再仅仅支持文本输入查询，他扩展了图片对话方式。仅供付费用户使用。</p>
-</li>
+<li>Mutator<br>
+应用程序,即垃圾生产者；</li>
+<li>TLAB<br>
+Thread Local Allocation Buffer 的缩写，基于CAS 的独享线程(Mutator Threads) 可以优先将对象分配在Eden 中的一块内存，因为是Java 线程独享的内存区没有锁竞争，所以分配速度更快，每个TLAB 都是一个线程独享的。</li>
+<li>Card Table<br>
+卡表,主要是用来标记卡页的状态，每个卡表项对应一个卡页。当卡页中一个对象引用有写操作时，写屏障将会标记对象所在的卡表状态改为dirty,卡表的本质是用来解决跨代引用的问题。
+<a href="https://stackoverflow.com/questions/19154607/how-actually-card-table-and-writer-barrier-works" target="_blank" rel="noopener noreferrer">https://stackoverflow.com/questions/19154607/how-actually-card-table-and-writer-barrier-works</a></li>
+<li>SLA（服务等级协议):<br>
+Service-Level Agreement的缩写；指的是系统服务提供者（Provider）对客户（Customer）的⼀个服务承诺。这是衡量⼀个⼤型分布式系统是否“健康”的常见⽅法。<br>
+可⽤性、准确性、系统容量和延迟<a href="/moyu/jvm/09999_SLA.html" target="blank">代完善09999</a></li>
 </ol>
-<p>OpenAI持续改进和发展其语言模型，包括改进模型的质量、安全性和可控性。他们通过收集用户的反馈和经验教训，以及利用自然语言处理和机器学习的最新研究成果，不断改进模型的性能和功能。</p>
-<h2> 4.目前常用的chatgpt3.5 和chatgpt4</h2>
-<ul>
-<li>
-<p>gpt3.5 是一组在 GPT-3 上改进的模型，可以理解并生成自然语言或代码;</p>
-</li>
-<li>
-<p>gpt 4 一组在 GPT-3.5 上改进的模型，可以理解并生成自然语言或代码</p>
-</li>
-</ul>
-<h3> gpt3.5 包含的模型:</h3>
-<figure><figcaption></figcaption></figure>
-<h3> gpt4 包含的模型:</h3>
-<figure><figcaption></figcaption></figure>
-<h3> 目前大家经常使用的模型就是：</h3>
-<ul>
-<li>gpt-3.5-turbo</li>
-<li>gpt-4</li>
-</ul>
-<h3> gpt-3.5 和 gpt 4 区别是什么呢？</h3>
-<ol>
-<li>模型输入
-<ul>
-<li>GPT 4 现在可以识别图片了,即可以接受图像和文本作为输入，并输出文本；而GPT3.5只能接受文本作为输入，并输出文本。这使得GPT4可以处理更复杂且具有视觉信息的任务，如图像描述、图像问答、图像到文本等。</li>
-</ul>
-</li>
-<li>返回值更长
-<ul>
-<li>GPT 4,最长可返回（MAX TOKEN） 8,192 tokens；</li>
-<li>GPT3.5 最长可返回（MAX TOKEN）4,096 tokens</li>
-<li>意味着 GPT 4 可以在更长的对话中保持其准确性。</li>
-</ul>
-</li>
-<li>GPT-4有更长的记忆力
-<ul>
-<li>GPT-3.5 和 ChatGPT 的限制是大约 8,000 个单词，或大约四到五页的书。</li>
-<li>GPT-4 的最大输入量大约 64,000 个单词或 50 页的文字，足以写成一出完整的戏剧或短篇小说，这就允许用户使用长格式内容创建、扩展对话以及文档搜索和分析等用例。</li>
-</ul>
-</li>
-<li>最最重要的是：
-<ul>
-<li>在官网使用 GPT-3.5 是完全免费的；</li>
-<li>GPT-4 需要付费才可以使用。</li>
-</ul>
-</li>
-</ol>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>你能用chatgpt 做什么？</title>
-      <link>https://merryldt.github.io/apps/chatgptintroduce/002_I_can_do_what_chatgpt.html</link>
-      <guid>https://merryldt.github.io/apps/chatgptintroduce/002_I_can_do_what_chatgpt.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">你能用chatgpt 做什么？</source>
-      <description>1. 灵魂三连问 你是否已经了解chatgpt ? 你是否知道你想要用它做什么？ 你是否已经想了想？ 2. ChatGPT 可能为你带来什么 带来潜在客户： 此时此刻gpt 的热度依旧很高，你可以利用它引流，包括但不限于公众号、视频号、抖音等等； 做一个消息的搬运工，及时获取最新的消息,传播给大家，构建社群等。 如果你还具备开发能力，是否可以做一些开源的项目，让大家认识你。 创建新的收入流： 可以利用它写文章，画图，生成有特点的文章或者视频，为你引流，从来带来收入。 可以利用gpt 和剪映生成视频，发布于tk,投放商品链接。赚取佣金。 认识新朋友:</description>
-      <category>chatgpt</category>
-      <pubDate>Fri, 09 Jun 2023 14:16:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 1. 灵魂三连问</h2>
-<ul>
-<li>你是否已经了解chatgpt ?</li>
-<li>你是否知道你想要用它做什么？</li>
-<li>你是否已经想了想？</li>
-</ul>
-<h2> 2. ChatGPT 可能为你带来什么</h2>
-<ul>
-<li>带来潜在客户：
-<ol>
-<li>此时此刻gpt 的热度依旧很高，你可以利用它引流，包括但不限于公众号、视频号、抖音等等；</li>
-<li>做一个消息的搬运工，及时获取最新的消息,传播给大家，构建社群等。</li>
-<li>如果你还具备开发能力，是否可以做一些开源的项目，让大家认识你。</li>
-</ol>
-</li>
-<li>创建新的收入流：
-<ol>
-<li>可以利用它写文章，画图，生成有特点的文章或者视频，为你引流，从来带来收入。</li>
-<li>可以利用gpt 和剪映生成视频，发布于tk,投放商品链接。赚取佣金。</li>
-</ol>
-</li>
-<li>认识新朋友:</li>
-</ul>
-<h2> 3. 写一篇关于汽车的文章</h2>
-<ol>
-<li>
-<p>我想要知道我可以从哪里获取关于汽车的知识，我可以提问：</p>
-<ul>
-<li>
-<p>提问： 搜索几篇关于汽车介绍的文章</p>
-</li>
-<li>
-<p>回答：</p>
-<p>很抱歉，作为一个文本模型，我无法进行实时搜索或提供最新的文章。然而，你可以尝试以下方法来搜索关于汽车介绍的文章：</p>
-<ol>
-<li>
-<p>搜索引擎：使用搜索引擎（如Google、百度、必应等）来搜索关键词，如"汽车介绍"、"汽车基础知识"、"汽车技术解析"等。搜索引擎通常会提供与你的搜索词相关的文章和资料。</p>
-</li>
-<li>
-<p>汽车网站和杂志：访问一些知名的汽车网站和杂志，如汽车之家、车主之家、汽车新闻等。这些网站通常会有各种关于汽车的文章、评测和介绍。</p>
-</li>
-<li>
-<p>汽车论坛和社区：加入一些汽车论坛和社区，如车迷论坛或汽车爱好者的社交媒体群组。在这些论坛中，你可以与其他汽车爱好者交流，并寻找他们分享的文章和资源。</p>
-</li>
-<li>
-<p>汽车书籍和杂志：查找一些经典的汽车书籍或杂志，它们通常会提供深入的汽车介绍和技术解析。你可以查找汽车书籍推荐列表或咨询汽车专业人士来获取建议。</p>
-</li>
-</ol>
-<p>记住，在阅读任何文章或资料时，要验证信息的准确性，并确保参考可靠的来源。同时，如果你有特定的汽车品牌、型号或主题的兴趣，请明确提出，我将尽力为你提供相关的文章或信息。</p>
-</li>
-</ul>
-</li>
-<li>
-<p>我想写一个大纲，关于介绍汽车，我可以继续提问</p>
-<ul>
-<li>
-<p>提问： 写一个关于汽车介绍的大纲</p>
-</li>
-<li>
-<p>答案：
-下面是一个关于汽车介绍的简单大纲示例：</p>
-
-</li>
-</ul>
-</li>
-<li>
-<p>我想要开始写正文了，继续提问</p>
-</li>
-</ol>
-<ul>
-<li>
-<p>提问： 使用上述大纲，创建一篇已应用SEO的深入详细的博客文章。</p>
-</li>
-<li>
-<p>回答：
-当涉及到应用SEO（搜索引擎优化）的深入详细的博客文章时，以下是一个示例的开头部分，基于之前提供的大纲：</p>
-
-</li>
-</ul>
-<ol start="4">
-<li>
-<p>如果我觉得回答生涩，我可以继续提问。</p>
-<ul>
-<li>
-<p>提问：请让它更有趣，语气更不正式</p>
-</li>
-<li>
-<p>回答：
-标题：爱车指南大揭秘：炫酷汽车百科全书，不服来辩！</p>
-<p>导言段落：
-嘿！你对汽车一无所知？别怕，这里有个酷炫又不正式的指南，带你领略汽车世界的绝妙之处。现代社会里，谁不想畅行无阻、尽情感受自由的驾驶乐趣？但如果对汽车的种种概念感到困惑，那就跟着我一起揭开这个神秘的大门吧！从汽车的种类、组成部分到性能参数，我们将一探究竟，带你实现对汽车的全方位解读。</p>
-<p>下面，我们将以有趣的方式深入探讨以下几个话题：</p>
-<p>I. 汽车分类：要了解汽车，咱们首先得搞清楚它们到底是什么玩意儿！
-A. 根据动力来源来分类：火力全开，内燃机汽车带你装X；电动汽车炸裂科技，决战绿色能源；混合动力汽车，一枚改良版的变形金刚。</p>
-<p>B. 根据车辆类型来分类：小轿车，带你闯荡城市街头；SUV和跨界车，适合那些追求自由的野马；卡车和商用车，装载货物的金刚大炮；跑车和豪华车，闪耀世界的四个轮子。</p>
-<p>来吧，让我们一起畅游这个炫酷的汽车世界，从头探索到尾！</p>
-</li>
-</ul>
-</li>
-<li>
-<p>如果我觉得内容比较简陋，我可以继续提问</p>
-<ul>
-<li>
-<p>提问： 请重新编写，加入更多关于汽车的细节</p>
-</li>
-<li>
-<p>回答：</p>
-<p>标题：揭秘汽车奇妙世界：震撼揭晓！疯狂酷炫的汽车秘密！</p>
-<p>导言段落：
-嘿！对于汽车一无所知？别慌张，我将带你进入一个令人叹为观止的汽车奇妙世界。现代社会中，汽车不仅仅是交通工具，更是个性和激情的表达方式。但是，汽车背后的细节和秘密也许让你感到困惑。本指南将以酷炫而不正式的方式，揭开汽车的神秘面纱，带你探索汽车的各个角落，从分类到性能，一一揭晓这些疯狂酷炫的汽车秘密。</p>
-<p>下面，我们将深入探索以下几个主题，让你领略汽车世界的精彩细节：</p>
-<p>I. 汽车分类：让我们一起搞明白汽车的不同品种和风格！
-A. 根据动力来源分类：
-1. 内燃机汽车：探索内燃机的神奇力量，燃烧着激情的机械怪兽。
-2. 电动汽车：揭示电动汽车的电力驱动，带你进入未来的能源革命。
-3. 混合动力汽车：解密混合动力技术，将传统与创新融为一体的燃油舞者。</p>
-<p>B. 根据车辆类型分类：
-1. 小型轿车：小巧灵活，城市街头的时尚之选，让你在拥挤的街道中畅行无阻。
-2. SUV和跨界车：强大越野能力，让你挑战崎岖山路，追求极限的自由之感。
-3. 卡车和商用车：沉重的工作伙伴，装载着货物和责任，推动商业世界的运转。
-4. 跑车和豪华车：风驰电掣，奢华无限，展现财富与速度的完美结合。</p>
-<p>准备好了吗？让我们一起进入这个令人目眩神迷的汽车世界，探索每个令人瞠目结舌的汽车秘密！</p>
-</li>
-</ul>
-</li>
-</ol>
-<h2> 4. 如何跳绳可以减肥</h2>
-
-<h2> 5. 写一篇小说</h2>
-<ul>
-<li>
-<p>提问 ： 有个小男孩，从小家里比较穷，有个小女孩，从小家里比较富裕，两个人在一天认识了，给我编个故事</p>
-</li>
-<li>
-<p>回答 ：
-故事开始，在一个小镇上，有一个小男孩叫小明，他生活在一个经济困难的家庭。他的父母辛勤工作，但收入有限，很难提供更好的生活条件。另一方面，有个小女孩叫小花，她来自一个富裕的家庭，她的父母给予她一切她想要的东西。</p>
-<p>一天，小明和小花在学校偶然相遇了。小明对小花的优越家庭条件感到羡慕，而小花对小明的坚强和乐观态度感到钦佩。尽管他们来自不同的背景，但两个人却建立了深厚的友谊。</p>
-<p>小明向小花展示了他如何在有限的资源下努力学习和发展自己的兴趣。他与小花分享了自己喜欢的书籍、画画的技巧和跳绳的乐趣。小花被小明的热情和坚持所感动，她开始欣赏小明的勤奋和刻苦努力的精神。</p>
-<p>小花也向小明敞开了自己富裕家庭的世界。她邀请小明到自己的家里玩，并与他分享了她的玩具、音乐和她家里的大花园。小明对小花家的温暖和慷慨感到惊讶，他体会到了家庭的重要性，不仅仅是物质上的富有，更是关爱和支持的源泉。</p>
-<p>随着时间的推移，小明和小花的友谊变得越来越深厚。他们互相学习，互相激励，成为彼此的支持者和鼓舞人心的力量。小明开始相信，他可以通过努力工作和积极思维，改变自己的未来，并实现自己的梦想。</p>
-<p>多年后，小明和小花都成长为优秀的年轻人。小明通过奋斗和努力，获得了一份理想的工作，并成为了一位成功的艺术家。小花则利用她的财富和教育资源，投身于慈善事业，帮助那些需要帮助的人。</p>
-<p>他们都明白，背景和财富并不能决定一个人的价值，真正重要的是他们内心的品质和对生活的态度。小明和小花的故事向世</p>
-<p>界传达着一个重要的信息：无论你来自哪里，只要你有梦想并努力去追求，你就能克服任何困难，实现自己的目标。</p>
-<p>这个小男孩和小女孩的友谊成为了他们一生中最珍贵的宝藏，同时也是一个激励和启示，鼓励人们相信自己的潜力，并在逆境中找到希望和勇气。</p>
-</li>
-</ul>
-
-<h2> 6. 利用它结合 剪映做视频，发布视频号等</h2>
-
-]]></content:encoded>
-    </item>
-    <item>
-      <title>mysql</title>
-      <link>https://merryldt.github.io/moyu/ll.html</link>
-      <guid>https://merryldt.github.io/moyu/ll.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">mysql</source>
-      <description>mysql mysql order by 优化 | 分析：</description>
-      <pubDate>Thu, 08 Jun 2023 13:26:42 GMT</pubDate>
-      <content:encoded><![CDATA[<h1> mysql</h1>
-<ol>
-<li><a href="https://merryldt.github.io/moyu/mysql/01_order_by.html" target="_blank" rel="noopener noreferrer">mysql order by 优化 | 分析</a>：</li>
-</ol>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>mysql order by 优化 | 分析</title>
-      <link>https://merryldt.github.io/moyu/mysql/01_order_by.html</link>
-      <guid>https://merryldt.github.io/moyu/mysql/01_order_by.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">mysql order by 优化 | 分析</source>
-      <description>Mysql order by 优化 order by 语句怎么优化？ 例子 表结构： CREATE TABLE `sys_user` ( `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT &amp;apos;用户ID&amp;apos;, `dept_id` bigint DEFAULT NULL COMMENT &amp;apos;部门ID&amp;apos;, `user_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户账号&amp;apos;, `nick_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL COMMENT &amp;apos;用户昵称&amp;apos;, `email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;用户邮箱&amp;apos;, `phonenumber` varchar(11) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;手机号码&amp;apos;, `create_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;创建者&amp;apos;, `create_time` datetime DEFAULT NULL COMMENT &amp;apos;创建时间&amp;apos;, `update_by` varchar(64) COLLATE utf8mb4_general_ci DEFAULT &amp;apos;&amp;apos; COMMENT &amp;apos;更新者&amp;apos;, `update_time` datetime DEFAULT NULL COMMENT &amp;apos;更新时间&amp;apos;, `remark` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT &amp;apos;备注&amp;apos;, PRIMARY KEY (`user_id`), KEY `idx_emial` (`email`) USING BTREE ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT=&amp;apos;用户信息表&amp;apos;;</description>
-      <category>mysql</category>
-      <pubDate>Thu, 08 Jun 2023 13:26:42 GMT</pubDate>
-      <content:encoded><![CDATA[<h1> Mysql order by 优化</h1>
-<h1> <strong><strong>order by 语句怎么优化？</strong></strong></h1>
-<h3> 例子</h3>
-<h3> 表结构：</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 执行sql:</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3> explain的结果如下:</h3>
-<p>
-Extra列中有Using filesort说明进行了排序，<strong>排序这个动作有可能在内存中完成，也有可能在磁盘中完成</strong></p>
-<p>那么对记录根据user_name字段排序是如何做到的呢？</p>
-<h2> 优化1:排序的字段增加索引</h2>
-<h3> 1. 增加email,user_name  作为一个联合索引。</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><figcaption></figcaption></figure>
-<p>执行过程：</p>
-<ol>
-<li>从 索引(email,user_name) 找到第一个满足email='ry@qq.com’条件的主键id ;</li>
-<li>根据id 查找到整行数据，取出 email,user_name,nick_name  三个字段的值，作为结果集的一部分直接返回；</li>
-<li>从  索引(email,user_name) 找到下一个记录的主键id;</li>
-<li>重复步骤2，3，找到所有满足条件的记录的前1000行返回客户端</li>
-</ol>
-<h3> 2. 增加email,user_name,nick_name 索引字段：</h3>
-<p>email,user_name,nick_name 作为一个联合索引；</p>
-<p><strong>覆盖索引是指，索引上的信息足够满足查询请求，不需要再回到主键索引上去取数据。</strong></p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><figcaption></figcaption></figure>
-<p>执行过程：</p>
-<ol>
-<li>从 索引(email,user_name,nick_name) 找到第一个满足email='ry@qq.com’条件的记录，取出 email,user_name,nick_name  三个字段的值，作为结果集的一部分直接返回；</li>
-<li>从  索引(email,user_name,nick_name) 找到下一个记录，取出 email,user_name,nick_name  三个字段的值，作为结果集的一部分直接返回;</li>
-<li>重复步骤2，3，找到所有满足条件的记录的前1000行返回客户端</li>
-</ol>
-<p>当然，在实际过程中不可能为了每个查询都是用覆盖索引，把语句涉及到的字段都加上索引，因为索引的维护也是需要代价的。这就需要根据实际情况去权衡。</p>
-<h1> 全字段和rowid 排序：</h1>
-<h3> 查看mysql版本：</h3>
-<p>select version();</p>
-<h3> max_length_for_sort_data</h3>
-<ol>
-<li>MySQL中专门控制用于排序的行数据的长度的一个参数。它的意思是，如果单行的长度超过这个值，MySQL就认为单行太大，要换一个算法。</li>
-<li>MySQL 8.0.20 之前有用。从 8.0.20 开始，&nbsp;由于优化器更改使其过时且无效；所以设置也没有用了。</li>
-</ol>
-<p>show variables like '%max_length_for_sort_data%';</p>
-<p>
-排序模式sort_mode：</p>
-<ul>
-<li>&lt;varlen_sort_key,rowid&gt;：使用了rowid排序模式</li>
-<li>&lt;varlen_sort_key, additional_fields&gt;：使用了全字段排序模式</li>
-<li>&lt;varlen_sort_key, packed_additional_fields&gt;：使用了打包字段排序模式（与全字段排序模式工作原理一致，不同点在于会将字段紧密的排列在一起，而不是固定长度的空间）通俗的讲就是比如：一个字段定义为VARCHAR(32)，不打包占用32字节，打包后可能占用 20字节。</li>
-</ul>
-<h2> 全字段排序</h2>
-<p>把所有需要查询的字段放到内存排完序后直接返回。
-</p>
-<p>过程：</p>
-<ol>
-<li>初始化 sort buffer，从 email 索引找满足email=ry@qq.com 条件的主键id</li>
-<li>根据主键id回表找到对应的记录，取出 email,user_name,nick_name  三个字段的值，存入 sort buffer</li>
-<li>从 email 索引找到下一个记录的主键</li>
-<li>重复步骤2，3，找到所有满足条件的记录</li>
-<li>对 sort buffer 中的数据按照字段 user_name 排序，排序结果取前1000行返回客户端</li>
-</ol>
-<p>注意：</p>
-<p>按user_name排序这个动作，可能在内存中完成，也可能需要使用外部排序。这取决于排序需要的内存大小和 sort_buffer_size（mysql为排序开辟的内存大小，即sort buffer）的大小；如果需要的内存大小大于sort_buffer_size， 则需要利用磁盘文件排序。</p>
-<h3> 1. 执行sql:</h3>
-<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>确保可以出现Extra中出现Using filesort：此时建议，可以去掉所有的索引，或者创建比较复杂比较多的数据。
-</p>
-<h3> 2. 执行trace,记得执行的sql 不要带Explain:</h3>
-<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 结果：</h3>
-<p>mysql 8.0.25  的结果：</p>
-<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
-<li>这里主要看filesort_summary即可。</li>
-<li>sort_mode ： &lt;fixed_sort_key, packed_additional_fields&gt; 使用的打包全字段排序模式。也就是全字段排序模式；</li>
-<li>num_rows_found 97629，有这么多行数据参与了排序。</li>
-<li>row_size: 4546 每一行数据的大小</li>
-</ol>
-<p>mysql 5.6的结果：</p>
-<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
-<li>examined_rows: 97629, -- 参与排序的行</li>
-<li>sort_mode : "&lt;sort_key, additional_fields&gt;" 全字段排序</li>
-<li>number_of_tmp_files  -- 使用临时文件的个数，这个值如果为0代表全部使用的sort_buffer内存排序，否则使用的磁盘文件排序</li>
-<li>sort_buffer_size  缓存大小</li>
-</ol>
-<h2> rowid字段排序</h2>
-<p>把需要排序的字段和每一行数据对应的唯一标识[rowid]放到内存排序，然后通过rowid找到对应的数据返回。
-</p>
-<p>过程：</p>
-<ol>
-<li>初始化 sort buffer，从 email 索引找满足email=ry@qq.com 条件的主键id</li>
-<li>根据主键id回表找到对应的记录，取出 email,user_name 两个字段的值，存入 sort buffer</li>
-<li>从 email 索引找到下一个记录的主键</li>
-<li>重复步骤2，3，找到所有满足条件的记录</li>
-<li>对 sort buffer 中的数据按照字段 user_name 排序，排序结果取前1000行</li>
-<li>按照id的值回到原表中取出email,user_name和nick_name三个字段返回给客户端。</li>
-</ol>
-<h3> 1. 执行sql:</h3>
-<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>确保可以出现Extra中出现Using filesort：此时建议，可以去掉所有的索引，或者创建比较复杂比较多的数据。</p>
-<figure><figcaption></figcaption></figure>
-<h3> 2. 执行trace,记得执行的sql 不要带Explain:</h3>
-<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 3. 结果：</h3>
-<p>mysql 8.0.25  的结果,因为新版本max_length_for_sort_data不生效了，修改也无法展示rowi的排序。。：</p>
-<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
-<li>这里主要看filesort_summary即可。</li>
-<li>sort_mode ： &lt;fixed_sort_key, packed_additional_fields&gt; 使用的打包全字段排序模式。也就是全字段排序模式；</li>
-<li>num_rows_found 97629，有这么多行数据参与了排序。</li>
-<li>row_size: 4546 每一行数据的大小</li>
-</ol>
-<p>mysql 5.6的结果：</p>
-<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
-<li>examined_rows: 97629, -- 参与排序的行</li>
-<li>sort_mode : "&lt;sort_key, rowid&gt;"  rowid 字段排序</li>
-<li>number_of_tmp_files  -- 使用临时文件的个数，这个值如果为0代表全部使用的sort_buffer内存排序，否则使用的磁盘文件排序</li>
-<li>sort_buffer_size  缓存大小</li>
-</ol>
-<h2> 系统属性：</h2>
-<p>系统属性，一定要注意mysql 的版本，这些信息，在不同的版本中，有不同的问题。</p>
-<h3> sort_buffer_size</h3>
-<p>sort_buffer_size，就是MySQL为排序开辟的内存（sort_buffer）的大小。如果要排序的数据量小于sort_buffer_size，排序就在内存中完成。但如果排序数据量太大，内存放不下，则不得不利用磁盘临时文件辅助排序。</p>
-<h3> max_length_for_sort_data</h3>
-<p>MySQL中专门控制用于排序的行数据的长度的一个参数。它的意思是，如果单行的长度超过这个值，MySQL就认为单行太大，要换一个算法。</p>
-<h3> tmp_table_size</h3>
-<p>tmp_table_size这个配置限制了内存临时表的大小，默认值是16M。如果临时表大小超过了tmp_table_size，那么内存临时表就会转成磁盘临时表。</p>
-<h2> <strong><strong>全字段排序 VS rowid排序：</strong></strong></h2>
-<ol>
-<li>如果MySQL实在是担心排序内存太小，会影响排序效率，才会采用rowid排序算法，这样排序过程中一次可以排序更多行，但是需要再回到原表去取数据。</li>
-<li>如果MySQL认为内存足够大，会优先选择全字段排序，把需要的字段都放到sort_buffer中，这样排序后就会直接从内存里面返回查询结果了，不用再回到原表去取数据。</li>
-<li>MySQL的一个设计思想：<strong>如果内存够，就要多利用内存，尽量减少磁盘访问。</strong></li>
-</ol>
-<h1> 临时表排序：</h1>
-<h3> 排序算法：</h3>
-<ol>
-<li>优先队列排序算法；（MySQL 5.6版本引入的一个新的排序算法）</li>
-<li>归并排序算法；</li>
-</ol>
-<p>当explain 执行后，Extra 中出现 Using temporary 和 Using filesort；</p>
-<p>Extra字段显示Using temporary，表示的是需要使用临时表；Using filesort，表示的是需要执行排序操作。</p>
-<p><strong>对于InnoDB表来说</strong>，执行全字段排序会减少磁盘访问，因此会被优先选择。</p>
-<h3> 内存临时表：</h3>
-<p><strong>对于内存表，回表过程只是简单地根据数据行的位置，直接访问内存得到数据，根本不会导致多访问磁盘</strong>。优化器没有了这一层顾虑，那么它会优先考虑的，就是用于排序的行越少越好了，所以，MySQL这时就会选择rowid排序。</p>
-<h3> 磁盘临时表：</h3>
-<p>磁盘临时表使用的引擎默认是InnoDB，是由参数internal_tmp_disk_storage_engine控制的。</p>
-<p>当使用磁盘临时表的时候，对应的就是一个没有显式索引的InnoDB表的排序过程。</p>
-<h2> 控制参数，查看日志：</h2>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3> 计算扫描行数：</h3>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>sort_buffer_size超过了需要排序的数据量的大小，number_of_tmp_files就是0，表示排序可以直接在内存中完成。</p>
-<p>否则就需要放在临时文件中排序。sort_buffer_size越小，需要分成的份数越多，number_of_tmp_files的值就越大。</p>
-<h1> 分析<strong><strong>执行的神器-Optimizer Trace</strong></strong>：</h1>
-<h2> 版本：mysql 8.0.25</h2>
-<h2> 介绍OPTIMIZER_TRACE</h2>
-<ol>
-<li>explain 可以把帮助我们看到执行计划，optimizer_trace 可以帮助我们更细致的了解</li>
-<li>一个跟踪功能，跟踪执行的语句的解析优化执行的过程，并将跟踪到的信息记录到INFORMATION_SCHEMA.OPTIMIZER_TRACE表中。</li>
-<li>MySQL从5.6开始提供了相关的功能，但是MySQL默认关闭它；</li>
-</ol>
-<h2> 命令：</h2>
-<h3> 查看 optimizer_trace</h3>
-<p>show variables like '%optimizer_trace%' ;
-</p>
-<ol>
-<li>
-<p>optimizer_trace</p>
-<p>enabled=on,  启用/禁用optimizer_trace功能。</p>
-<p>one_line=off   决定了跟踪信息的存储方式，为on表示使用单行存储; 单行存储结果中没有空格，不能以json形式打开。不建议使用。</p>
-</li>
-<li>
-<p>optimizer_trace_features</p>
-<ol>
-<li>greedy_search=on, range_optimizer=on, dynamic_range=on, repeated_subselect=on</li>
-<li>表示打印的信息，默认打开所有。</li>
-</ol>
-</li>
-<li>
-<p>optimizer_trace_limit</p>
-<ol>
-<li>1</li>
-<li>存储信息的条数</li>
-</ol>
-</li>
-<li>
-<p>optimizer_trace_max_mem_size</p>
-<ol>
-<li>16384 optimizer_trace内存的大小，如果跟踪信息超过这个大小，信息将会被截断。</li>
-</ol>
-</li>
-<li>
-<p>optimizer_trace_offset</p>
-<ol>
-<li>-1</li>
-<li>指的是查询最近的一条查询。结合3 的意思就是，optimizer_trace 中只存储最后执行的一行的结果集。</li>
-</ol>
-</li>
-</ol>
-<h3> 如何使用？</h3>
-<ol>
-<li>
-<p>开启</p>
-<ol>
-<li>会话或者是全局开启；</li>
-<li>会话开启： set session optimizer_trace='enabled=on';</li>
-<li>全局开启： SET optimizer_trace='enabled=on';</li>
-</ol>
-</li>
-<li>
-<p>执行;一定要同时执行。</p>
-<div class="language-sql line-numbers-mode" data-ext="sql"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
-<li>
-<p>结果展示,整个分为3个阶段：</p>
-<ol>
-<li>join_preparation(准备阶段)</li>
-<li>join_optimization(优化阶段)</li>
-<li>join_execution(执行阶段)</li>
-</ol>
-</li>
-</ol>
-<figure><figcaption>optimizer_trace 执行 大纲图</figcaption></figure>
-
-<h2> join_optimization(优化阶段)</h2>
-<figure><figcaption></figcaption></figure>
-<p>主要介绍4个</p>
-<ol>
-<li>ref_optimizer_key_uses ：如果优化器认为查询可以使用ref的话，在这里列出可以使用的索引。</li>
-<li>rows_estimation ：估算表行数和扫描的代价。如果查询中存在range扫描的话，对range扫描进行计划分析及代价估算。</li>
-<li>considered_execution_plans ：对比各可行计划的代价，选择相对最优的执行计划。</li>
-<li>attaching_conditions_to_tables ：添加附加条件，使得条件尽可能筛选单表数据。</li>
-</ol>
-<h3> ref_optimizer_key_uses</h3>
-<p>列出了所有可用的ref类型的索引。如果是使用了组合索引的多个部分，在ref_optimizer_key_uses下会列出多个结构体。</p>
-<h3> rows_estimation</h3>
-<figure><figcaption></figcaption></figure>
-<ol>
-<li>table_scan： 全表扫描的行数(rows)以及所需要的代价(cost)。</li>
-<li>potential_range_indexes： 该阶段会列出表中所有的索引并分析其是否可用，并且还会列出索引中可用的列字段。</li>
-<li>group_index_range： 评估在使用了GROUP BY或者是DISTINCT的时候是否有适合的索引可用。</li>
-</ol>
-<h3> considered_execution_plans</h3>
-<figure><figcaption></figcaption></figure>
-<ol>
-<li>table：分析的表对象名称及其别名。</li>
-<li>plan_prefix：前置的执行计划（格式：顺序ID：表名）。 如果 test t1 left join test2 t2 ,  这里会显示 0:”t1”</li>
-<li>best_access_path：当前最优的执行顺序信息结果集
-<ol>
-<li>considered_access_paths 数组
-<ol>
-<li>rows_to_scan: 95943  扫描行数</li>
-<li>access_type: scan   表示使用索引的方式。可参照为explain中的type字段</li>
-<li>cost 成本</li>
-<li>chosen ： true 表示最终使用了该方案，如果是false，不使用；</li>
-</ol>
-</li>
-<li>condition_filtering_pct：类似于explain中的filtered列，这是一个估算值。</li>
-<li>rows_for_plan：该执行计划最终的扫描行数，这里的行数其实也是估算值。</li>
-<li>cost_for_plan：该执行计划的执行代价，由considered_access_paths的cost相加而得。</li>
-<li>chosen：是否选择了该执行计划。</li>
-</ol>
-</li>
-</ol>
-<h2> 这里只重点分析：join_execution(执行阶段)</h2>
-<figure><figcaption></figcaption></figure>
-<ol>
-<li>
-<p>sorting_table: 排序表</p>
-</li>
-<li>
-<p>filesort_information 排序的字段</p>
-</li>
-<li>
-<p>filesort_priority_queue_optimization  优先队列优化排序，一般在使用limit 子句的时候会使用优先队列</p>
-</li>
-<li>
-<p>filesort_execution：执行文件排序。</p>
-</li>
-<li>
-<p>filesort_summary：文件排序汇总信息。</p>
-<ol>
-<li>memory_available.  可用内存，可以理解为是sort_buffer_size设置的值</li>
-<li>num_rows_found     有多少条数据参与排序，越小越好</li>
-<li>num_initial_chunks_spilled_to_disk  产生了几个临时文件，0表示完全基于内存排序</li>
-<li>sort_mode：
-<ul>
-<li>&lt;varlen_sort_key,rowid&gt;：使用了rowid排序模式</li>
-<li>&lt;varlen_sort_key, additional_fields&gt;：使用了全字段排序模式</li>
-<li>&lt;varlen_sort_key, packed_additional_fields&gt;：使用了打包字段排序模式</li>
-</ul>
-</li>
-</ol>
-<p>e:  peak_memory_used      <strong>表示排序过程中任意时刻使用的最大内存。</strong></p>
-</li>
-</ol>
-<h1> 当 order by 语句执行的比较慢时，我们可以通过如下方法来进行优化</h1>
-<h2> 1. 不要用 * 作为查询列表，只返回需要的列</h2>
-<h2> 2. 尽量让排序的字段可以使用索引，避免filesort发生；</h2>
-<h2> 3. 如果出现filesort，对其优化</h2>
-<ol>
-<li>首先查看自己的mysql 版本；</li>
-<li>其实不赞成这里的优化，因为修改的是全局变量，可能这里好了，其他的sql 受影响了。</li>
-<li>可以调整参数：
-<ol>
-<li>max_length_for_sort_data ； 修改其大小，可以让mysql 排序选择 全局排序还是rowid 字段排序。(从 8.0.20 开始废弃了)</li>
-<li>sort_buffer_size  增加&nbsp;<code>[sort_buffer_size](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_sort_buffer_size)</code>&nbsp;变量值。理想情况下，该值应该足够大，以便整个结果集适合排序缓冲区（以避免写入磁盘和合并过程）。</li>
-<li>增加&nbsp;<code>[read_rnd_buffer_size](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_read_rnd_buffer_size)</code>&nbsp;变量值以便一次读取更多行。</li>
-</ol>
-</li>
-</ol>
-<h2> 4. 从业务角度考虑，拆解sql</h2>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>电脑上实现微信双开，无需网页版或第三方软件</title>
-      <link>https://merryldt.github.io/posts/2017-04-18-wechat_multi_open.html</link>
-      <guid>https://merryldt.github.io/posts/2017-04-18-wechat_multi_open.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">电脑上实现微信双开，无需网页版或第三方软件</source>
-      <description>由于工作原因，有时候我们需要在电脑上登录多个微信。但微信限制一个客户端只能登陆一个账号，PC 端 + 网页版就成了通用方案，操作效率下降许多。 其实我们还有更好的办法。在微信 PC 版之余，同时安装微信 For Windows，就能实现客户端双开！ 微信 For Windows 安装 打开「运行」对话框，输入并启动「应用商店」或「Microsoft Store」，搜索并安装 微信 For Windows。</description>
-      <category>工具</category>
-      <pubDate>Tue, 18 Apr 2017 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<p>由于工作原因，有时候我们需要在电脑上登录多个微信。但微信限制一个客户端只能登陆一个账号，PC 端 + 网页版就成了通用方案，操作效率下降许多。</p>
-<p>其实我们还有更好的办法。在微信 PC 版之余，同时安装微信 For Windows，就能实现客户端双开！</p>
-<h2> 微信 For Windows 安装</h2>
-<p>打开「运行」对话框，输入并启动「应用商店」或「Microsoft Store」，搜索并安装 <code>微信 For Windows</code>。</p>
-<figure><img src="https://img.newzone.top/2022-05-06-04-21-30.png?imageMogr2/format/webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>安装好后，就能与微信 PC 版一齐启动，互不干扰。</p>
-<figure><img src="https://img.newzone.top/2022-05-06-04-21-40.png?imageMogr2/format/webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h2> 开机启动两个微信</h2>
-<p>找到系统启动文件夹，文件夹路径为：<code>%AppData%\Microsoft\Windows\Start Menu\Programs\Startup</code>。或者打开「运行」对话框，输入命令「shell:startup」，回车即可打开「启动文件夹」。</p>
-<p>将微信 for windows 10 的快捷方式放到「启动」文件夹里。</p>
-<figure><img src="https://img.newzone.top/2022-05-06-04-23-49.png?imageMogr2/format/webp" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>三开的话，可以在 Microsoft Store 上安装 微信 (UWP) 。</p>
-<p>如果还需要继续多开微信，可以参考 @刘舒怡 的方法：</p>
+<h1> 路径</h1>
+<figure><figcaption>Alt text</figcaption></figure>
+<h2> 1. 建立知识体系</h2>
 <blockquote>
-<p>只要在 2 秒内快速连续双击打开软件，就能弹出很多登录界面，你想登多少个就登多少个</p>
+<p>学习GC 的基础知识,包括:</p>
 </blockquote>
-<p>另外，有人专门开发了微信/QQ 多开的补丁，需要四开以上的可以试试 <a href="https://github.com/huiyadanli/RevokeMsgPatcher" target="_blank" rel="noopener noreferrer">RevokeMsgPatcher</a>。</p>
-<p>但多开补丁风险未知，我只用了其中的防撤回功能，需谨慎使用多开补丁。</p>
-<p>国内搬运地址：<a href="https://wwz.lanzouf.com/ij0oz05ns3di" target="_blank" rel="noopener noreferrer">RevokeMsgPatcher.v1.5.zip</a></p>
+<ol>
+<li><a href="/moyu/jvm/02_jvm_MemoryStructure.html" target="blank">jvm的内存结构和对象分配</a></li>
+<li><a href="/moyu/jvm/03_GarbageCollectionMethod.html" target="blank">垃圾收集方法</a></li>
+<li><a href="/moyu/jvm/04_GarbageCollector.html" target="blank">垃圾收集器</a></li>
+<li><a href="/moyu/jvm/05_GCAnalysisTools.html" target="blank">掌握一些常用的GC问题分析工具</a></li>
+</ol>
+<h2> 2. 确定评价指标</h2>
+<ol>
+<li><a href="/moyu/jvm/06_GCEvaluationCriteria.html" target="blank">了解基本 GC 的评价方法</a></li>
+<li>摸清如何设定独立系统的指标;</li>
+<li>在业务场景中判断 GC 是否存在问题的手段;</li>
+</ol>
+<h2> 3. 场景调优实践</h2>
+<ol>
+<li><a href="/moyu/jvm/09_9CMS.html" target="blank">分析与解决九种 CMS 中常见 GC 问题场景</a></li>
+</ol>
+<h2> 4. 总结优化经验</h2>
 ]]></content:encoded>
-      <enclosure url="https://img.newzone.top/2022-05-06-04-21-30.png?imageMogr2/format/webp" type="image/"/>
     </item>
     <item>
-      <title>RSS 入门篇：Feed43&amp;FeedEx-为静态网页定制 RSS 源</title>
-      <link>https://merryldt.github.io/posts/2017-04-22-rss_feed43_feedex.html</link>
-      <guid>https://merryldt.github.io/posts/2017-04-22-rss_feed43_feedex.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">RSS 入门篇：Feed43&amp;FeedEx-为静态网页定制 RSS 源</source>
-      <description>迷上 IFTTT 等自动化应用后，我需要为各种不同的网页定制 RSS 源。其中，最容易入门的工具是 FEED43。本文是一篇介绍如何使用 FEED43 定制 RSS 源的入门指南。 ► 开始烧制属于自己的 feed 1. 进入网页 FEED43 不需要注册，点击「Create your own feed」即可使用。</description>
-      <category>自动化</category>
-      <pubDate>Sat, 22 Apr 2017 12:54:00 GMT</pubDate>
-      <content:encoded><![CDATA[<p>迷上 IFTTT 等自动化应用后，我需要为各种不同的网页定制 RSS 源。其中，最容易入门的工具是 FEED43。本文是一篇介绍如何使用 FEED43 定制 RSS 源的入门指南。</p>
-<p><strong>► 开始烧制属于自己的 feed</strong></p>
-<h2> 1. 进入网页</h2>
-<p><a href="http://www.feed43.com/" target="_blank" rel="noopener noreferrer">FEED43</a> 不需要注册，点击「Create your own feed」即可使用。</p>
-<figure><img src="https://pic1.zhimg.com/v2-b5da0b08f632376fad3925a779e373b4_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h2> 2. 选定 RSS 网页</h2>
-<p>在「Step1. Specify source page address (URL)」中输入目标网址，将 Page Source 中的内容复制到 txt 文档中，以便之后编写抓取规则。</p>
-<figure><img src="https://pic1.zhimg.com/v2-1b687a5b1c325ba6d04fbdcc13b95668_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>如果 Page Source 显示为乱码，可将 Encoding 设置为 <strong>UTF-8</strong> 。</p>
-<h2> 3. 定制 RSS 抓取规则</h2>
-<p>「Global Search Pattern」是选择要搜索的范围，建议不填此项，这样会搜索整个页面。「Item (repeatable) Search Pattern」这部分最重要，是我们要抓取的内容。</p>
-<figure><img src="https://pic1.zhimg.com/v2-b1fa90c59739bddc0c27134cd36ba6bc_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>仔细查看上方获取到的 Page Source，找到需要抓取的元素，输入到「Item (repeatable) Search Pattern」。</p>
-<p>测试网址：<code>http://news.163.com/special/0001386F/rank_whole.html</code>。</p>
-<p>需要抓取的源代码：</p>
-<div class="language-html line-numbers-mode" data-ext="html"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><figure><img src="https://pic2.zhimg.com/v2-cf6dbf2c09189f7517ec63abdc80c50d_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p><strong>抓取规则</strong>：</p>
-<div class="language-html line-numbers-mode" data-ext="html"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>点击 Extract，进行抓取。</p>
-<figure><img src="https://pic4.zhimg.com/v2-e9486741a6229ab258a95147f584571b_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h2> 4. 整理 rss 输入格式</h2>
-<p>「Define output format」是 Feed 的属性，通常前三项会被自动抓取一，后三项将之前获取的 item 里面的元素填入即可，<code>{%1}</code> 对应的是链接，所以填入「Item Link」，<code>{%2}</code> 对应标题则填入到「Item Title」。</p>
-<figure><img src="https://pic1.zhimg.com/v2-b4614f5c46090f2eb762aac87d604350_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>然后点击「preview」，完成制作，同时可以查看预览效果。</p>
-<figure><img src="https://pic2.zhimg.com/v2-498bf1f1c0b14da172498b58f59e39b9_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>如果注册了 FEED43 的账号，可以修改 RSS 地址，但链接不能使用中文，否则会导致 RSS 出错。</p>
-<h2> 5. 获取 RSS 地址</h2>
-<p>点击 Feed URL 可得 RSS 地址，样例是 <a href="https://www.feed43.com/dianji.xml" target="_blank" rel="noopener noreferrer">https://www.feed43.com/dianji.xml</a>。</p>
-<figure><img src="https://pic1.zhimg.com/v2-f3b00e876d8df136f7d354b4fc22f900_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>在阅读器中的效果如下：</p>
-<figure><img src="https://pic4.zhimg.com/v2-6d8f503ff3da16eb985ca1d3ae2de98f_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<h2> 6. 全文抓取</h2>
-<p>FEED43 导出的条目需要点击链接才能查看内容。要在 RSS 中展示全文，需要通过 FeedEx 再转换一次。注意：FEED43 免费用户过多，需要在浏览器中打开一次才能获得真实链接（一般为 <code>http://node2.feed43.com</code>）。FeedEx 需要使用真实链接，一般 3 分钟内转换完毕。</p>
-<p>FeedEx: <a href="https://feedex.net/" target="_blank" rel="noopener noreferrer">https://feedex.net/</a></p>
-<figure><img src="https://pic4.zhimg.com/v2-8e3701adffa1d6fb4ea10dda2704988b_r.jpg" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
-<p>Feeds43 的免费版每 6 小时抓取一次，最多显示最新的 20 条内容。如果网页源更新较频繁，建议使用 RSSHub 和 Huginn。</p>
-<h2> RSS 合集</h2>
-<p>汇总的 RSS 永久订阅 feeds 均通过 RSSHub 和 Huginn 制作。如果有兴趣自制 RSS，可参考以下教程。</p>
-<ul>
-<li>
-<p><a href="https://newzone.top/posts/2017-04-22-rss_feed43_feedex.html" target="_blank" rel="noopener noreferrer">RSS 入门篇：FEED43&amp;FeedEx-为静态网页定制 RSS 源</a></p>
-</li>
-<li>
-<p><a href="https://newzone.top/posts/2018-10-07-huginn_scraping_any_website.html" target="_blank" rel="noopener noreferrer">RSS 进阶篇：Huginn - 真·为任意网页定制 RSS 源（PhantomJs 抓取）</a></p>
-</li>
-<li>
-<p><a href="https://newzone.top/posts/2019-04-01-rsshub_noob.html" target="_blank" rel="noopener noreferrer">RSS 速成篇：RSSHub 捡现成的轮子</a></p>
-</li>
-<li>
-<p><a href="https://newzone.top/posts/2020-03-25-rsshub_on_vps.html" target="_blank" rel="noopener noreferrer">RSS 速成篇 2：RSSHub 自部署</a></p>
-</li>
-<li>
-<p><a href="https://newzone.top/posts/2021-10-23-nas_with_rsshub_and_huginn.html" target="_blank" rel="noopener noreferrer">RSS 完结篇：节省千元服务费，RSSHub、Huginn 转移 NAS</a></p>
-</li>
-<li>
-<p><a href="https://newzone.top/posts/2022-03-17-rss_persistent_link_collection.html" target="_blank" rel="noopener noreferrer">RSS 汇总篇：RSS 永久链接合集，拒绝 RSS 失效</a></p>
-</li>
-</ul>
+      <title>基本 GC 的评价方法</title>
+      <link>https://merryldt.github.io/moyu/jvm/06_GCEvaluationCriteria.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/06_GCEvaluationCriteria.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">基本 GC 的评价方法</source>
+      <description>GC的两个核心指标 延迟(Latency): 最大停顿时间，即垃圾收集过程中一次STW的最长时间，越短越好，一定程度上可以接受频次的增大. 吞吐量(Throughput): 应用系统的生命周期内，由于GC线程会占用应用程序当前可用的CPU 时钟周期，吞吐量即为应用程序有效花费的时间占系统总运行时间的百分比。 例如： 系统运行了100min,GC耗时1min,则系统吞吐量为99%,吞吐量优先的收集器可以接受较长的停顿。 p99 图示 p99 即为一次停顿的时间不超过应用服务的 TP9999，GC 的吞吐量不小于 99.99%。</description>
+      <category>JVM</category>
+      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> GC的两个核心指标</h1>
+<h2> 延迟(Latency):</h2>
+<p>最大停顿时间，即垃圾收集过程中一次STW的最长时间，越短越好，一定程度上可以接受频次的增大.</p>
+<h3> 吞吐量(Throughput):</h3>
+<p>应用系统的生命周期内，由于GC线程会占用应用程序当前可用的CPU 时钟周期，吞吐量即为应用程序有效花费的时间占系统总运行时间的百分比。<br>
+例如： 系统运行了100min,GC耗时1min,则系统吞吐量为99%,吞吐量优先的收集器可以接受较长的停顿。</p>
+<h1> p99 图示</h1>
+<p>
+p99 即为<strong>一次停顿的时间不超过应用服务的 TP9999，GC 的吞吐量不小于 99.99%</strong>。</p>
+<h2> 例子：</h2>
+<p>假设某个服务 A 的 TP9999 为 80 ms，平均 GC 停顿为 30 ms，那么该服务的最大停顿时间最好不要超过 80 ms，GC 频次控制在 5 min 以上一次。如果满足不了，那就需要调优或者通过更多资源来进行并联冗余。<br>
+1/10000 = (1(次数)* x (平均GC停顿时间)) /  y(总时间)<br>
+5min 等于 5<em>60</em>1000 = 300000毫秒；30 /300000= 1/10000</p>
+<h1> 引入</h1>
+<p><a href="/moyu/jvm/09002_ServerPerformanceParameters.html" target="blank">服务器的性能参数</a></p>
 ]]></content:encoded>
-      <enclosure url="https://pic1.zhimg.com/v2-b5da0b08f632376fad3925a779e373b4_r.jpg" type="image/jpeg"/>
+    </item>
+    <item>
+      <title></title>
+      <link>https://merryldt.github.io/moyu/jvm/09001_SLA.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/09001_SLA.html</guid>
+      <source url="https://merryldt.github.io/rss.xml"></source>
+      <description>可⽤性（Ava ila bilty） 可⽤性指的是系统服务能正常运⾏所占的时间百分⽐。 如果我们搭建了⼀个拥有“100％可⽤性”的系统服务，那就意味着这个系统在任何时候都能正常运⾏。是不是很完美？但真要实现这样的⽬标其实⾮常困难，并且成本也会很⾼。 我们知道，即便是⼤名⿍⿍的亚马逊AWS云计算服务这样⼤型的、对⽤户来说极为关键的系统，也不能承诺100％的可⽤性，它的系统服务从推出到现在，也有过服务中断（Service Outage）的时候。 对于许多系统⽽⾔，四个9的可⽤性（99.99％ Availability，或每年约50分钟的系统中断时间）即可以被认为是⾼可⽤性（High availability）。 说到这⾥，我来为你揭开⼀开始所提到的“99.9% Availability”的真实含义。 “99.9% Availability”指的是⼀天当中系统服务将会有⼤约86秒的服务间断期。服务间断也许是因为系统维护，也有可能是因为系统在更新升级系统服务。 86秒这个数字是怎么算出来的呢？ 99.9%意味着有0.1%的可能性系统服务会被中断，⽽⼀天中有24⼩时 × 60分钟 × 60秒，也就是有(24 × 60 × 60 × 0.001) = 86.4秒的可能系统服务被中断了。⽽上⾯所说的四个9的⾼可⽤性服务就是承诺可以将⼀天当中的服务中断时间缩短到只有(24 × 60 × 60 × 0.0001) = 8.64秒。 准确性（Ac c ur a c y） 准确性指的是我们所设计的系统服务中，是否允许某些数据是不准确的或者是丢失了的。如果允许这样的情况发⽣，⽤户可以接受的概率（百分⽐）是多少？ 这该怎么衡量呢？不同的系统平台可能会⽤不同的指标去定义准确性。很多时候，系统架构会以错误率（Error Rate）来定义这⼀项SLA。 怎么计算错误率呢？可以⽤导致系统产⽣内部错误（Internal Error）的有效请求数，除以这期间的有效请求总数。 image.png 例如，我们在⼀分钟内发送100个有效请求到系统中，其中有5个请求导致系统返回内部错误，那我们可以说这⼀分钟系统的错误率是 5 / 100 = 5%。 下⾯，我想带你看看硅⾕⼀线公司所搭建的架构平台的准确性SLA。 Google Cloud Platform的SLA中，有着这样的准确性定义：每个⽉系统的错误率超过5%的时间要少于0.1%，以每分钟为单位来计算。 ⽽亚马逊AWS云计算平台有着稍微不⼀样的准确性定义：以每5分钟为单位，错误率不会超过0.1%。 你看，我们可以⽤错误率来定义准确性，但具体该如何评估系统的准确性呢？⼀般来说，我们可以采⽤性能测试（Performance Test）或者是查看系统⽇志（Log）两种⽅法来评估。 具体的做法我会在后⾯展开讲解，今天你先理解这项指标就可以了。 系统容量（Ca pa c ity） 在数据处理中，系统容量通常指的是系统能够⽀持的预期负载量是多少，⼀般会以每秒的请求数为单位来表⽰。 我们常常可以看见，某个系统的架构可以处理的QPS （Queries Per Second）是多少⼜或者RPS（Requests Per Second）是多少。这⾥的QPS或者是RPS就是指系统每秒可以响应多少请求数。 我们来看看之前Twitter发布的⼀项数据，Twitter系统可以响应30万的QPS来读取Twitter Timelines。这⾥Twitter系统给出的就是他们对于系统容量（Capacity）的SLA。 你可能会问，我要怎么给⾃⼰设计的系统架构定义出准确的QPS呢？以我的经验看，可以有下⾯这⼏种⽅式。 第⼀种，是使⽤限流（Throttling）的⽅式。 如果你是使⽤Java语⾔进⾏编程的，就可以使⽤Google Guava库中的RateLimiter类来定义每秒最多发送多少请求到后台处理。 假设我们在每台服务器都定义了⼀个每秒最多处理1000个请求的RateLimiter，⽽我们有N台服务器，在最理想的情况下，我们的QPS可以达到1000 * N。 这⾥要注意的雷区是，这个请求数并不是设置得越多越好。因为每台服务器的内存有限，过多的请求堆积在服务器中有可能会导致内存溢出 （Out-Of-Memory）的异常发⽣，也就是所有请求所需要占⽤的内存超过了服务器能提供的内存，从⽽让整个服务器崩溃。 第⼆种，是在系统交付前进⾏性能测试（Performance Test）。 我们可以使⽤像Apache JMeter⼜或是LoadRunner这类型的⼯具对系统进⾏性能测试。这类⼯具可以测试出系统在峰值状态下可以应对的QPS 是多少。 当然了，这⾥也是有雷区的。 有的开发者可能使⽤同⼀类型的请求参数，导致后台服务器在多数情况下命中缓存（Cache Hit）。这个时候得到的QPS可能并不是真实的QPS。 打个⽐⽅，服务器处理请求的正常流程需要查询后台数据库，得到数据库结果后再返回给⽤户，这个过程平均需要1秒。在第⼀次拿到数据库结果后，这个数据就会被保存在缓存中，⽽如果后续的请求都使⽤同⼀类型的参数，导致结果不需要从数据库得到，⽽是直接从缓存中得到，这个过程我们假设只需要0.1秒。那这样，我们所计算出来的QPS就会⽐正常的⾼出10倍。所以在⽣成请求的时候，要格外注意这⼀点。 第三种，是分析系统在实际使⽤时产⽣的⽇志（Log）。 系统上线使⽤后，我们可以得到⽇志⽂件。⼀般的⽇志⽂件会记录每个时刻产⽣的请求。我们可以通过系统每天在最繁忙时刻所接收到的请求数， 来计算出系统可以承载的QPS。 不过，这种⽅法不⼀定可以得到系统可以承载的最⼤QPS。 在这⾥打个⽐喻，⼀家可以容纳上百桌客⼈的餐馆刚开业，因为客流量还⽐较⼩，在每天最繁忙的时候只接待了10桌客⼈。那我们可以说这家餐馆最多只能接待10桌客⼈吗？不可以。 同样的，以分析系统⽇志的⽅法计算出来的QPS并不⼀定是服务器能够承载的最⼤QPS。想要得到系统能承受的最⼤QPS，更多的是性能测试和⽇志分析相结合的⼿段。 延迟（Latency） 延迟指的是系统在收到⽤户的请求到响应这个请求之间的时间间隔。 在定义延迟的SLA时，我们常常看到系统的SLA会有p95或者是p99这样的延迟声明。这⾥的p指的是percentile，也就是百分位的意思。如果说⼀个系统的p95 延迟是1秒的话，那就表⽰在100个请求⾥⾯有95个请求的响应时间会少于1秒，⽽剩下的5个请求响应时间会⼤于1秒。 下⾯我们⽤⼀个具体的例⼦来说明延迟这项指标在SLA中的重要性。 假设，我们已经设计好了⼀个社交软件的系统架构。这个社交软件在接收到⽤户的请求之后，需要读取数据库中的内容返回给⽤户。 为了降低系统的延迟，我们会将数据库中内容放进缓存（Cache）中，以此来减少数据库的读取时间。在系统运⾏了⼀段时间后，我们得到了⼀些缓存命中率（Cache Hit Ratio）的信息。有90%的请求命中了缓存，⽽剩下的10%的请求则需要重新从数据库中读取内容。 这时服务器所给我们的p95或者p99延迟恰恰就衡量了系统的最长时间，也就是从数据库中读取内容的时间。作为⼀个优秀架构师，你可以通过改进缓存策略从⽽提⾼缓存命中率，也可以通过优化数据库的Schema或者索引（Index）来降低p95或p99 延迟。 总⽽⾔之，当p95或者p99过⾼时，总会有5%或者1%的⽤户抱怨产品的⽤户体验太差，这都是我们要通过优化系统来避免的。</description>
+      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
+      <content:encoded><![CDATA[<ol>
+<li>可⽤性（Ava ila bilty）
+可⽤性指的是系统服务能正常运⾏所占的时间百分⽐。
+如果我们搭建了⼀个拥有“100％可⽤性”的系统服务，那就意味着这个系统在任何时候都能正常运⾏。是不是很完美？但真要实现这样的⽬标其实⾮常困难，并且成本也会很⾼。
+我们知道，即便是⼤名⿍⿍的亚马逊AWS云计算服务这样⼤型的、对⽤户来说极为关键的系统，也不能承诺100％的可⽤性，它的系统服务从推出到现在，也有过服务中断（Service Outage）的时候。
+对于许多系统⽽⾔，四个9的可⽤性（99.99％ Availability，或每年约50分钟的系统中断时间）即可以被认为是⾼可⽤性（High availability）。
+说到这⾥，我来为你揭开⼀开始所提到的“99.9% Availability”的真实含义。
+“99.9% Availability”指的是⼀天当中系统服务将会有⼤约86秒的服务间断期。服务间断也许是因为系统维护，也有可能是因为系统在更新升级系统服务。
+86秒这个数字是怎么算出来的呢？
+99.9%意味着有0.1%的可能性系统服务会被中断，⽽⼀天中有24⼩时 × 60分钟 × 60秒，也就是有(24 × 60 × 60 × 0.001) = 86.4秒的可能系统服务被中断了。⽽上⾯所说的四个9的⾼可⽤性服务就是承诺可以将⼀天当中的服务中断时间缩短到只有(24 × 60 × 60 × 0.0001) = 8.64秒。</li>
+<li>准确性（Ac c ur a c y）
+准确性指的是我们所设计的系统服务中，是否允许某些数据是不准确的或者是丢失了的。如果允许这样的情况发⽣，⽤户可以接受的概率（百分⽐）是多少？
+这该怎么衡量呢？不同的系统平台可能会⽤不同的指标去定义准确性。很多时候，系统架构会以错误率（Error Rate）来定义这⼀项SLA。
+怎么计算错误率呢？可以⽤导致系统产⽣内部错误（Internal Error）的有效请求数，除以这期间的有效请求总数。
+image.png
+例如，我们在⼀分钟内发送100个有效请求到系统中，其中有5个请求导致系统返回内部错误，那我们可以说这⼀分钟系统的错误率是 5 / 100 = 5%。
+下⾯，我想带你看看硅⾕⼀线公司所搭建的架构平台的准确性SLA。
+Google Cloud Platform的SLA中，有着这样的准确性定义：每个⽉系统的错误率超过5%的时间要少于0.1%，以每分钟为单位来计算。
+⽽亚马逊AWS云计算平台有着稍微不⼀样的准确性定义：以每5分钟为单位，错误率不会超过0.1%。
+你看，我们可以⽤错误率来定义准确性，但具体该如何评估系统的准确性呢？⼀般来说，我们可以采⽤性能测试（Performance Test）或者是查看系统⽇志（Log）两种⽅法来评估。
+具体的做法我会在后⾯展开讲解，今天你先理解这项指标就可以了。</li>
+<li>系统容量（Ca pa c ity）
+在数据处理中，系统容量通常指的是系统能够⽀持的预期负载量是多少，⼀般会以每秒的请求数为单位来表⽰。
+我们常常可以看见，某个系统的架构可以处理的QPS （Queries Per Second）是多少⼜或者RPS（Requests Per Second）是多少。这⾥的QPS或者是RPS就是指系统每秒可以响应多少请求数。
+我们来看看之前Twitter发布的⼀项数据，Twitter系统可以响应30万的QPS来读取Twitter Timelines。这⾥Twitter系统给出的就是他们对于系统容量（Capacity）的SLA。
+你可能会问，我要怎么给⾃⼰设计的系统架构定义出准确的QPS呢？以我的经验看，可以有下⾯这⼏种⽅式。
+第⼀种，是使⽤限流（Throttling）的⽅式。
+如果你是使⽤Java语⾔进⾏编程的，就可以使⽤Google Guava库中的RateLimiter类来定义每秒最多发送多少请求到后台处理。
+假设我们在每台服务器都定义了⼀个每秒最多处理1000个请求的RateLimiter，⽽我们有N台服务器，在最理想的情况下，我们的QPS可以达到1000 * N。
+这⾥要注意的雷区是，这个请求数并不是设置得越多越好。因为每台服务器的内存有限，过多的请求堆积在服务器中有可能会导致内存溢出
+（Out-Of-Memory）的异常发⽣，也就是所有请求所需要占⽤的内存超过了服务器能提供的内存，从⽽让整个服务器崩溃。
+第⼆种，是在系统交付前进⾏性能测试（Performance Test）。
+我们可以使⽤像Apache JMeter⼜或是LoadRunner这类型的⼯具对系统进⾏性能测试。这类⼯具可以测试出系统在峰值状态下可以应对的QPS 是多少。
+当然了，这⾥也是有雷区的。
+有的开发者可能使⽤同⼀类型的请求参数，导致后台服务器在多数情况下命中缓存（Cache Hit）。这个时候得到的QPS可能并不是真实的QPS。
+打个⽐⽅，服务器处理请求的正常流程需要查询后台数据库，得到数据库结果后再返回给⽤户，这个过程平均需要1秒。在第⼀次拿到数据库结果后，这个数据就会被保存在缓存中，⽽如果后续的请求都使⽤同⼀类型的参数，导致结果不需要从数据库得到，⽽是直接从缓存中得到，这个过程我们假设只需要0.1秒。那这样，我们所计算出来的QPS就会⽐正常的⾼出10倍。所以在⽣成请求的时候，要格外注意这⼀点。
+第三种，是分析系统在实际使⽤时产⽣的⽇志（Log）。
+系统上线使⽤后，我们可以得到⽇志⽂件。⼀般的⽇志⽂件会记录每个时刻产⽣的请求。我们可以通过系统每天在最繁忙时刻所接收到的请求数，
+来计算出系统可以承载的QPS。
+不过，这种⽅法不⼀定可以得到系统可以承载的最⼤QPS。
+在这⾥打个⽐喻，⼀家可以容纳上百桌客⼈的餐馆刚开业，因为客流量还⽐较⼩，在每天最繁忙的时候只接待了10桌客⼈。那我们可以说这家餐馆最多只能接待10桌客⼈吗？不可以。
+同样的，以分析系统⽇志的⽅法计算出来的QPS并不⼀定是服务器能够承载的最⼤QPS。想要得到系统能承受的最⼤QPS，更多的是性能测试和⽇志分析相结合的⼿段。</li>
+<li>延迟（Latency）
+延迟指的是系统在收到⽤户的请求到响应这个请求之间的时间间隔。
+在定义延迟的SLA时，我们常常看到系统的SLA会有p95或者是p99这样的延迟声明。这⾥的p指的是percentile，也就是百分位的意思。如果说⼀个系统的p95 延迟是1秒的话，那就表⽰在100个请求⾥⾯有95个请求的响应时间会少于1秒，⽽剩下的5个请求响应时间会⼤于1秒。
+下⾯我们⽤⼀个具体的例⼦来说明延迟这项指标在SLA中的重要性。
+假设，我们已经设计好了⼀个社交软件的系统架构。这个社交软件在接收到⽤户的请求之后，需要读取数据库中的内容返回给⽤户。
+为了降低系统的延迟，我们会将数据库中内容放进缓存（Cache）中，以此来减少数据库的读取时间。在系统运⾏了⼀段时间后，我们得到了⼀些缓存命中率（Cache Hit Ratio）的信息。有90%的请求命中了缓存，⽽剩下的10%的请求则需要重新从数据库中读取内容。
+这时服务器所给我们的p95或者p99延迟恰恰就衡量了系统的最长时间，也就是从数据库中读取内容的时间。作为⼀个优秀架构师，你可以通过改进缓存策略从⽽提⾼缓存命中率，也可以通过优化数据库的Schema或者索引（Index）来降低p95或p99 延迟。
+总⽽⾔之，当p95或者p99过⾼时，总会有5%或者1%的⽤户抱怨产品的⽤户体验太差，这都是我们要通过优化系统来避免的。</li>
+</ol>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>服务器性能参数</title>
+      <link>https://merryldt.github.io/moyu/jvm/09002_ServerPerformanceParameters.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/09002_ServerPerformanceParameters.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">服务器性能参数</source>
+      <description>QPS(Queries Per Second): 每秒查询率，每秒钟处理完请求的次数；指发出请求到服务器处理完成功返回结果，是一台服务器每秒能够响应的查询次数，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准。例如在server中有个counter，每处理一个请求加1，1秒后counter=QPS。对于衡量单个接口服务的处理能力，用QPS比较多。 TPS(Transactions Per Second)： 事务数/秒，是软件测试结果的测量单位。每秒钟处理完的事务次数，一般TPS是对整个系统来讲的。一个应用系统1s能完成多少事务处理，一个事务在分布式处理中，可能会对应多个请求。</description>
+      <category>JVM</category>
+      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> QPS(Queries Per Second):</h1>
+<p>每秒查询率，每秒钟处理完请求的次数；指发出请求到服务器处理完成功返回结果，是一台服务器每秒能够响应的查询次数，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准。例如在server中有个counter，每处理一个请求加1，1秒后counter=QPS。对于衡量单个接口服务的处理能力，用QPS比较多。</p>
+<h1> TPS(Transactions Per Second)：</h1>
+<p>事务数/秒，是软件测试结果的测量单位。每秒钟处理完的事务次数，一般TPS是对整个系统来讲的。一个应用系统1s能完成多少事务处理，一个事务在分布式处理中，可能会对应多个请求。</p>
+<p>一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数。</p>
+<p>包括了</p>
+<ol>
+<li>
+<p>用户请求服务器</p>
+</li>
+<li>
+<p>服务器自己的内部处理</p>
+</li>
+<li>
+<p>服务器返回给用户</p>
+</li>
+</ol>
+<p>每秒能够完成N个这3个过程，TPS也就是N；</p>
+<h1> TPS和QPS区别：</h1>
+<p>对于一个页面的一次访问，形成一个Tps；但一次页面请求，可能产生多次对服务器的请求，服务器对这些请求，就可计入“Qps”之中。</p>
+<p>例如：访问一个页面会请求服务器3次，一次放，产生一个“T”，产生3个“Q”</p>
+<p>系统吞吐量：应用系统每秒钟最大能接受的用户访问量，或者每秒钟最大能处理的请求数。</p>
+<p>一个系统的吞度量(承压能力)与request对CPU的消耗、外部接口、IO等等紧密关联。单个reqeust对CPU消耗越高，外部系统接口、IO影响速度越慢，系统吞吐能力越低，反之越高。</p>
+<h1> 系统吞吐量几个重要参数：</h1>
+<p>QPS(TPS)、并发数、响应时间</p>
+<p>QPS(TPS)：每秒钟请求/事务数</p>
+<p>并发数： 系统能同时处理的请求/事务数</p>
+<p>RT(response time)：  响应时间，一般取平均响应时间，处理一次请求所需要的平均处理时间</p>
+<h2> 计算关系：</h2>
+<p>并发数 = QPS (TPS)* RT</p>
+<p>QPS (TPS)=并发数/RT</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>
