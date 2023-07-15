@@ -21,6 +21,14 @@ export default sidebar([
         link: "",
         collapsible: true,
         children: "structure",
+      },
+      {
+        text: "JVM",
+        icon: "load",
+        prefix: "jvm/",
+        link: "",
+        collapsible: true,
+        children: "structure",
       }
     ],
   },
