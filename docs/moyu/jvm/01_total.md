@@ -26,7 +26,7 @@ Service-Level Agreement(服务等级协议)的缩写；指的是系统服务提�
 ![Alt text](./image/image.png)
 ## 1. 建立知识体系
 > 学习GC 的基础知识,包括:
-1. [Jvm的内存结构和对象分配](02_jvm_MemoryStructure.md)
+1. [Jvm的内存结构和对象分配](02_jvm_Memory0Structure.md)
 2. [垃圾收集方法](03_GarbageCollectionMethod.md)
 3. [垃圾收集器](04_GarbageCollector.md)
 4. [掌握一些常用的GC问题分析工具](05_GCAnalysisTools.md)
