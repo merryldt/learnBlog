@@ -6,8 +6,8 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Sat, 22 Jul 2023 08:29:19 GMT</pubDate>
-    <lastBuildDate>Sat, 22 Jul 2023 08:29:19 GMT</lastBuildDate>
+    <pubDate>Sat, 22 Jul 2023 09:09:38 GMT</pubDate>
+    <lastBuildDate>Sat, 22 Jul 2023 09:09:38 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>JVM</category>
@@ -276,6 +276,10 @@ Eden Space + From Space + To Space + concurrent mark-sweep generation = 4096</li
 <li>解析动作主要针对类或接口、字段、类方法、接口方法、方法类型等。对应常量池中的CONSTANT_Class_info、CONSTANT_Fieldref_info、CONSTANT_Methodref_inf等。</li>
 <li>对同一个符号引用进行多次解析是可能的，所以虚拟机会被第一次解析的结果进行缓存，避免解析动作重复进行。</li>
 </ul>
+<h2> 初始化</h2>
+<ol>
+<li>真正开始执行类中定义的Java程序代码(或者说是字节码)；</li>
+</ol>
 ]]></content:encoded>
     </item>
     <item>
