@@ -6,32 +6,297 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Sat, 15 Jul 2023 13:39:05 GMT</pubDate>
-    <lastBuildDate>Sat, 15 Jul 2023 13:39:05 GMT</lastBuildDate>
+    <pubDate>Sat, 22 Jul 2023 08:15:21 GMT</pubDate>
+    <lastBuildDate>Sat, 22 Jul 2023 08:15:21 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>JVM</category>
+    <item>
+      <title>纯Java自带工具排查JVM</title>
+      <link>https://merryldt.github.io/moyu/jvm/010_PracticeOne.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/010_PracticeOne.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">纯Java自带工具排查JVM</source>
+      <description>1. 获取java 进程的pid ps -ef | grep java jps 2. 使用jmap jmap -heap pid 获取整个堆空间的详细信息。包括GC的使用、堆的配置信息，以及内存的使用信息等。 root@iZuf64eg43tiam73abxiweZ:~# /usr/local/btjdk/jdk8/bin/jmap -heap 1028098 Attaching to process ID 1028098, please wait... Debugger attached successfully. Server compiler detected. JVM version is 25.71-b00 #1. using parallel threads in the new generation. using thread-local object allocation. Concurrent Mark-Sweep GC # 2. Heap Configuration: MinHeapFreeRatio = 40 MaxHeapFreeRatio = 70 MaxHeapSize = 4294967296 (4096.0MB) NewSize = 348913664 (332.75MB) MaxNewSize = 348913664 (332.75MB) OldSize = 3946053632 (3763.25MB) NewRatio = 2 SurvivorRatio = 8 MetaspaceSize = 21807104 (20.796875MB) CompressedClassSpaceSize = 1073741824 (1024.0MB) MaxMetaspaceSize = 17592186044415 MB G1HeapRegionSize = 0 (0.0MB) #3. Heap Usage: New Generation (Eden + 1 Survivor Space): capacity = 314048512 (299.5MB) used = 166875944 (159.14530181884766MB) free = 147172568 (140.35469818115234MB) 53.136995598947465% used Eden Space: capacity = 279183360 (266.25MB) used = 132010792 (125.89530181884766MB) free = 147172568 (140.35469818115234MB) 47.28462040144513% used From Space: capacity = 34865152 (33.25MB) used = 34865152 (33.25MB) free = 0 (0.0MB) 100.0% used To Space: capacity = 34865152 (33.25MB) used = 0 (0.0MB) free = 34865152 (33.25MB) 0.0% used concurrent mark-sweep generation: capacity = 3946053632 (3763.25MB) used = 1832479232 (1747.58837890625MB) free = 2113574400 (2015.66162109375MB) 46.43827486630572% used 38355 interned Strings occupying 4029456 bytes.</description>
+      <category>JVM</category>
+      <pubDate>Wed, 19 Jul 2023 04:48:17 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> 1. 获取java 进程的pid</h1>
+<ol>
+<li>ps -ef | grep java
+</li>
+<li>jps
+</li>
+</ol>
+<h1> 2. 使用jmap</h1>
+<h2> jmap -heap pid</h2>
+<p>获取整个堆空间的详细信息。包括GC的使用、堆的配置信息，以及内存的使用信息等。</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
+<li>第一部分：</li>
+</ol>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>使用的是serial收集器（也叫串行收集器）即 Mark Sweep Compact GC。</li>
+</ul>
+<ol start="2">
+<li>第二部分：</li>
+</ol>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>MinHeapFreeRatio和MaxHeapFreeRatio: 设置堆的最小最大空闲比例。</li>
+<li>MaxHeapSize: 堆的最大大小。</li>
+<li>NewSize: 新生代的默认值。</li>
+<li>MaxNewSize: 新生代的最大值</li>
+<li>OldSize: 老年代的默认值。</li>
+<li>NewRatio: 新生代和老年代的大小比例，即老年代:新生代=2:1,默认为2.</li>
+<li>SurvivorRatio: 新生代中的eden区与survivor的比例=8:1.</li>
+<li>MetaspaceSize: 1.8 开始叫元空间大小,使用本地内存的</li>
+<li>CompressedClassSpaceSize: 类指针压缩空间大小, 默认为1G</li>
+<li>MaxMetaspaceSize: 元空间的最大值。一般设置和MetaspaceSize一样大小。</li>
+<li>G1HeapRegionSize: G1区块的大小, 取值为1M至32M. 其取值是要根据最小Heap大小划分出2048个区块</li>
+</ul>
+<ol start="3">
+<li>第三部分:</li>
+</ol>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>新生代: 指eden加上一个survivor空间。容量有300M这样，使用了159M，还有140M空闲. 接近53%的使用率。（根据分代的思想，新生代都是一个eden 加上2个survivor）</li>
+</ul>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>单独的eden区: 大小为266M,使用125M,空闲140, 使用率47%</li>
+</ul>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>一个surivor区，是在使用着的</li>
+</ul>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>另一个survivor的使用情况。此时没有被使用。和From Space 大小一致；</li>
+</ul>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>老年代： 总的大小是3763M，使用1747M,空闲2015M,使用率是46%。</li>
+</ul>
+<ol start="4">
+<li>总结：
+为java 进程分配了 4096M 的内存；
+Eden Space + From Space + To Space + concurrent mark-sweep generation = 4096</li>
+</ol>
+<h1> 3. 使用jstat</h1>
+<p>jstat -gc -t 1028098  60000 20</p>
+<p>
+从图中红框标记的的两条数据分析：</p>
+<ul>
+<li>一分钟采集1次gc 的数据，第一条和最后一条就是 19分钟。</li>
+</ul>
+<ol>
+<li>GCT 总的gc 时间是 891.076秒</li>
+<li>GCT 总的gc 时间是  895.115 秒
+系统的吞吐量 = 1- （895.115-891.076）/ 19 *60   = 1- 0.0035  = 0.9965 = 99.65%</li>
+</ol>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Jvm的内存结构和对象分配</title>
+      <link>https://merryldt.github.io/moyu/jvm/02_Jvm_Memory0Structure.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/02_Jvm_Memory0Structure.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">Jvm的内存结构和对象分配</source>
+      <description>图示 内存区域划分 JVM 内存区域 内存是非常重要的系统资源，是硬盘和CPU 的中间仓库及桥梁，承载着操作系统和应用的实时运行。 JVM 内存布局规定了Java 在运行过程中内存申请、分配、管理的策略,保证了JVM 的高效稳定运行。 不同的JVM对于内存的划分方式和管理机制存在着部分差异。结合JVM虚拟机规范，来探讨一下经典的JVM内存布局。 线程 每个JVM只有一个Runtime实例。称为运行时环境。 线程是一个程序里的运行单元。JVM允许一个应用有多个线程并行的执行。 在HopsoptJVM中，每个线程都与操作系统的本地线程直接映射。（当一个Java线程准备好执行以后，此时一个操作系统的本地线程也同时创建。Java线程执行终止后,本地线程也会回收。） 操作系统负责所有线程的安排调度到任何一个可用的CPU上。一旦本地线程初始化成功，它就会调用Java线程中的run()方法。</description>
+      <category>JVM</category>
+      <pubDate>Wed, 19 Jul 2023 04:48:17 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> 图示</h1>
+<figure><figcaption>内存区域划分</figcaption></figure>
+<h1> JVM 内存区域</h1>
+<ol>
+<li>内存是非常重要的系统资源，是硬盘和CPU 的中间仓库及桥梁，承载着操作系统和应用的实时运行。</li>
+<li>JVM 内存布局规定了Java 在运行过程中内存申请、分配、管理的策略,保证了JVM 的高效稳定运行。</li>
+<li>不同的JVM对于内存的划分方式和管理机制存在着部分差异。结合JVM虚拟机规范，来探讨一下经典的JVM内存布局。</li>
+</ol>
+<h2> 线程</h2>
+<ol>
+<li>每个JVM只有一个Runtime实例。称为运行时环境。</li>
+<li>线程是一个程序里的运行单元。JVM允许一个应用有多个线程并行的执行。</li>
+<li>在HopsoptJVM中，每个线程都与操作系统的本地线程直接映射。（当一个Java线程准备好执行以后，此时一个操作系统的本地线程也同时创建。Java线程执行终止后,本地线程也会回收。）</li>
+<li>操作系统负责所有线程的安排调度到任何一个可用的CPU上。一旦本地线程初始化成功，它就会调用Java线程中的run()方法。</li>
+</ol>
+<h3> 守护线程、普通线程</h3>
+<h2> 一、程序计算器</h2>
+<p>极小的内存空间,线程私有的,当前线程的行号指示器，程序的分支、循环、跳转、异常处理、线程恢复等基本功能都需要依赖程序计算器；比如(多线程切换)。<br>
+线程执行的是:</p>
+<ol>
+<li>Java方法，计数器记录的是正在执行的虚拟机字节码指令的地址；</li>
+<li>Native方法，计数器值为空；</li>
+</ol>
+<p>值得注意的是它是java虚拟机规范中唯一没有规定任何OutOfMemoryError情况的区域</p>
+<h2> 二、java虚拟机栈</h2>
+<ol>
+<li>
+<p>虚拟机栈描述的是java方法执行的内存模型：线程私有的，生命周期与线程相同。</p>
+</li>
+<li>
+<p>每个方法在执行的同时都会创建一个栈帧用于<strong>存储局部变量表、操作数栈、动态链接、方法出口</strong>等信息；方法的调用直至执行完成的过程，对应着栈帧在虚拟机栈中<strong>入栈到出栈</strong>的过程。</p>
+</li>
+<li>
+<p>虚拟机栈主要的部分是<strong>局部变量表</strong> ，其存放了编译器可知的各种基本数据类型、对象引用和returnAddress类型(指向了一条字节码指令的地址);</p>
+</li>
+<li>
+<p><u>局部变量表所需的内存空间在编译期间完成分配，在方法运行期间不会改变局部变量表的大小</u>。</p>
+</li>
+<li>
+<p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出<strong>StackOverflowError</strong>异常；如果虚拟机可以动态扩展，如果扩展时无法申请到足够的内存，将会抛出<strong>OutOfMemoryErro</strong>异常。</p>
+</li>
+</ol>
+<h2> 三、本地方法栈</h2>
+<p>与虚拟机栈作用类似，本地方法栈是虚拟机栈使用到的Native方法服务；SunHotSpot虚拟机把本地方法栈和虚拟机栈结合; 本地方法栈也会报虚拟机栈的两种异常。</p>
+<h2> 四、java堆</h2>
+<ol>
+<li>
+<p>java虚拟机管理的最大的一块内存；</p>
+</li>
+<li>
+<p>所有线程共享的内存区域；</p>
+</li>
+<li>
+<p>目的：存放对象实例，几乎所有的对象实例都在这里分配内存；（所有的对象实例以及数组都要在堆上分配）特别注意的是： 随着JIT编译器的发展与逃逸分析技术的成熟，<strong>栈上分配、标量替换优化技术</strong>带来了变化。不是所有对象都在堆上分配内存了。</p>
+</li>
+<li>
+<p>java虚拟机规范规定，java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可；实现时，即可是固定大小的，也可是可扩展的；当前主流的虚拟机都是可扩展的，通过-Xmx和-Xms控制； 如果堆中没有内存，并且堆也无法扩展 ，抛出OutOfMemoryError异常。</p>
+</li>
+<li>
+<p>java堆是垃圾收集的主要区域，也称为“GC堆”;</p>
+<ul>
+<li>从内存回收的角度：基本采用分代收集算法，java堆分为新生代(Eden空间、From Survivor空间、To Survivor空间)和老年代；</li>
+<li>从内存分配的角度：线程共享的java堆中可能划分出多个线程私有的分配缓冲区。目的是为了更好地、更快地回收内存。</li>
+</ul>
+</li>
+</ol>
+<h2> 五、方法区</h2>
+<ol>
+<li>存储已被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。</li>
+<li>所有线程共享的内存区域。</li>
+<li>在HostSpot虚拟机中，使用永久代来实现方法区，这样的话垃圾收集器可以像管理Java堆一样管理这部分内存； Jdk1.7中，永久代中的字符串常量池移出。 为Native Memory实现方法区做准备。1.8称为元空间，默认的大小为MetaspaceSize 值21M.</li>
+<li>方法区和java堆一样不需要连续的内存和可以选择固定大小或者可扩展外，还可以选择不实现垃圾收集；垃圾收集行为在方法区较少出现，方法区的内存回收目标主要是针对常量池的回收和对类型的卸载；（回收效果差，类型卸载要求高）回收非常有必要，当方法区无法满足内存分配需求时，将抛出<strong>OutOfMemoryError</strong>异常。</li>
+</ol>
+<h2> 六、运行时常量池</h2>
+<ol>
+<li>方法区的一部分;</li>
+<li>存放的是类加载后<strong>class文件中常量池的信息</strong>;Class文件包括： 1 常量池(用于存放编译器生成的各种字面量和符号引用，这部分内容在类加载后存放到方法区的运行时常量池中) 2 类的基本描述信息（字段、方法、接口）</li>
+</ol>
+<p>运行时常量池，细节要求不高，可以根据不同的需求来实现该内存区域； Class包括其中的常量池，格式要求严格，具体到每一个字节存储的数据都必须符合才能被虚拟机认可、装载和执行；运行时常量池，不仅保存Class文件中描述的符号引用，而且也保存翻译的直接引用。</p>
+<p>java语言的动态性，意味着并不要求常量一定只有编译器才能产生，也就是说不是只有提前放置在Class文件常量池中的内容才能进入方法区的运行时常量池； 在运行期也可以将新的常量放入运行时常量池，比如String的intern（）方法(调用该方法，如果常量池中包含了一个和当前对象相等的字符串则返回常量池中的字符串， 否则把改字符串放到常量池中，并返回字符串的引用.)；常量池可能报<strong>OutOfMemoryError</strong>异常。</p>
+<p>常量池在运行时加载到内存中后,称为运行时常量池。</p>
+<h2> 七、直接内存</h2>
+<ol>
+<li>NIO类，一种基于通道与缓存区的I/o方式，可以使用Native函数库直接分配堆外内存，通过存储在java堆中的DirectByteBuffer对象作为这块内存的引用；</li>
+<li>NIO的使用在某些场合避免了在java堆和Native堆中来回复制数据，提高了性能；</li>
+<li>直接内存不受java堆大小的控制，但是受到本机总内存大小以及处理器寻址空间的限制；</li>
+<li>也是会报<strong>OutOfMemoryError</strong>异常。</li>
+</ol>
+<h1> 知识补充：</h1>
+<h2> 逃逸分析</h2>
+<p>目的就是减少内存堆分配压力；</p>
+<p>逃逸分析(Escape Analysis)是目前Java虚拟机中比较前沿的优化技术。</p>
+<p>逃逸分析的基本行为就是分析对象动态作用域：当一个对象在方法中被定义后，它有可能被外部方法所引用，例如，作为调用参数传递到其他地方中，称为方法逃逸。</p>
+<h3> 基于逃逸分析，可以进行 同步消除、栈上分配以及标量替换的优化。</h3>
+<h3> 例子：</h3>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>StringBuffer sb是一个方法内部变量，上述代码中直接将sb返回，这样这个StringBuffer有可能被其他方法所改变，这样它的作用域就不只是在方法内部，虽然它是一个局部变量，称其逃逸到了方法外部
+。甚至还有可能被外部线程访问到，譬如赋值给类变量或可以在其他线程中访问的实例变量，称为线程逃逸。</p>
+<p>上述代码如果想要StringBuffer sb不逃出方法，可以做一些修改：</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>逃逸分析包括：</p>
+<ul>
+<li>全局变量赋值逃逸</li>
+<li>方法返回值逃逸</li>
+<li>实例引用发生逃逸</li>
+<li>线程逃逸：赋值给类变量或可以在其他线程中访问的实例变量</li>
+</ul>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 同步消除(锁消除)</h2>
+<ol>
+<li>
+<p>如果一个对象被发现只能从一个线程被访问到，那么对于这个对象的操作可以不考虑同步。</p>
+</li>
+<li>
+<p>在动态编译同步块的时候，JIT编译器可以借助逃逸分析来判断同步块所使用的锁对象是否只能够被一个线程访问而没有被发布到其他线程。</p>
+</li>
+<li>
+<p>如果同步块所使用的锁对象通过这种分析被证实只能够被一个线程访问，那么JIT编译器在编译这个同步块的时候就会取消对这部分代码的同步。这个取消同步的过程就叫同步省略，也叫锁消除。</p>
+</li>
+<li>
+<p>虚拟机会根据自己的代码检测结果取消一些加锁逻辑。</p>
+</li>
+<li>
+<p>虚拟机通过检测会发现一些代码中不可能出现数据竞争，但是代码中又有加锁逻辑，为了提高性能，就消除这些锁。</p>
+</li>
+</ol>
+<p>如果一段代码中，在堆上的所有数据都不会被其他线程访问到，那就可以把它们当成线程私有数据，自然就不需要同步加锁了。</p>
+<h3> 经典例子：</h3>
+<p>String 字符串拼接：</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>打开编译后的字节码我们可以发现加号拼接字符串jvm底层其实是调用StringBuilder来实现的，也就是说”a” + “b”等效于下面的代码片。</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>append方法时一个同步方法，它的方法签名是：</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>这时候，编译器就会判断出sb这个对象并不会被这段代码块以外的地方访问到，更不会被其他线程访问到，这时候的加锁就是完全没必要的，编译器就会把这里的加锁代码消除掉，
+体现到java源码上就是把append方法的synchronized修饰符给去掉了。</p>
+<h2> 栈上分配</h2>
+<ol>
+<li>虚拟机提供的一种优化技术，基本思想是，对于线程私有的对象，将它打散分配在栈上，而不分配在堆上。好处是对象跟着方法调用自行销毁，不需要进行垃圾回收，可以提高性能。</li>
+<li>栈上分配需要的技术基础，逃逸分析。逃逸分析的目的是判断对象的作用域是否会逃逸出方法体。注意，任何可以在多个线程之间共享的对象，一定都属于逃逸对象。</li>
+<li>如果逃逸分析能够证明某些新建的 <strong>对象不逃逸</strong> ，那么 Java 虚拟机完全可以将其分配至栈上，并且在 new 语句所在的方法退出时，通过弹出当前方法的栈桢来自动回收所分配的内存空间。</li>
+</ol>
+<h2> 标量替换</h2>
+<p>定义：通过逃逸分析确定该对象不会被外部访问，并且对象可以被进一步分解时，JVM不会创建该对象，而会将该对象成员变量分解若干个被这个方法使用的成员变量所代替。这些代替的成员变量在栈帧或寄存器上分配空间。</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>以上代码中，point对象并没有逃逸出alloc方法，并且point对象是可以拆解成标量的。那么，JIT就会不会直接创建Point对象，而是直接使用两个标量int x ，int y来替代Point对象。</p>
+<p>以上代码，经过标量替换后，就会变成：</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>减少堆内存的占用。因为一旦不需要创建对象了，那么就不再需要分配堆内存了。</p>
+<p>标量替换为栈上分配提供了很好的基础。</p>
+<p>由于该对象没有被实际分配，因此和栈上分配一样，它同样可以减轻垃圾回收的压力。与栈上分配相比，它对字段的内存连续性不做要求，而且，这些字段甚至可以直接在寄存器中维护，无须浪费任何内存空间。</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>类的加载</title>
+      <link>https://merryldt.github.io/moyu/jvm/02_Jvm_Memory1ClassReload.html</link>
+      <guid>https://merryldt.github.io/moyu/jvm/02_Jvm_Memory1ClassReload.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">类的加载</source>
+      <description>类的生命周期 Alt text 过程 加载（load） 通过一个类的全限定名来获取定义此类的二进制字节流; 将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构; 链接(Linking) 校验 目的是在于确保class文件的字节流中包含信息符合当前虚拟机要求，保证被加载类的正确性，不会危害虚拟机自身安全。 主要包括四种验证：文件格式验证、元数据验证、字节码验证、符号引用验证。</description>
+      <category>JVM</category>
+      <pubDate>Wed, 19 Jul 2023 04:48:17 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> 类的生命周期</h1>
+<figure><figcaption>Alt text</figcaption></figure>
+<h1> 过程</h1>
+<h2> 加载（load）</h2>
+<ol>
+<li>通过一个类的全限定名来获取定义此类的二进制字节流;</li>
+<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构;</li>
+</ol>
+<h2> 链接(Linking)</h2>
+<h3> 校验</h3>
+<p>目的是在于确保class文件的字节流中包含信息符合当前虚拟机要求，保证被加载类的正确性，不会危害虚拟机自身安全。<br>
+主要包括四种验证：文件格式验证、元数据验证、字节码验证、符号引用验证。</p>
+<h3> 准备</h3>
+<p>为类变量分配内存并且设置该类变量的默认初始值，即零值。<br>
+这里不包含用final 修饰的static，因为final 在编译的时候就会分配了,准备阶段会显示初始化；<br>
+这里不会为实例变量分配初始化，类变量会分配在方法去中，而实例变量是会随着对象一起分配到JAVA堆中.</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>GC 体系总结</title>
       <link>https://merryldt.github.io/moyu/jvm/01_total.html</link>
       <guid>https://merryldt.github.io/moyu/jvm/01_total.html</guid>
       <source url="https://merryldt.github.io/rss.xml">GC 体系总结</source>
-      <description>背景 基础知识介绍 Mutator 应用程序,即垃圾生产者； TLAB Thread Local Allocation Buffer 的缩写，基于CAS 的独享线程(Mutator Threads) 可以优先将对象分配在Eden 中的一块内存，因为是Java 线程独享的内存区没有锁竞争，所以分配速度更快，每个TLAB 都是一个线程独享的。 Card Table 卡表,主要是用来标记卡页的状态，每个卡表项对应一个卡页。当卡页中一个对象引用有写操作时，写屏障将会标记对象所在的卡表状态改为dirty,卡表的本质是用来解决跨代引用的问题。 https://stackoverflow.com/questions/19154607/how-actually-card-table-and-writer-barrier-works SLA（服务等级协议): Service-Level Agreement的缩写；指的是系统服务提供者（Provider）对客户（Customer）的⼀个服务承诺。这是衡量⼀个⼤型分布式系统是否“健康”的常见⽅法。 可⽤性、准确性、系统容量和延迟代完善09999</description>
+      <description>背景 基础知识介绍 Mutator 应用程序,即垃圾生产者； Tlab Thread Local Allocation Buffer 的缩写，基于CAS 的独享线程(Mutator Threads) 可以优先将对象分配在Eden 中的一块内存，因为是Java 线程独享的内存区没有锁竞争，所以分配速度更快，每个TLAB 都是一个线程独享的。 Card Table 卡表,主要是用来标记卡页的状态，每个卡表项对应一个卡页。当卡页中一个对象引用有写操作时，写屏障将会标记对象所在的卡表状态改为dirty,卡表的本质是用来解决跨代引用的问题。 解决的原理 Sla Service-Level Agreement(服务等级协议)的缩写；指的是系统服务提供者（Provider）对客户(Customer)的⼀个服务承诺。这是衡量⼀个⼤型分布式系统是否“健康”的常见⽅法。 可⽤性、准确性、系统容量和延迟 sla详解</description>
       <category>JVM</category>
       <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
       <content:encoded><![CDATA[<h1> 背景</h1>
 <h1> 基础知识介绍</h1>
 <ol>
-<li>Mutator<br>
-应用程序,即垃圾生产者；</li>
-<li>TLAB<br>
-Thread Local Allocation Buffer 的缩写，基于CAS 的独享线程(Mutator Threads) 可以优先将对象分配在Eden 中的一块内存，因为是Java 线程独享的内存区没有锁竞争，所以分配速度更快，每个TLAB 都是一个线程独享的。</li>
-<li>Card Table<br>
-卡表,主要是用来标记卡页的状态，每个卡表项对应一个卡页。当卡页中一个对象引用有写操作时，写屏障将会标记对象所在的卡表状态改为dirty,卡表的本质是用来解决跨代引用的问题。
-<a href="https://stackoverflow.com/questions/19154607/how-actually-card-table-and-writer-barrier-works" target="_blank" rel="noopener noreferrer">https://stackoverflow.com/questions/19154607/how-actually-card-table-and-writer-barrier-works</a></li>
-<li>SLA（服务等级协议):<br>
-Service-Level Agreement的缩写；指的是系统服务提供者（Provider）对客户（Customer）的⼀个服务承诺。这是衡量⼀个⼤型分布式系统是否“健康”的常见⽅法。<br>
-可⽤性、准确性、系统容量和延迟<a href="/moyu/jvm/09999_SLA.html" target="blank">代完善09999</a></li>
+<li>
+<p>Mutator<br>
+应用程序,即垃圾生产者；</p>
+</li>
+<li>
+<p>Tlab<br>
+Thread Local Allocation Buffer 的缩写，基于CAS 的独享线程(Mutator Threads) 可以优先将对象分配在Eden 中的一块内存，因为是Java 线程独享的内存区没有锁竞争，所以分配速度更快，每个TLAB 都是一个线程独享的。</p>
+</li>
+<li>
+<p>Card Table<br>
+卡表,主要是用来标记卡页的状态，每个卡表项对应一个卡页。当卡页中一个对象引用有写操作时，写屏障将会标记对象所在的卡表状态改为dirty,卡表的本质是用来解决跨代引用的问题。<br>
+<a href="https://stackoverflow.com/questions/19154607/how-actually-card-table-and-writer-barrier-works" target="_blank" rel="noopener noreferrer">解决的原理</a></p>
+</li>
+<li>
+<p>Sla<br>
+Service-Level Agreement(服务等级协议)的缩写；指的是系统服务提供者（Provider）对客户(Customer)的⼀个服务承诺。这是衡量⼀个⼤型分布式系统是否“健康”的常见⽅法。<br>
+可⽤性、准确性、系统容量和延迟<br>
+<a href="/moyu/jvm/09999_SLA.html" target="blank">sla详解</a></p>
+</li>
 </ol>
 <h1> 路径</h1>
 <figure><figcaption>Alt text</figcaption></figure>
@@ -40,7 +305,7 @@ Service-Level Agreement的缩写；指的是系统服务提供者（Provider）�
 <p>学习GC 的基础知识,包括:</p>
 </blockquote>
 <ol>
-<li><a href="/moyu/jvm/02_jvm_MemoryStructure.html" target="blank">jvm的内存结构和对象分配</a></li>
+<li><a href="/moyu/jvm/02_jvm_Memory0Structure.html" target="blank">Jvm的内存结构和对象分配</a></li>
 <li><a href="/moyu/jvm/03_GarbageCollectionMethod.html" target="blank">垃圾收集方法</a></li>
 <li><a href="/moyu/jvm/04_GarbageCollector.html" target="blank">垃圾收集器</a></li>
 <li><a href="/moyu/jvm/05_GCAnalysisTools.html" target="blank">掌握一些常用的GC问题分析工具</a></li>
@@ -54,28 +319,25 @@ Service-Level Agreement的缩写；指的是系统服务提供者（Provider）�
 <h2> 3. 场景调优实践</h2>
 <ol>
 <li><a href="/moyu/jvm/09_9CMS.html" target="blank">分析与解决九种 CMS 中常见 GC 问题场景</a></li>
+<li><a href="/moyu/jvm/010_PracticeOne.html" target="blank">纯Java自带工具排查JVM</a></li>
 </ol>
 <h2> 4. 总结优化经验</h2>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title>jvm的内存结构和对象分配</title>
-      <link>https://merryldt.github.io/moyu/jvm/02_jvm_MemoryStructure.html</link>
-      <guid>https://merryldt.github.io/moyu/jvm/02_jvm_MemoryStructure.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">jvm的内存结构和对象分配</source>
-      <category>JVM</category>
-      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
     </item>
     <item>
       <title>垃圾收集方法</title>
       <link>https://merryldt.github.io/moyu/jvm/03_GarbageCollectionMethod.html</link>
       <guid>https://merryldt.github.io/moyu/jvm/03_GarbageCollectionMethod.html</guid>
       <source url="https://merryldt.github.io/rss.xml">垃圾收集方法</source>
-      <description>1</description>
+      <description>复制 整理 整理清楚</description>
       <category>JVM</category>
       <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
       <content:encoded><![CDATA[<h1> </h1>
-<p>1</p>
+<ol>
+<li>复制</li>
+<li>整理</li>
+<li>整理清楚</li>
+</ol>
 ]]></content:encoded>
     </item>
     <item>
@@ -252,55 +514,6 @@ Google Cloud Platform的SLA中，有着这样的准确性定义：每个⽉系�
 这时服务器所给我们的p95或者p99延迟恰恰就衡量了系统的最长时间，也就是从数据库中读取内容的时间。作为⼀个优秀架构师，你可以通过改进缓存策略从⽽提⾼缓存命中率，也可以通过优化数据库的Schema或者索引（Index）来降低p95或p99 延迟。
 总⽽⾔之，当p95或者p99过⾼时，总会有5%或者1%的⽤户抱怨产品的⽤户体验太差，这都是我们要通过优化系统来避免的。</p>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title>服务器性能参数</title>
-      <link>https://merryldt.github.io/moyu/jvm/09002_ServerPerformanceParameters.html</link>
-      <guid>https://merryldt.github.io/moyu/jvm/09002_ServerPerformanceParameters.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">服务器性能参数</source>
-      <description>QPS(Queries Per Second): 每秒查询率，每秒钟处理完请求的次数；指发出请求到服务器处理完成功返回结果，是一台服务器每秒能够响应的查询次数，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准。例如在server中有个counter，每处理一个请求加1，1秒后counter=QPS。对于衡量单个接口服务的处理能力，用QPS比较多。 TPS(Transactions Per Second)： 事务数/秒，是软件测试结果的测量单位。每秒钟处理完的事务次数，一般TPS是对整个系统来讲的。一个应用系统1s能完成多少事务处理，一个事务在分布式处理中，可能会对应多个请求。</description>
-      <category>JVM</category>
-      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
-      <content:encoded><![CDATA[<h1> QPS(Queries Per Second):</h1>
-<p>每秒查询率，每秒钟处理完请求的次数；指发出请求到服务器处理完成功返回结果，是一台服务器每秒能够响应的查询次数，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准。例如在server中有个counter，每处理一个请求加1，1秒后counter=QPS。对于衡量单个接口服务的处理能力，用QPS比较多。</p>
-<h1> TPS(Transactions Per Second)：</h1>
-<p>事务数/秒，是软件测试结果的测量单位。每秒钟处理完的事务次数，一般TPS是对整个系统来讲的。一个应用系统1s能完成多少事务处理，一个事务在分布式处理中，可能会对应多个请求。</p>
-<p>一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数。</p>
-<p>包括了</p>
-<ol>
-<li>
-<p>用户请求服务器</p>
-</li>
-<li>
-<p>服务器自己的内部处理</p>
-</li>
-<li>
-<p>服务器返回给用户</p>
-</li>
-</ol>
-<p>每秒能够完成N个这3个过程，TPS也就是N；</p>
-<h1> TPS和QPS区别：</h1>
-<p>对于一个页面的一次访问，形成一个Tps；但一次页面请求，可能产生多次对服务器的请求，服务器对这些请求，就可计入“Qps”之中。</p>
-<p>例如：访问一个页面会请求服务器3次，一次放，产生一个“T”，产生3个“Q”</p>
-<p>系统吞吐量：应用系统每秒钟最大能接受的用户访问量，或者每秒钟最大能处理的请求数。</p>
-<p>一个系统的吞度量(承压能力)与request对CPU的消耗、外部接口、IO等等紧密关联。单个reqeust对CPU消耗越高，外部系统接口、IO影响速度越慢，系统吞吐能力越低，反之越高。</p>
-<h1> 系统吞吐量几个重要参数：</h1>
-<p>QPS(TPS)、并发数、响应时间</p>
-<p>QPS(TPS)：每秒钟请求/事务数</p>
-<p>并发数： 系统能同时处理的请求/事务数</p>
-<p>RT(response time)：  响应时间，一般取平均响应时间，处理一次请求所需要的平均处理时间</p>
-<h2> 计算关系：</h2>
-<p>并发数 = QPS (TPS)* RT</p>
-<p>QPS (TPS)=并发数/RT</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>CMS</title>
-      <link>https://merryldt.github.io/moyu/jvm/09_9CMS.html</link>
-      <guid>https://merryldt.github.io/moyu/jvm/09_9CMS.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">CMS</source>
-      <category>JVM</category>
-      <pubDate>Sat, 15 Jul 2023 09:14:38 GMT</pubDate>
     </item>
   </channel>
 </rss>
