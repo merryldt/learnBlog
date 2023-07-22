@@ -29,6 +29,14 @@ export default sidebar([
         link: "",
         collapsible: true,
         children: "structure",
+      },      
+      {
+        text: "算法",
+        icon: "load",
+        prefix: "algorithm/",
+        link: "",
+        collapsible: true,
+        children: "structure",
       }
     ],
   },
