@@ -145,7 +145,7 @@ export default hopeTheme({
       // chart: true,
       // codetabs: true, // 代码块分组
       container: true,
-      // demo: true, //代码演示
+       demo: true, //代码演示
       // echarts: true,
       // flowchart: true,
       gfm: true,
@@ -161,7 +161,7 @@ export default hopeTheme({
       tasklist: true,
       sub: true, // 上下角标
       sup: true,
-      // tabs: true, // 选项卡
+      tabs: true, // 选项卡
       // vpre: true,
       // vuePlayground: true, // Vue 交互演示
     },

@@ -36,7 +36,29 @@ export default sidebar([
         prefix: "algorithm/",
         link: "",
         collapsible: true,
-        children: "structure",
+        children: [
+          "01_total.md",
+          // "ChatGPT.md",
+          // "design.md",
+          // "AppNotes.md",
+          // "Chrome.md",
+          {
+            text: "数据结构基础",
+            icon: "load",
+            prefix: "basic/",
+            link: "",
+            collapsible: true,
+            children: "structure",
+          }
+          // {
+          //   text: "直播手册",
+          //   icon: "load",
+          //   prefix: "livestreaming/",
+          //   link: "",
+          //   collapsible: true,
+          //   children: "structure",
+          // },
+        ],
       }
     ],
   },
