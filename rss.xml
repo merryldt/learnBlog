@@ -6,8 +6,8 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Thu, 27 Jul 2023 14:42:24 GMT</pubDate>
-    <lastBuildDate>Thu, 27 Jul 2023 14:42:24 GMT</lastBuildDate>
+    <pubDate>Thu, 27 Jul 2023 14:50:42 GMT</pubDate>
+    <lastBuildDate>Thu, 27 Jul 2023 14:50:42 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>redis</category>
@@ -19,13 +19,13 @@
       <link>https://merryldt.github.io/moyu/redis/02_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/02_redis.html</guid>
       <source url="https://merryldt.github.io/rss.xml">讲讲 Redis 缓存更新一致性</source>
-      <description>在使用redis作为缓存时,写操作 当执行写操作后，因为需要保证从缓存读取到的数据与数据库中的数据是一致的，这就需要对缓存进行更新。 旧key 是删除还是更新？缓存和数据库的更新顺序？ 删除缓存 先删除缓存，再更新数据库 并发问题: 写： 线程张三 读： 线程李四 顺序 线程:张三 线程:李四 数据库 缓存 1 删除缓存 v1 2 缓存失效 v1 3 从数据库读取数据为v1 v1 4 更新数据库为v2 v2 5 将v1写入缓存 v2 v1</description>
+      <description>在使用redis作为缓存时,写操作 当执行写操作后，因为需要保证从缓存读取到的数据与数据库中的数据是一致的，这就需要对缓存进行更新。 旧key 是删除还是更新？缓存和数据库的更新顺序？ 一、删除缓存 先删除缓存，再更新数据库 并发问题: 写： 线程张三 读： 线程李四 顺序 线程:张三 线程:李四 数据库 缓存 1 删除缓存 v1 2 缓存失效 v1 3 从数据库读取数据为v1 v1 4 更新数据库为v2 v2 5 将v1写入缓存 v2 v1</description>
       <category>redis</category>
       <pubDate>Thu, 27 Jul 2023 14:40:18 GMT</pubDate>
       <content:encoded><![CDATA[<h2> 在使用redis作为缓存时,写操作</h2>
 <p>当执行写操作后，因为需要保证从缓存读取到的数据与数据库中的数据是一致的，这就需要对缓存进行更新。</p>
 <h2> 旧key 是删除还是更新？缓存和数据库的更新顺序？</h2>
-<h2> 删除缓存</h2>
+<h2> 一、删除缓存</h2>
 <h3> 先删除缓存，再更新数据库</h3>
 <ul>
 <li>并发问题:</li>
@@ -143,7 +143,7 @@
 </tr>
 </tbody>
 </table>
-<h2> 更新缓存</h2>
+<h2> 二、更新缓存</h2>
 <h3> 先更新缓存，再更新数据库</h3>
 <ol>
 <li>缓存更新成功，数据库有更新失败的风险；导致最新的数据未持久化，风险很高。</li>
@@ -260,8 +260,12 @@
 <li>先数据库后缓存</li>
 <li>先缓存后数据库</li>
 </ol>
-<h2> </h2>
-<p>根据实际场景选择一款就行，折中</p>
+<h2> 总结</h2>
+<p>根据实际场景选择一款就行，折中；</p>
+<h3> 对系统吞吐量的影响：</h3>
+<p>比如更新缓存策略产生的数据库负载小于删除缓存策略的负载</p>
+<h3> 并发安全性：</h3>
+<p>并发读写时某些异常操作顺序可能造成数据不一致，如缓存中长期保存过时数据</p>
 ]]></content:encoded>
     </item>
     <item>
