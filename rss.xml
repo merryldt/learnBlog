@@ -6,8 +6,8 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Thu, 27 Jul 2023 14:50:42 GMT</pubDate>
-    <lastBuildDate>Thu, 27 Jul 2023 14:50:42 GMT</lastBuildDate>
+    <pubDate>Thu, 27 Jul 2023 17:45:36 GMT</pubDate>
+    <lastBuildDate>Thu, 27 Jul 2023 17:45:36 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>redis</category>
@@ -15,18 +15,139 @@
     <category>算法</category>
     <category>JVM</category>
     <item>
+      <title>缓存击穿、穿透、雪崩</title>
+      <link>https://merryldt.github.io/moyu/redis/03_redis.html</link>
+      <guid>https://merryldt.github.io/moyu/redis/03_redis.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">缓存击穿、穿透、雪崩</source>
+      <description>缓存击穿（失效） 背景: 缓存被删除或者失效 现象：热点数据，直接请求数据库，由于⾼并发，可能会把 DB 压垮，导致服务不可⽤。 关键字：单⼀热点数据、⾼并发、数据失效 描述： ⾼并发流量，访问的这个数据是热点数据，请求的数据在 DB 中存在，但是 Redis 存的那⼀份已经过期，后端需要从 DB 从加载数据并写到 Redis。 解决方案： 过期时间 + 随机值 对于热点数据，我们不设置过期时间，这样就可以把请求都放在缓存中处理，充分把 Redis ⾼吞吐量性能利⽤起来。 或者过期时间再加⼀个随机值。 设计缓存的过期时间时，使⽤公式：过期时间=baes 时间+随机时间。即相同业务数据写缓存时，在基础过期时间之上，再加⼀个随机的过期时间，让数据在未来⼀段时间内慢慢过期，避免瞬时全部过期，对 DB 造成过⼤压⼒ 预热 分析热门数据,单独处理。预先把热⻔数据提前存⼊ Redis 中，并设热⻔数据的过期时间超⼤值。 加锁 当发现缓存失效的时候，不是⽴即从数据库加载数据。 ⽽是先获取分布式锁，获取锁成功，再去查询一次缓存，如果为null,才执⾏数据库查询和写数据到缓存的操作，获取锁失败，则说明当前有线程在执数据库查询操作，当前线程睡眠⼀段时间在重试。 这样只让⼀个请求去数据库读取数据 public Object getData(String id) { String desc = redis.get(id); // 缓存为空，过期了 if (desc == null) { // 互斥锁，只有⼀个请求可以成功 if (redis(lockName)) { try{ // 这里一定要再读一次，不然大量请求到了这一步，就算缓存中有了，也要全部请求一次数据库。 desc = redis.get(id); if(null != desc) return desc; // 从数据库取出数据 desc = getFromDB(id); // 写到 Redis redis.set(id, desc, 60 * 60 * 24); } catch (Exception ex) { LogHelper.error(ex); } finally { // 确保最后删除，释放锁 redis.del(lockName); return desc; } } else { // 否则睡眠200ms，接着获取锁 Thread.sleep(200); return getData(id); } } }</description>
+      <category>redis</category>
+      <pubDate>Thu, 27 Jul 2023 17:43:37 GMT</pubDate>
+      <content:encoded><![CDATA[<h2> 缓存击穿（失效）</h2>
+<ul>
+<li>背景: 缓存被删除或者失效</li>
+<li>现象：热点数据，直接请求数据库，由于⾼并发，可能会把 DB 压垮，导致服务不可⽤。</li>
+<li>关键字：单⼀热点数据、⾼并发、数据失效</li>
+<li>描述：
+⾼并发流量，访问的这个数据是热点数据，请求的数据在 DB 中存在，但是 Redis 存的那⼀份已经过期，后端需要从 DB 从加载数据并写到 Redis。</li>
+</ul>
+<h3> 解决方案：</h3>
+<ol>
+<li>
+<p>过期时间 + 随机值</p>
+<p>对于热点数据，我们不设置过期时间，这样就可以把请求都放在缓存中处理，充分把 Redis ⾼吞吐量性能利⽤起来。
+或者过期时间再加⼀个随机值。<br>
+设计缓存的过期时间时，使⽤公式：过期时间=baes 时间+随机时间。即相同业务数据写缓存时，在基础过期时间之上，再加⼀个随机的过期时间，让数据在未来⼀段时间内慢慢过期，避免瞬时全部过期，对 DB 造成过⼤压⼒</p>
+</li>
+<li>
+<p>预热<br>
+分析热门数据,单独处理。预先把热⻔数据提前存⼊ Redis 中，并设热⻔数据的过期时间超⼤值。</p>
+</li>
+<li>
+<p>加锁</p>
+<ul>
+<li>当发现缓存失效的时候，不是⽴即从数据库加载数据。</li>
+<li>⽽是先获取分布式锁，获取锁成功，再去查询一次缓存，如果为null,才执⾏数据库查询和写数据到缓存的操作，获取锁失败，则说明当前有线程在执数据库查询操作，当前线程睡眠⼀段时间在重试。</li>
+<li>这样只让⼀个请求去数据库读取数据</li>
+</ul>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+</ol>
+<h2> 缓存穿透</h2>
+<p>缓存穿透：意味着有特殊请求在查询⼀个不存在的数据，即不数据存在 Redis 也不存在于数据库。
+导致每次请求都会穿透到数据库，缓存成了摆设，对数据库产⽣很⼤压⼒从⽽影响正常服务。</p>
+<figure><figcaption>Alt text</figcaption></figure>
+<h3> 解决⽅案</h3>
+<ul>
+<li>缓存空值：当请求的数据不存在 Redis 也不存在数据库的时候，设置⼀个缺省值（⽐如：None）。当后续再次进⾏查询则直接返回空值或者缺省值。</li>
+<li>布隆过滤器：在数据写⼊数据库的同时将这个 ID 同步到到布隆过滤器中，当请求的 id 不存在布隆过滤器中则说明该请求查询的数据⼀定没有在数据库中保存，就不要去数据库查询了
+<strong>布隆过滤器</strong>
+BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10 亿 条数据以内最佳，因为 10 亿 条数据⼤概要占⽤ 1.2GB 的内存。</li>
+</ul>
+<p>说下布隆过滤器的原理吧</p>
+<p>BloomFilter 的算法是，⾸先分配⼀块内存空间做 bit 数组，数组的 bit 位初始值全部设为 0。
+加⼊元素时，采⽤ k 个相互独⽴的 Hash 函数计算，然后将元素 Hash 映射的 K 个位置全部设置为1。</p>
+<p>检测 key 是否存在，仍然⽤这 k 个 Hash 函数计算出 k 个位置，如果位置全部为 1，则表明 key 存在，否则不存在。</p>
+<figure><figcaption>Alt text</figcaption></figure>
+<p>哈希函数会出现碰撞，所以布隆过滤器会存在误判。
+这⾥的误判率是指，BloomFilter 判断某个 key 存在，但它实际不存在的概率，因为它存的是 key 的 Hash 值，⽽⾮ key 的值。</p>
+<p>所以有概率存在这样的 key，它们内容不同，但多次 Hash 后的 Hash 值都相同。
+对于 BloomFilter 判断不存在的 key ，则是 100% 不存在的，反证法，如果这个 key 存在，那它每次 Hash 后对应的 Hash 值位置肯定是 1，⽽不会是 0。布隆过滤器判断存在不⼀定真的存在。</p>
+<h2> 缓存雪崩</h2>
+<p>缓存雪崩指的是⼤量的请求⽆法在 Redis 缓存系统中处理，请求全部打到数据库，导致数据库压⼒激增，甚⾄宕
+机。
+出现该原因主要有两种：</p>
+<ul>
+<li>⼤量热点数据同时过期，导致⼤量请求需要查询数据库并写到缓存；</li>
+<li>Redis 故障宕机，缓存系统异常。</li>
+</ul>
+<h3> 原因：</h3>
+<p><strong>缓存⼤量数据同时过期</strong></p>
+<p>数据保存在缓存系统并设置了过期时间，但是由于在同时⼀刻，⼤量数据同时过期。<br>
+系统就把请求全部打到数据库获取数据，并发量⼤的话就会导致数据库压⼒激增。<br>
+缓存雪崩是发⽣在⼤量数据同时失效的场景，⽽缓存击穿（失效）是在某个热点数据失效的场景，这是他们最⼤的区别。</p>
+<figure><figcaption>Alt text</figcaption></figure>
+<p>解决⽅案</p>
+<ol>
+<li>
+<p>过期时间添加随机值
+要避免给⼤量的数据设置⼀样的过期时间，过期时间 = baes 时间+ 随机时间（较⼩的随机数，⽐如随机增加 1~5分钟）。<br>
+这样⼀来，就不会导致同⼀时刻热点数据全部失效，同时过期时间差别也不会太⼤，既保证了相近时间失效，⼜能满⾜业务需求。</p>
+</li>
+<li>
+<p>接⼝限流
+当访问的不是核⼼数据的时候，在查询的⽅法上加上接⼝限流保护。⽐如设置 10000 req/s。<br>
+如果访问的是核⼼数据接⼝，缓存不存在允许从数据库中查询并设置到缓存中。<br>
+这样的话，只有部分请求会发送到数据库，减少了压⼒。<br>
+限流，就是指，我们在业务系统的请求⼊⼝前端控制每秒进⼊系统的请求数，避免过多的请求被发送到数据库。</p>
+<figure><figcaption>接⼝限流</figcaption></figure>
+</li>
+</ol>
+<p><strong>Redis 故障宕机</strong></p>
+<p>⼀个 Redis 实例能⽀撑 10 万的 QPS，⽽⼀个数据库实例只有 1000 QPS。<br>
+⼀旦 Redis 宕机，会导致⼤量请求打到数据库，从⽽发⽣缓存雪崩。</p>
+<h3> 解决方案：</h3>
+<p>对于缓存系统故障导致的缓存雪崩的解决⽅案有两种：</p>
+<ul>
+<li>服务熔断和接⼝限流；</li>
+<li>构建⾼可⽤缓存集群系统。</li>
+</ul>
+<p><strong>服务熔断和限流</strong></p>
+<p>在业务系统中，针对⾼并发的使⽤服务熔断来有损提供服务从⽽保证系统的可⽤性。
+服务熔断就是当从缓存获取数据发现异常，则直接返回错误数据给前端，防⽌所有流量打到数据库导致宕机。
+服务熔断和限流属于在发⽣了缓存雪崩，如何降低雪崩对数据库造成的影响的⽅案。</p>
+<p><strong>构建⾼可⽤的缓存集群</strong></p>
+<p>所以，缓存系统⼀定要构建⼀套 Redis ⾼可⽤集群，⽐如 《Redis 哨兵集群》或者 《Redis Cluster 集群》，如果Redis 的主节点故障宕机了，从节点还可以切换成为主节点，继续提供缓存服务，避免了由于缓存实例宕机⽽导致的缓存雪崩问题。</p>
+<h2> 总结</h2>
+<ul>
+<li>缓存穿透指的是数据库本就没有这个数据，请求直奔数据库，缓存系统形同虚设。</li>
+<li>缓存击穿（失效）指的是数据库有数据，缓存本应该也有数据，但是缓存过期了，Redis 这层流量防护屏障被
+击穿了，请求直奔数据库。</li>
+<li>缓存雪崩指的是⼤量的热点数据⽆法在 Redis 缓存中处理（⼤⾯积热点数据缓存失效、Redis 宕机），流量全部打到数据库，导致数据库极⼤压⼒。</li>
+</ul>
+<h2> 思考</h2>
+]]></content:encoded>
+    </item>
+    <item>
       <title>讲讲 Redis 缓存更新一致性</title>
       <link>https://merryldt.github.io/moyu/redis/02_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/02_redis.html</guid>
       <source url="https://merryldt.github.io/rss.xml">讲讲 Redis 缓存更新一致性</source>
-      <description>在使用redis作为缓存时,写操作 当执行写操作后，因为需要保证从缓存读取到的数据与数据库中的数据是一致的，这就需要对缓存进行更新。 旧key 是删除还是更新？缓存和数据库的更新顺序？ 一、删除缓存 先删除缓存，再更新数据库 并发问题: 写： 线程张三 读： 线程李四 顺序 线程:张三 线程:李四 数据库 缓存 1 删除缓存 v1 2 缓存失效 v1 3 从数据库读取数据为v1 v1 4 更新数据库为v2 v2 5 将v1写入缓存 v2 v1</description>
+      <description>自己使用的场景 通常我们是先从缓存中读取，如果有，返回；如果没有，则从数据库中读取，返回写入缓存，并返回。 代码如下： public String getUserName(Integer userId){ // 因为key 通常会加一些前缀，作为指定作用的key; 这里id实际是userId. String userIdkey = &amp;quot;redis:userId:&amp;quot;+userId; String userName = redis.get(userIdkey); if(StringUtils.isNotEmppty()){ return userName; } userName = userMapper.getOne(1); redis.set(userIdkey,userName); return userName; }</description>
       <category>redis</category>
       <pubDate>Thu, 27 Jul 2023 14:40:18 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 在使用redis作为缓存时,写操作</h2>
+      <content:encoded><![CDATA[<h2> 自己使用的场景</h2>
+<p>通常我们是先从缓存中读取，如果有，返回；如果没有，则从数据库中读取，返回写入缓存，并返回。<br>
+代码如下：</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>写到这里是不是发现还会有一个问题？就是如果 userName 在其他地方更新了呢？ 所以一定还有一段：</p>
+<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>想一想，如果这两个操作是两个线程操作？并且交叉操作呢？会发生什么问题？</p>
+<h2> 在使用redis作为缓存时,写操作</h2>
 <p>当执行写操作后，因为需要保证从缓存读取到的数据与数据库中的数据是一致的，这就需要对缓存进行更新。</p>
 <h2> 旧key 是删除还是更新？缓存和数据库的更新顺序？</h2>
-<h2> 一、删除缓存</h2>
-<h3> 先删除缓存，再更新数据库</h3>
+<ol>
+<li>想想，自己目前使用的方式是什么？</li>
+<li>想想，还有什么方式？以及对比自己使用的，优劣对比？</li>
+</ol>
+<h2> 四大策略</h2>
+<h3> 1. 先删除缓存，再更新数据库</h3>
 <ul>
 <li>并发问题:</li>
 </ul>
@@ -84,7 +205,7 @@
 </tr>
 </tbody>
 </table>
-<h3> 先更新数据库，再删除缓存</h3>
+<h3> 2. 先更新数据库，再删除缓存</h3>
 <ol>
 <li>若数据库更新成功，删除缓存操作失败，则此后读到的都是缓存中过期的数据，造成不一致问题。</li>
 <li>并发问题:</li>
@@ -143,8 +264,7 @@
 </tr>
 </tbody>
 </table>
-<h2> 二、更新缓存</h2>
-<h3> 先更新缓存，再更新数据库</h3>
+<h3> 3. 先更新缓存，再更新数据库</h3>
 <ol>
 <li>缓存更新成功，数据库有更新失败的风险；导致最新的数据未持久化，风险很高。</li>
 <li>并发问题。</li>
@@ -197,7 +317,7 @@
 </tr>
 </tbody>
 </table>
-<h3> 先更新数据库，再更新缓存</h3>
+<h3> 4. 先更新数据库，再更新缓存</h3>
 <ol>
 <li>同删除缓存策略一样，若数据库更新成功缓存更新失败则会造成数据不一致问题。</li>
 <li>并发问题。</li>
@@ -260,12 +380,126 @@
 <li>先数据库后缓存</li>
 <li>先缓存后数据库</li>
 </ol>
-<h2> 总结</h2>
+<h2> 总结,设计需要考虑的问题</h2>
 <p>根据实际场景选择一款就行，折中；</p>
 <h3> 对系统吞吐量的影响：</h3>
 <p>比如更新缓存策略产生的数据库负载小于删除缓存策略的负载</p>
 <h3> 并发安全性：</h3>
 <p>并发读写时某些异常操作顺序可能造成数据不一致，如缓存中长期保存过时数据</p>
+<h3> 更新失败的影响：</h3>
+<p>若某个操作失败，如何对业务影响降到最小</p>
+<h3> 检测和修复故障的难度:</h3>
+<p>操作失败导致的错误会在日志留下详细的记录容易检测和修复。并发问题导致的数据错误没有明显的痕迹难以发现，且在流量高峰期更容易产生并发错误产生的业务风险较大。</p>
+<h2> 如何解决以上并发导致的问题？</h2>
+<h3> 1. 使用 CAS</h3>
+<p>CAS (Check-And-Set 或 Compare-And-Swap)是一种常见的保证并发安全的手段。CAS 当且仅当客户端最后一次取值后该 key 没有被其他客户端修改的情况下，才允许当前客户端将新值写入。</p>
+<ul>
+<li>CAS 是一种乐观锁</li>
+</ul>
+<p>假如缓存初始值是v0,更新缓存的时候，必须要校验值等于v0，才去更新，否则放弃。</p>
+<ul>
+<li>目前已知的redis 提供CAS命令的中间件和redis官方支持的。</li>
+</ul>
+<blockquote>
+<blockquote>
+<ol>
+<li>比如阿里的 Tair 以及腾讯的 Tendis。</li>
+<li>Redis 官方提供了 Watch + 事务的方法来支持 CAS, 或者使用 redis 中 lua 脚本原子性执行的特点来实现 CAS。(比较复杂)</li>
+</ol>
+</blockquote>
+</blockquote>
+<h3> 2. 使用分布式锁</h3>
+<ul>
+<li>分布式锁是一种悲观锁</li>
+</ul>
+<blockquote>
+<blockquote>
+<ol>
+<li>线程张三 拿到锁</li>
+<li>线程张三操作</li>
+<li>线程张三 释放锁</li>
+<li>线程李四 拿到锁</li>
+<li>线程李四操作</li>
+<li>线程李四 释放锁</li>
+</ol>
+</blockquote>
+</blockquote>
+<p>可以解决并发问题，只是成本可能略高。</p>
+<h3> 3. 延时双删</h3>
+<ul>
+<li>问题是: 读线程的写入缓存操作，发生于写线程的数据库数据更新之后。会发生缓存和数据库数据不一致的问题。</li>
+<li>解决： 因为是读线程最后写入缓存，此时再清除缓存是不是就可以解决这个问题？<br>
+延时双删就是写线程等待一段时间“确保”读线程都结束后再次删除缓存，以此清除可能的错误缓存数据。</li>
+<li>需要注意的是: 因为无法确保读线程何时结束,所以仍有存在数据不一致的可能。</li>
+</ul>
+<p>但是延时双删实现成本很低而且极大的减少了并发问题出现的概率，不失为一种简单实用的手段。</p>
+<p>结果如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">顺序</th>
+<th style="text-align:center">线程:张三</th>
+<th style="text-align:right">线程:李四</th>
+<th style="text-align:right">数据库</th>
+<th style="text-align:right">缓存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:center">删除缓存</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">v1</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:center"></td>
+<td style="text-align:right">缓存失效</td>
+<td style="text-align:right">v1</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:center"></td>
+<td style="text-align:right">从数据库读取数据为v1</td>
+<td style="text-align:right">v1</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:center">更新数据库为v2</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">v2</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:center"></td>
+<td style="text-align:right">将v1写入缓存</td>
+<td style="text-align:right">v2</td>
+<td style="text-align:right">v1</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:center">延时一段时间,删除缓存</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">v2</td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+<h3> 4. 异步更新</h3>
+<p>阿里开源了 MySQL 数据库binlog的增量订阅和消费组件 - canal。canal 模拟从库获得主库的 binlog 更新，然后将更新数据写入 MQ 或直接进行消费。<br>
+我们可以让API服务器只负责写入数据库，另一个线程订阅数据库 binlog 增量进行缓存更新。<br>
+因为 binlog 是有序的，因此可以避免两个写线程竞争。但我们仍然需要解决读写线程竞争的问题:</p>
+<figure><figcaption>Alt text</figcaption></figure>
+<h2> 实际场景中，你采用的是何种方式？</h2>
+<h2> 这里可以延伸的问题？</h2>
+<ol>
+<li>如果使用的分布式锁，用的哪种？了解其原理不？</li>
+<li>如果采用先删除缓存/缓存失效？导致大量请求到数据库？</li>
+</ol>
 ]]></content:encoded>
     </item>
     <item>
@@ -538,256 +772,6 @@ Eden Space + From Space + To Space + concurrent mark-sweep generation = 4096</li
 <div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>减少堆内存的占用。因为一旦不需要创建对象了，那么就不再需要分配堆内存了。</p>
 <p>标量替换为栈上分配提供了很好的基础。</p>
 <p>由于该对象没有被实际分配，因此和栈上分配一样，它同样可以减轻垃圾回收的压力。与栈上分配相比，它对字段的内存连续性不做要求，而且，这些字段甚至可以直接在寄存器中维护，无须浪费任何内存空间。</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>类的加载</title>
-      <link>https://merryldt.github.io/moyu/jvm/02_Jvm_Memory1ClassReload.html</link>
-      <guid>https://merryldt.github.io/moyu/jvm/02_Jvm_Memory1ClassReload.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">类的加载</source>
-      <description>类的生命周期 一、过程 加载（load） 通过一个类的全限定名来获取定义此类的二进制字节流; 将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构; 链接(Linking) 校验 目的是在于确保class文件的字节流中包含信息符合当前虚拟机要求，保证被加载类的正确性，不会危害虚拟机自身安全。 主要包括四种验证：文件格式验证、元数据验证、字节码验证、符号引用验证。</description>
-      <category>JVM</category>
-      <pubDate>Wed, 19 Jul 2023 04:48:17 GMT</pubDate>
-      <content:encoded><![CDATA[<figure><figcaption>类的生命周期</figcaption></figure>
-<h2> 一、过程</h2>
-<h3> 加载（load）</h3>
-<ol>
-<li>通过一个类的全限定名来获取定义此类的二进制字节流;</li>
-<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构;</li>
-</ol>
-<h3> 链接(Linking)</h3>
-<h4> 校验</h4>
-<ul>
-<li>目的是在于确保class文件的字节流中包含信息符合当前虚拟机要求，保证被加载类的正确性，不会危害虚拟机自身安全。</li>
-<li>主要包括四种验证：文件格式验证、元数据验证、字节码验证、符号引用验证。</li>
-</ul>
-<h4> 准备</h4>
-<ul>
-<li>为类变量分配内存并且设置该类变量的默认初始值，即零值。</li>
-<li>这里不包含用final 修饰的static，因为final 在编译的时候就会分配了,准备阶段会显示初始化；</li>
-<li>这里不会为实例变量分配初始化，类变量会分配在方法区中，而实例变量是会随着对象一起分配到JAVA堆中.</li>
-</ul>
-<h4> 解析</h4>
-<ul>
-<li>虚拟机将常量池内的符号引用替换为直接引用的过程。</li>
-<li>事实上，解析操作往往会伴随着JVM 在执行完初始化之后再执行; 符号引用以一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时能无歧义地定位到目标即可。</li>
-<li>各虚拟机能接受的符号引用必须是一致的，因为符号引用的字面量形式明确定义在Java虚拟机规范的Class文件格式中。</li>
-<li>直接引用可以是直接指向目标的指针、相对偏移量或是一个能间接定位到目标的句柄。</li>
-<li>解析动作主要针对类或接口、字段、类方法、接口方法、方法类型等。对应常量池中的CONSTANT_Class_info、CONSTANT_Fieldref_info、CONSTANT_Methodref_inf等。</li>
-<li>对同一个符号引用进行多次解析是可能的，所以虚拟机会被第一次解析的结果进行缓存，避免解析动作重复进行。</li>
-</ul>
-<h3> 初始化</h3>
-<ol>
-<li>真正开始执行类中定义的Java程序代码(或者说是字节码)；</li>
-<li>根据程序员通过程序制定的主观计划去初始化类变量和其他资源。换个角度来说，初始化阶段是执行类构造器clinit方法的过程。clinit方法不需要定义，是Javac编译器自动收集类中的所有类变量的赋值动作和静态代码块中的语句合并而来。构造器方法中指令按语句在源文件中出现的顺序执行。clinit方法不同于类的构造器。(关联: 构造器是虚拟机视角下的init方法)</li>
-<li>若该类具有父类，JVM会保证子类的clinit方法执行前，父类的clinit方法已经执行完毕。</li>
-<li>虚拟机必须保证一个类的clinit方法在多线程下被同步加锁。</li>
-</ol>
-<h4> 初始化时机：</h4>
-<p>虚拟机规范规定了有且只有5中情况下，必须立即对类进行初始化，称为对一个类进行主动引用；</p>
-<ol>
-<li>遇到new、getstatic、putstatic 或invokestatic 这四条字节码指令时，如果类没有进行过初始化，则需要先触发其初始化。
-场景： 使用new关键字实例化对象的时候、读取或设置一个类的静态字段(被final修饰，已在编译器把结果放入常量池的静态字段除外)的时候，以及调用一个类的静态方法的时候，</li>
-<li>使用java.lang.reflect 包的方法对类进行反射调用的时候，如果类没有进行过初始化，则需要先触发其初始化</li>
-<li>当虚拟机启动时，用户需要指定一个要执行的主类(包含main()方法的那个类),虚拟机会先初始化这个主类；</li>
-<li>当初始化一个类时，如果发现其父类还没有进行过初始化，则需要先触发其父类的初始化；
-如果初始化的是一个接口，并不要求其父接口全部都完成了初始化，只有在真正使用到父接口的时候，才会初始化。比如(引用接口中定义的常量)</li>
-<li>当使用JDK 1.7 的动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄所对应的类没有进行过初始化，则需要先触发其初始化。
-除了在加载阶段用户应用程序可以通过自定义类加载器参与之外，其余动作完全由虚拟机主导和控制，到了初始化，才开始执行Java程序代码。</li>
-</ol>
-<h4> 例子：</h4>
-<figure><figcaption>类的加载过程</figcaption></figure>
-<h2> 二、类加载器</h2>
-<p>实现“通过一个类的全限定名来获取描述此类的二进制字节流”的动作的代码模块；</p>
-<h3> 类加载器从两个角度区分:</h3>
-<p>一、从虚拟机角度：</p>
-<ol>
-<li>启动类加载器(BootStrap ClassLoader),由C++语言实现，虚拟机自身的一部分；</li>
-<li>所有其他的类加载器，由Java语言实现，独立于虚拟机外部，并且全部继承自抽象类Java.lang.ClassLoader。</li>
-</ol>
-<p>二、从Java开发角度：</p>
-<ol>
-<li>启动类加载器；</li>
-<li>扩展类加载器；</li>
-<li>应用程序类加载器。</li>
-</ol>
-<h3> 类加载器的作用</h3>
-<figure><figcaption>类加载器的作用</figcaption></figure>
-<p>类加载器负责从本地文件系统或者网络中获取class文件，class 文件在文件开头有特殊的标识;
-ClassLoader 只负责class文件系统的加载，至于它是否运行，则由ExcutionEngin 决定;
-加载的类信息存储于一块称为方法区的内存空间。除了类的信息，方法区中还会存放运行时常量池信息，可能还会有字符串字面量和数字常量(这部分常量信息是class中常量池部分的内存映射).</p>
-<figure><figcaption>类加载器的ClassLoader角色</figcaption></figure>
-<ol>
-<li>class file 存在于文件系统中，可以理解为设计师画在纸上的模板，而最终这个模板执行的时候是要加载进入JVM根据这个文件实例化出N个一模一样的实例。</li>
-<li>class file 被加载进入JVM中，被称为 DNA 元数据模板，放在方法区；</li>
-<li>在.class -&gt; JVM -&gt; 元数据模板，这就需要一个工具(类加载器 ClassLoader 扮演的角色)</li>
-</ol>
-<h3> 介绍三种类加载器</h3>
-<h4> 启动类加载器(Bootstrap ClassLoader)</h4>
-<p>工作：</p>
-<ul>
-<li>将存放在&lt;JAVA_HOME&gt;\lib 目录中的rt.jar，或者被-Xbootclasspath参数所指定的路径中的，并且是虚拟机识别的类库加载到虚拟机内存中。仅按照文件名识别，如rt.jar，名字不符合的类库即使放在lib目录中也不会被加载）</li>
-<li>启动类加载器无法被Java程序直接引用，用户在编写自定义类加载器时，如果需要把加载请求委派给引导类加载器，那直接使用null代替即可。</li>
-<li>加载扩展类和应用程序类加载器，并制定为他们的父类加载器。</li>
-<li>不继续自Java.lang.ClassLoader,没有父加载器。</li>
-</ul>
-<h4> 扩展类加载器(Extension ClassLoader)</h4>
-<ul>
-<li>
-<p><strong>实现类</strong>:  sum.misc.Launcher$ExtClassLoader</p>
-</li>
-<li>
-<p><strong>工作</strong>:  加载&lt;JAVA_HOME&gt;\lib\ext 目录中的或被Java.ext.dirs系统变量所指定的路径中的所有类库;开发者可以直接使用扩展类加载器。</p>
-</li>
-<li>
-<p>如果用户创建的JAR放在次目录下,也会自动由扩展类加载器加载。</p>
-</li>
-</ul>
-<h4> 应用程序类加载器(Application ClassLoader)</h4>
-<ul>
-<li>
-<p><strong>实现类</strong>: sum.misc.Launcher $AppClassLoader</p>
-</li>
-<li>
-<p><strong>工作</strong>: 加载用户类路径上所指定的类库  开发者可以直接使用这个类加载器，如果应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。</p>
-</li>
-<li>
-<p><strong>由来</strong>: 是ClassLoader中的getSystemClassLoader()方法的返回值，所以也可以称之为系统类加载器。</p>
-</li>
-<li>
-<p><strong>总结</strong>:  应用程序都是由这3中类加载器相互配合进行加载的，如果必要，可以加入自定义的类加载器。</p>
-</li>
-</ul>
-<h3> 自定义类加载器</h3>
-<h4> 为什么要自定义类加载器</h4>
-<ul>
-<li>隔离加载类</li>
-<li>修改类加载的方式</li>
-<li>扩展加载源</li>
-<li>防止源码泄露</li>
-</ul>
-<h3> 类加载器之间的关系</h3>
-<h4> 双亲委派模型</h4>
-<p>定义：</p>
-<ul>
-<li>类加载器之间的这种层次关系，称为类加载器的双亲委派模型。一种类加载器的实现方式。</li>
-</ul>
-<p>特点：</p>
-<ul>
-<li>双亲委派模型要求除了顶层的启动类加载器外，其余的类加载器都应当有自己的父类加载器。</li>
-</ul>
-<p>类加载器之间的关系：</p>
-<ul>
-<li>一般不会以继承的关系来实现，而都是使用组合关系来复用父加载器的代码。</li>
-</ul>
-<p>工作过程:</p>
-<blockquote>
-<blockquote>
-<p>如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，<br>
-因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父类加载器反馈自己无法完成这个加载请求时(它的搜索范围中没有找到所需的类)，子加载器才会尝试自己去加载。</p>
-</blockquote>
-</blockquote>
-<p>工作原理图：
-
-好处：</p>
-<p>Java类随着它的类加载器一起具备了一种带有优先级的层次关系。</p>
-<p>避免类的重复加载;</p>
-<p>保护程序安全，防止核心API 被随意篡改；</p>
-<blockquote>
-<blockquote>
-<p>比如：
-类Object，它在rt.jar中，无论哪一个类加载器要加载这个类，最终都是要委派给处于模型最顶端的启动类加载器进行加载，因此Object类在程序的各种类加载器环境中都是同一个类。</p>
-</blockquote>
-</blockquote>
-<ul>
-<li>实现简单：</li>
-</ul>
-<blockquote>
-<blockquote>
-<p>Java.lang.ClassLoader的loadClass()方法中；</p>
-</blockquote>
-</blockquote>
-<ul>
-<li>实现逻辑:</li>
-</ul>
-<blockquote>
-<blockquote>
-<p>首先检查是否已经被加载过，若没有加载则调用父加载器的loadClass()方法，若父加载器为空则默认使用启动类加载器作为父加载器。<br>
-如果父类失败，抛出ClassNotFoundException异常后，再调用自己的findClass()方法进行加载。</p>
-</blockquote>
-</blockquote>
-<p>结果：</p>
-<ul>
-<li>解决了各个类加载的基础类的统一问题；</li>
-</ul>
-<h3> 局限性</h3>
-<h4> 破坏双亲委派模型</h4>
-<p>因为双亲委派模型的局限性，出现了三次，两个不同的加载器。</p>
-<h4> 一、无法解决基础类回调用户的代；</h4>
-<p>例子：</p>
-<ul>
-<li>比如JNDI服务，JNDI服务由启动类加载器去加载，但JNDI的目的就是对资源进行集中管理和查找，它需要调用由独立厂商实现并部署在应用程序的ClassPath下的JNDI接口提供者的代码。</li>
-</ul>
-<p>问题：</p>
-<ul>
-<li>启动类加载器不认识JNDI接口提供者的代码；</li>
-<li>JNDI服务使用线程上下文类加载器去加载所需要的的SPI代码，也就是父类加载器请求子类加载器去完成类加载的动作，这种行为打破了双亲委派模型的层次接口来逆向使用类加载器。</li>
-</ul>
-<p>解决：</p>
-<ul>
-<li>线程上下文类加载器。</li>
-<li>线程上下文类加载器可以通过Java.lang.Thread类的setContextClassLoader()方法进行设置，如果创建线程时还未设置，它将从父线程中继承一个，如果在应用程序的全局范围内都没有设置过的话，那这个类加载器默认就是应用程序类加载器。</li>
-</ul>
-<p>Java中所有涉及SPI的加载动作基本上都采用这种方式，如JDNI、JDBC、JCE、JAXB和JBI等。</p>
-<h4> 二、用户对程序动态性的追求。</h4>
-<p>说明：</p>
-<ul>
-<li>动态性指： 代码热替换、模块热部署等。</li>
-<li></li>
-</ul>
-<p>解决：</p>
-<ul>
-<li>OSGI</li>
-</ul>
-<blockquote>
-<blockquote>
-<p>程序模块在OSGI中称为Bundle。
-OSGI 实现模块化热部署的关键则是它自定义的类加载器机制的实现。<br>
-每一个程序模块都有一个自己的类加载器，当需要更换一个程序模块时，就把程序模块连同类加载器一起换掉以实现代码的热替换。<br>
-OSGI环境下，类加载器为复杂的网状结构。</p>
-</blockquote>
-</blockquote>
-<ul>
-<li>
-<p>OSGI的请求过程：当收到类加载请求时：</p>
-<ol>
-<li>将以java.*开头的类委派给父类加载器加载；</li>
-<li>否则，将委派列表名单内的类委派给父类加载器加载；</li>
-<li>否则，将Import列表中的类委派给Export这个类的Bundle的类加载器加载；</li>
-<li>否则，查找当前Bundle的ClassPath,使用自己的类加载器加载;</li>
-<li>否则，查找类是否在自己的Fragmentg Bundle中，如果在，则委派给Fragment Bundle的类加载器加载；</li>
-<li>否则，查找Dynamic Import 列表的Bundle，委派给对应Bundle的类加载器加载;</li>
-<li>否则，类查找失败。</li>
-</ol>
-</li>
-</ul>
-<h4> 三、自定义类加载器的原则：</h4>
-<p>用户可以把自己的类加载逻辑写到findClass()方法中，在loadClass()方法的逻辑里如果父类加载失败，则会调用自己的findClass()方法来完成加载，这样就可以保证新写出来的类加载器是符合双亲委派规则的。</p>
-<h3> 知识补充</h3>
-<h4> 沙箱安全机制</h4>
-<figure><figcaption>双亲委派机制</figcaption></figure>
-<h4> 比较两个Class 对象是否为同一个类:</h4>
-<p>在JVM 中表示两个class对象是否为同一个类存在两个必要条件：</p>
-<ul>
-<li>类的完整类名必须一致，包括包名。</li>
-<li>加载这个类的ClassLoader(指ClassLoader 实例对象)必须相同。</li>
-</ul>
-<p>换句话说，在JVM 中，即使这两个类对象(class对象)来源同一个class文件，被同一个虚拟机所加载，但只要加载他们的classLoader 实例对象不同，
-那么这两个类对象也是不相等的。</p>
-<p>JVM 必须知道一个类型是由启动加载器加载的还是由用户类加载器加载的。如果一个类型是由用户类加载器加载的，那么JVM 会将这个类加载器的一个引用作为
-类型信息的一部分保存在方法区中。当解析一个类型到另一个类型的引用的时候，JVM 需要保证这两类型的类加载器是相同的。</p>
-<h4> 类的主动使用和被动使用</h4>
-<figure><figcaption>双亲委派机制</figcaption></figure>
 ]]></content:encoded>
     </item>
   </channel>
