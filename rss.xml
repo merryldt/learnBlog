@@ -6,8 +6,8 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Thu, 27 Jul 2023 17:45:36 GMT</pubDate>
-    <lastBuildDate>Thu, 27 Jul 2023 17:45:36 GMT</lastBuildDate>
+    <pubDate>Thu, 27 Jul 2023 17:54:17 GMT</pubDate>
+    <lastBuildDate>Thu, 27 Jul 2023 17:54:17 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>redis</category>
@@ -19,10 +19,11 @@
       <link>https://merryldt.github.io/moyu/redis/03_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/03_redis.html</guid>
       <source url="https://merryldt.github.io/rss.xml">缓存击穿、穿透、雪崩</source>
-      <description>缓存击穿（失效） 背景: 缓存被删除或者失效 现象：热点数据，直接请求数据库，由于⾼并发，可能会把 DB 压垮，导致服务不可⽤。 关键字：单⼀热点数据、⾼并发、数据失效 描述： ⾼并发流量，访问的这个数据是热点数据，请求的数据在 DB 中存在，但是 Redis 存的那⼀份已经过期，后端需要从 DB 从加载数据并写到 Redis。 解决方案： 过期时间 + 随机值 对于热点数据，我们不设置过期时间，这样就可以把请求都放在缓存中处理，充分把 Redis ⾼吞吐量性能利⽤起来。 或者过期时间再加⼀个随机值。 设计缓存的过期时间时，使⽤公式：过期时间=baes 时间+随机时间。即相同业务数据写缓存时，在基础过期时间之上，再加⼀个随机的过期时间，让数据在未来⼀段时间内慢慢过期，避免瞬时全部过期，对 DB 造成过⼤压⼒ 预热 分析热门数据,单独处理。预先把热⻔数据提前存⼊ Redis 中，并设热⻔数据的过期时间超⼤值。 加锁 当发现缓存失效的时候，不是⽴即从数据库加载数据。 ⽽是先获取分布式锁，获取锁成功，再去查询一次缓存，如果为null,才执⾏数据库查询和写数据到缓存的操作，获取锁失败，则说明当前有线程在执数据库查询操作，当前线程睡眠⼀段时间在重试。 这样只让⼀个请求去数据库读取数据 public Object getData(String id) { String desc = redis.get(id); // 缓存为空，过期了 if (desc == null) { // 互斥锁，只有⼀个请求可以成功 if (redis(lockName)) { try{ // 这里一定要再读一次，不然大量请求到了这一步，就算缓存中有了，也要全部请求一次数据库。 desc = redis.get(id); if(null != desc) return desc; // 从数据库取出数据 desc = getFromDB(id); // 写到 Redis redis.set(id, desc, 60 * 60 * 24); } catch (Exception ex) { LogHelper.error(ex); } finally { // 确保最后删除，释放锁 redis.del(lockName); return desc; } } else { // 否则睡眠200ms，接着获取锁 Thread.sleep(200); return getData(id); } } }</description>
+      <description>缓存击穿（失效） 原因: 缓存不存在 背景: 缓存被删除或者失效 现象：热点数据，直接请求数据库，由于⾼并发，可能会把 DB 压垮，导致服务不可⽤。 关键字：单⼀热点数据、⾼并发、数据失效 描述： ⾼并发流量，访问的这个数据是热点数据，请求的数据在 DB 中存在，但是 Redis 存的那⼀份已经过期，后端需要从 DB 从加载数据并写到 Redis。 解决方案： 过期时间 + 随机值 对于热点数据，我们不设置过期时间，这样就可以把请求都放在缓存中处理，充分把 Redis ⾼吞吐量性能利⽤起来。 或者过期时间再加⼀个随机值。 设计缓存的过期时间时，使⽤公式：过期时间=baes 时间+随机时间。即相同业务数据写缓存时，在基础过期时间之上，再加⼀个随机的过期时间，让数据在未来⼀段时间内慢慢过期，避免瞬时全部过期，对 DB 造成过⼤压⼒ 预热 分析热门数据,单独处理。预先把热⻔数据提前存⼊ Redis 中，并设热⻔数据的过期时间超⼤值。 加锁 当发现缓存失效的时候，不是⽴即从数据库加载数据。 ⽽是先获取分布式锁，获取锁成功，再去查询一次缓存，如果为null,才执⾏数据库查询和写数据到缓存的操作，获取锁失败，则说明当前有线程在执数据库查询操作，当前线程睡眠⼀段时间在重试。 这样只让⼀个请求去数据库读取数据 public Object getData(String id) { String desc = redis.get(id); // 缓存为空，过期了 if (desc == null) { // 互斥锁，只有⼀个请求可以成功 if (redis(lockName)) { try{ // 这里一定要再读一次，不然大量请求到了这一步，就算缓存中有了，也要全部请求一次数据库。 desc = redis.get(id); if(null != desc) return desc; // 从数据库取出数据 desc = getFromDB(id); // 写到 Redis redis.set(id, desc, 60 * 60 * 24); } catch (Exception ex) { LogHelper.error(ex); } finally { // 确保最后删除，释放锁 redis.del(lockName); return desc; } } else { // 否则睡眠200ms，接着获取锁 Thread.sleep(200); return getData(id); } } }</description>
       <category>redis</category>
       <pubDate>Thu, 27 Jul 2023 17:43:37 GMT</pubDate>
       <content:encoded><![CDATA[<h2> 缓存击穿（失效）</h2>
+<h3> 原因: 缓存不存在</h3>
 <ul>
 <li>背景: 缓存被删除或者失效</li>
 <li>现象：热点数据，直接请求数据库，由于⾼并发，可能会把 DB 压垮，导致服务不可⽤。</li>
@@ -52,6 +53,7 @@
 <div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
 </ol>
 <h2> 缓存穿透</h2>
+<h3> 原因：数据在【缓存和数据库】中不存在</h3>
 <p>缓存穿透：意味着有特殊请求在查询⼀个不存在的数据，即不数据存在 Redis 也不存在于数据库。
 导致每次请求都会穿透到数据库，缓存成了摆设，对数据库产⽣很⼤压⼒从⽽影响正常服务。</p>
 <figure><figcaption>Alt text</figcaption></figure>
@@ -79,13 +81,12 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
 <li>⼤量热点数据同时过期，导致⼤量请求需要查询数据库并写到缓存；</li>
 <li>Redis 故障宕机，缓存系统异常。</li>
 </ul>
-<h3> 原因：</h3>
-<p><strong>缓存⼤量数据同时过期</strong></p>
+<h3> 原因一：<strong>缓存⼤量数据同时过期</strong></h3>
 <p>数据保存在缓存系统并设置了过期时间，但是由于在同时⼀刻，⼤量数据同时过期。<br>
 系统就把请求全部打到数据库获取数据，并发量⼤的话就会导致数据库压⼒激增。<br>
 缓存雪崩是发⽣在⼤量数据同时失效的场景，⽽缓存击穿（失效）是在某个热点数据失效的场景，这是他们最⼤的区别。</p>
 <figure><figcaption>Alt text</figcaption></figure>
-<p>解决⽅案</p>
+<h3> 原因一：解决⽅案</h3>
 <ol>
 <li>
 <p>过期时间添加随机值
@@ -101,15 +102,16 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
 <figure><figcaption>接⼝限流</figcaption></figure>
 </li>
 </ol>
-<p><strong>Redis 故障宕机</strong></p>
+<h3> 原因二：<strong>Redis 故障宕机</strong></h3>
 <p>⼀个 Redis 实例能⽀撑 10 万的 QPS，⽽⼀个数据库实例只有 1000 QPS。<br>
 ⼀旦 Redis 宕机，会导致⼤量请求打到数据库，从⽽发⽣缓存雪崩。</p>
-<h3> 解决方案：</h3>
+<h3> 原因二： 解决方案：</h3>
 <p>对于缓存系统故障导致的缓存雪崩的解决⽅案有两种：</p>
 <ul>
 <li>服务熔断和接⼝限流；</li>
 <li>构建⾼可⽤缓存集群系统。</li>
 </ul>
+<h4> 服务</h4>
 <p><strong>服务熔断和限流</strong></p>
 <p>在业务系统中，针对⾼并发的使⽤服务熔断来有损提供服务从⽽保证系统的可⽤性。
 服务熔断就是当从缓存获取数据发现异常，则直接返回错误数据给前端，防⽌所有流量打到数据库导致宕机。
