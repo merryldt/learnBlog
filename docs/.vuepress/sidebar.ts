@@ -29,7 +29,15 @@ export default sidebar([
         link: "",
         collapsible: true,
         children: "structure",
-      },      
+      }, 
+      {
+        text: "redis",
+        icon: "load",
+        prefix: "redis/",
+        link: "",
+        collapsible: true,
+        children: "structure",
+      },     
       {
         text: "算法",
         icon: "load",
