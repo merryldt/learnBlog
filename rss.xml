@@ -6,8 +6,8 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Thu, 27 Jul 2023 17:54:17 GMT</pubDate>
-    <lastBuildDate>Thu, 27 Jul 2023 17:54:17 GMT</lastBuildDate>
+    <pubDate>Fri, 28 Jul 2023 02:09:25 GMT</pubDate>
+    <lastBuildDate>Fri, 28 Jul 2023 02:09:25 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>redis</category>
@@ -50,7 +50,7 @@
 <li>⽽是先获取分布式锁，获取锁成功，再去查询一次缓存，如果为null,才执⾏数据库查询和写数据到缓存的操作，获取锁失败，则说明当前有线程在执数据库查询操作，当前线程睡眠⼀段时间在重试。</li>
 <li>这样只让⼀个请求去数据库读取数据</li>
 </ul>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
 </ol>
 <h2> 缓存穿透</h2>
 <h3> 原因：数据在【缓存和数据库】中不存在</h3>
@@ -139,8 +139,8 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
       <content:encoded><![CDATA[<h2> 自己使用的场景</h2>
 <p>通常我们是先从缓存中读取，如果有，返回；如果没有，则从数据库中读取，返回写入缓存，并返回。<br>
 代码如下：</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>写到这里是不是发现还会有一个问题？就是如果 userName 在其他地方更新了呢？ 所以一定还有一段：</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>想一想，如果这两个操作是两个线程操作？并且交叉操作呢？会发生什么问题？</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>写到这里是不是发现还会有一个问题？就是如果 userName 在其他地方更新了呢？ 所以一定还有一段：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>想一想，如果这两个操作是两个线程操作？并且交叉操作呢？会发生什么问题？</p>
 <h2> 在使用redis作为缓存时,写操作</h2>
 <p>当执行写操作后，因为需要保证从缓存读取到的数据与数据库中的数据是一致的，这就需要对缓存进行更新。</p>
 <h2> 旧key 是删除还是更新？缓存和数据库的更新顺序？</h2>
@@ -525,6 +525,10 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
 <h3> 合并两个有序链表</h3>
 <p>
 <a href="https://leetcode.cn/problems/merge-two-sorted-lists/" target="_blank" rel="noopener noreferrer">力扣</a></p>
+
+<h3> 单链表的分解</h3>
+<p>
+<a href="https://leetcode.cn/problems/partition-list/" target="_blank" rel="noopener noreferrer">力扣链接</a></p>
 
 ]]></content:encoded>
     </item>
