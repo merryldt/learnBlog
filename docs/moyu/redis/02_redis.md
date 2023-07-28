@@ -10,7 +10,7 @@ order: 2
 ## 自己使用的场景
 通常我们是先从缓存中读取，如果有，返回；如果没有，则从数据库中读取，返回写入缓存，并返回。   
 代码如下：
-```
+``` java
 public String getUserName(Integer userId){
    // 因为key 通常会加一些前缀，作为指定作用的key; 这里id实际是userId.
    String  userIdkey = "redis:userId:"+userId;
@@ -24,7 +24,7 @@ public String getUserName(Integer userId){
 }  
 ```
 写到这里是不是发现还会有一个问题？就是如果 userName 在其他地方更新了呢？ 所以一定还有一段：
-```
+``` java
 public boolean updateUserName(Integer userId,String userName){
   // 
   String  userIdkey = "redis:userId:"+userId;
