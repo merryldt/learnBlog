@@ -6,14 +6,108 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 28 Jul 2023 09:02:53 GMT</pubDate>
-    <lastBuildDate>Fri, 28 Jul 2023 09:02:53 GMT</lastBuildDate>
+    <pubDate>Fri, 28 Jul 2023 11:36:01 GMT</pubDate>
+    <lastBuildDate>Fri, 28 Jul 2023 11:36:01 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>redis</category>
     <category>算法 链表</category>
     <category>算法</category>
     <category>JVM</category>
+    <item>
+      <title>Redis 为什么这么快？</title>
+      <link>https://merryldt.github.io/moyu/redis/04_redis.html</link>
+      <guid>https://merryldt.github.io/moyu/redis/04_redis.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">Redis 为什么这么快？</source>
+      <description>哈喽 22 根据官⽅数据，Redis 的 QPS 可以达到约 100000（每秒请求数）; Alt text 横轴是连接数，纵轴是 QPS。 基于内存实现 Redis 是基于内存的数据库，想对于磁盘来说,速度快了很多。 磁盘和内存的区别： 访问速度 内存是电子存储介质，可以在纳秒级别（10-9秒）的时间内完成读写操作。而磁盘是机械设备，需要寻找和移动读写头，这会导致较高的延迟，通常在毫秒级别（10-3秒）或更长的时间内完成读写。 物理性能 内存芯片位于计算机主板上，与处理器之间的距离非常近，数据传输路径很短。而磁盘通常是通过数据线连接到主板，数据传输路径较长，因此内存的物理性能更高。 读写方式 内存以随机存取的方式工作，可以直接通过内存地址访问任何数据。这使得内存的读写速度不受数据位置的影响。磁盘则需要按照物理磁道上的顺序读取数据，因此在读取大量非连续数据时会有明显的性能下降。 缓存 现代计算机通常配备高速缓存，其中包括一级缓存（L1 Cache）和二级缓存（L2 Cache）。这些缓存通常位于处理器内部，速度更快，作为内存和处理器之间的缓冲区域，可以加快数据的访问速度。相比之下，磁盘并不具备这样的缓存功能</description>
+      <category>redis</category>
+      <pubDate>Fri, 28 Jul 2023 11:34:22 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> 哈喽</h1>
+<h2> 22</h2>
+<p>根据官⽅数据，Redis 的 QPS 可以达到约 100000（每秒请求数）;</p>
+<figure><figcaption>Alt text</figcaption></figure>
+<ul>
+<li>横轴是连接数，纵轴是 QPS。</li>
+</ul>
+<h3> 基于内存实现</h3>
+<p>Redis 是基于内存的数据库，想对于磁盘来说,速度快了很多。<br>
+磁盘和内存的区别：</p>
+<ol>
+<li>
+<p>访问速度<br>
+内存是电子存储介质，可以在纳秒级别（10<sup>-9秒）的时间内完成读写操作。而磁盘是机械设备，需要寻找和移动读写头，这会导致较高的延迟，通常在毫秒级别（10</sup>-3秒）或更长的时间内完成读写。</p>
+</li>
+<li>
+<p>物理性能</p>
+<p>内存芯片位于计算机主板上，与处理器之间的距离非常近，数据传输路径很短。而磁盘通常是通过数据线连接到主板，数据传输路径较长，因此内存的物理性能更高。</p>
+</li>
+<li>
+<p>读写方式</p>
+<p>内存以随机存取的方式工作，可以直接通过内存地址访问任何数据。这使得内存的读写速度不受数据位置的影响。磁盘则需要按照物理磁道上的顺序读取数据，因此在读取大量非连续数据时会有明显的性能下降。</p>
+</li>
+<li>
+<p>缓存</p>
+<p>现代计算机通常配备高速缓存，其中包括一级缓存（L1 Cache）和二级缓存（L2 Cache）。这些缓存通常位于处理器内部，速度更快，作为内存和处理器之间的缓冲区域，可以加快数据的访问速度。相比之下，磁盘并不具备这样的缓存功能</p>
+</li>
+</ol>
+<h3> ⾼效的数据结构</h3>
+<p>Redis ⼀共有 5 种数据类型， String、List、Hash、Set、SortedSet<br>
+不同的数据类型底层使⽤了⼀种或者多种数据结构来⽀撑，⽬的就是为了追求更快的速度。</p>
+<figure><figcaption>Alt text</figcaption></figure>
+<ul>
+<li>SDS 简单动态字符串优势</li>
+<li>zipList 压缩列表</li>
+<li>quicklist</li>
+<li>skipList 跳跃表</li>
+<li>整数数组（intset）</li>
+</ul>
+<h3> 线程模型</h3>
+<p>Redis 的网络 IO 以及键值对指令读写是由单个线程来执行的，避免了不必要的contextswitch和竞选</p>
+<ul>
+<li>
+<p>6.0之前的单线程模型<br>
+Redis 的单线程主要是指Redis的网络IO和键值对读写是由一个线程来完成的，Redis在处理客户端的请求时包括获取 (socket 读)、解析、执行、内容返回 (socket 写) 等都由一个顺序串行的主线程处理，这就是所谓的“单线程”。这也是Redis对外提供键值存储服务的主要流程。但Redis的其他功能， 比如持久化、异步删除、集群数据同步等等，其实是由额外的线程执行的。</p>
+</li>
+<li>
+<p>6.0之后的多线程</p>
+</li>
+</ul>
+<p>6.0之后的多线程主要解决什么问题 ?</p>
+<h3> I/O 多路复⽤模型</h3>
+<p>Redis 采⽤ I/O 多路复⽤技术，并发处理连接。采⽤了 epoll + ⾃⼰实现的简单的事件框架。</p>
+<p>epoll 中的读、写、关闭、连接都转化成了事件，然后利⽤ epoll 的多路复⽤特性，绝不在 IO 上浪费⼀点时间</p>
+<h2> 内存与磁盘</h2>
+<p>主要原因
+内存（RAM）的读写速度比磁盘（硬盘或固态硬盘）快的主要原因有以下几点：</p>
+<p>访问速度</p>
+<p>内存是电子存储介质，可以在纳秒级别（10<sup>-9秒）的时间内完成读写操作。而磁盘是机械设备，需要寻找和移动读写头，这会导致较高的延迟，通常在毫秒级别（10</sup>-3秒）或更长的时间内完成读写。</p>
+<p>电子存储介质，如固态硬盘（SSD）和闪存驱动器（USB闪存驱动器），使用闪存芯片来存储数据。这些芯片基于电子器件，如晶体管和电容器，通过在芯片内部存储和读取电荷量来表示数据。电子存储介质的主要优势在于它们可以通过直接读取或写入电荷来快速访问数据，而无需移动部件。</p>
+<p>相比之下，机械存储介质，如硬盘驱动器（HDD），使用旋转磁盘和移动的读写头来存储和检索数据。当读取或写入数据时，硬盘必须旋转磁盘以定位所需的数据，并将读写头移动到正确的位置。这种机械运动导致了存取数据的延迟，限制了机械存储介质的速度。</p>
+<p>物理性能</p>
+<p>内存芯片位于计算机主板上，与处理器之间的距离非常近，数据传输路径很短。而磁盘通常是通过数据线连接到主板，数据传输路径较长，因此内存的物理性能更高。</p>
+<p>读写方式</p>
+<p>内存以随机存取的方式工作，可以直接通过内存地址访问任何数据。这使得内存的读写速度不受数据位置的影响。磁盘则需要按照物理磁道上的顺序读取数据，因此在读取大量非连续数据时会有明显的性能下降。</p>
+<p>内存的读写方式：</p>
+<p>读取：CPU通过内存总线从内存中读取数据。读取速度非常快，因为内存是直接与CPU连接的，可以实现几纳秒级的读取速度。
+写入：CPU通过内存总线将数据写入内存。写入速度也很快，但通常比读取速度稍慢一些。
+内存总线（Memory Bus）是计算机系统中用于传输数据和指令到和从内存（RAM）中的一组电路和信号线。它连接了中央处理器（CPU）和内存之间，允许CPU与内存进行数据交换。</p>
+<p>内存总线负责在CPU和内存之间传输数据的工作。当CPU需要从内存中读取数据时，它会向内存总线发送读取请求，并指定要读取的内存地址。内存总线将传输该请求到内存中，并将请求的数据返回给CPU。</p>
+<p>类似地，当CPU需要将数据写入内存时，它会向内存总线发送写入请求，并将要写入的数据和目标内存地址传输给内存。内存总线将确保数据正确地写入到指定的内存地址。</p>
+<p>内存总线的宽度是其重要的特性之一，它决定了一次可以传输多少位（或字节）的数据。例如，一个16位的内存总线可以在每个时钟周期中传输16位（2字节）的数据，而一个32位的内存总线可以传输32位（4字节）的数据。</p>
+<p>内存总线的速度也是关键因素之一，它决定了数据传输的快慢。速度通常以兆赫兹（MHz）或千兆赫兹（GHz）为单位进行衡量。较高的内存总线速度可以提供更快的数据传输速度，从而提高计算机系统的整体性能。</p>
+<p>磁盘的读写方式：</p>
+<p>读取：磁盘驱动器通过机械臂和磁头访问磁盘上的数据。读取速度较慢，因为需要定位和移动机械臂以及等待磁盘旋转到正确的位置。读取速度通常以每秒几十至几百兆字节为单位。
+写入：磁盘驱动器将数据写入磁盘的空闲区域。写入速度与读取速度相当，但可能会受到磁盘上数据碎片的影响，以及文件系统的写入策略（如写缓存）。
+磁盘臂是磁盘驱动器中的一个机械臂，它支持磁头的运动。磁盘臂的作用是定位和移动磁头到特定的磁道（track）上。磁道是磁盘上的一个圆形轨道，数据存储在磁道上。</p>
+<p>磁头是磁盘驱动器中的一个感应元件，用于读取和写入数据。磁头通过与磁盘表面的磁性材料相互作用来完成数据的读取和写入操作。读取操作涉及通过感应磁场来解读磁盘上存储的数据，而写入操作则涉及改变磁盘表面的磁性以存储新的数据。</p>
+<p>磁盘臂和磁头的协同工作使得磁盘驱动器能够在磁道上读取和写入数据。当需要读取或写入特定数据时，磁盘臂会移动磁头到相应的磁道上，然后磁头会与磁盘表面进行交互，执行读取或写入操作。</p>
+<p>缓存</p>
+<p>现代计算机通常配备高速缓存，其中包括一级缓存（L1 Cache）和二级缓存（L2 Cache）。这些缓存通常位于处理器内部，速度更快，作为内存和处理器之间的缓冲区域，可以加快数据的访问速度。相比之下，磁盘并不具备这样的缓存功能：</p>
+<p>1）速度：磁盘相比于CPU缓存的访问速度非常慢。CPU缓存是位于CPU芯片内部或者紧邻CPU的高速缓存，其访问速度非常快，可以以纳秒级的速度读取和写入数据。相比之下，磁盘是一种机械存储设备，需要旋转磁盘和机械臂移动来读取和写入数据，其访问速度通常以毫秒级别计算。这种速度差异非常大，无法满足CPU对高速缓存的要求。</p>
+<p>2）高并发性能：CPU缓存需要支持高并发的访问，因为多个CPU核心可能同时访问缓存。而磁盘通常只支持有限的并发访问，无法满足多个CPU核心同时访问的需求。</p>
+<p>3）电源开销：CPU缓存位于CPU芯片内部或者紧邻CPU，与CPU共享同一个电源供应。这样可以确保缓存的电源开销较低，因为电源供应和CPU之间的距离非常近。相比之下，磁盘通常连接在计算机的主板上，与CPU之间的距离较远，需要额外的电源供应和数据线连接。这样会增加系统的电源开销和复杂性。</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>缓存击穿、穿透、雪崩</title>
       <link>https://merryldt.github.io/moyu/redis/03_redis.html</link>
@@ -632,159 +726,6 @@ Eden Space + From Space + To Space + concurrent mark-sweep generation = 4096</li
 <li>GCT 总的gc 时间是  895.115 秒
 系统的吞吐量 = 1- （895.115-891.076）/ 19 *60   = 1- 0.0035  = 0.9965 = 99.65%</li>
 </ol>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Jvm的内存结构和对象分配</title>
-      <link>https://merryldt.github.io/moyu/jvm/02_Jvm_Memory0Structure.html</link>
-      <guid>https://merryldt.github.io/moyu/jvm/02_Jvm_Memory0Structure.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">Jvm的内存结构和对象分配</source>
-      <description>图示 内存区域划分 JVM 内存区域 内存是非常重要的系统资源，是硬盘和CPU 的中间仓库及桥梁，承载着操作系统和应用的实时运行。 JVM 内存布局规定了Java 在运行过程中内存申请、分配、管理的策略,保证了JVM 的高效稳定运行。 不同的JVM对于内存的划分方式和管理机制存在着部分差异。结合JVM虚拟机规范，来探讨一下经典的JVM内存布局。 线程 每个JVM只有一个Runtime实例。称为运行时环境。 线程是一个程序里的运行单元。JVM允许一个应用有多个线程并行的执行。 在HopsoptJVM中，每个线程都与操作系统的本地线程直接映射。（当一个Java线程准备好执行以后，此时一个操作系统的本地线程也同时创建。Java线程执行终止后,本地线程也会回收。） 操作系统负责所有线程的安排调度到任何一个可用的CPU上。一旦本地线程初始化成功，它就会调用Java线程中的run()方法。</description>
-      <category>JVM</category>
-      <pubDate>Wed, 19 Jul 2023 04:48:17 GMT</pubDate>
-      <content:encoded><![CDATA[<h1> 图示</h1>
-<figure><figcaption>内存区域划分</figcaption></figure>
-<h1> JVM 内存区域</h1>
-<ol>
-<li>内存是非常重要的系统资源，是硬盘和CPU 的中间仓库及桥梁，承载着操作系统和应用的实时运行。</li>
-<li>JVM 内存布局规定了Java 在运行过程中内存申请、分配、管理的策略,保证了JVM 的高效稳定运行。</li>
-<li>不同的JVM对于内存的划分方式和管理机制存在着部分差异。结合JVM虚拟机规范，来探讨一下经典的JVM内存布局。</li>
-</ol>
-<h2> 线程</h2>
-<ol>
-<li>每个JVM只有一个Runtime实例。称为运行时环境。</li>
-<li>线程是一个程序里的运行单元。JVM允许一个应用有多个线程并行的执行。</li>
-<li>在HopsoptJVM中，每个线程都与操作系统的本地线程直接映射。（当一个Java线程准备好执行以后，此时一个操作系统的本地线程也同时创建。Java线程执行终止后,本地线程也会回收。）</li>
-<li>操作系统负责所有线程的安排调度到任何一个可用的CPU上。一旦本地线程初始化成功，它就会调用Java线程中的run()方法。</li>
-</ol>
-<h3> 守护线程、普通线程</h3>
-<h2> 一、程序计算器</h2>
-<p>极小的内存空间,线程私有的,当前线程的行号指示器，程序的分支、循环、跳转、异常处理、线程恢复等基本功能都需要依赖程序计算器；比如(多线程切换)。<br>
-线程执行的是:</p>
-<ol>
-<li>Java方法，计数器记录的是正在执行的虚拟机字节码指令的地址；</li>
-<li>Native方法，计数器值为空；</li>
-</ol>
-<p>值得注意的是它是java虚拟机规范中唯一没有规定任何OutOfMemoryError情况的区域</p>
-<h2> 二、java虚拟机栈</h2>
-<ol>
-<li>
-<p>虚拟机栈描述的是java方法执行的内存模型：线程私有的，生命周期与线程相同。</p>
-</li>
-<li>
-<p>每个方法在执行的同时都会创建一个栈帧用于<strong>存储局部变量表、操作数栈、动态链接、方法出口</strong>等信息；方法的调用直至执行完成的过程，对应着栈帧在虚拟机栈中<strong>入栈到出栈</strong>的过程。</p>
-</li>
-<li>
-<p>虚拟机栈主要的部分是<strong>局部变量表</strong> ，其存放了编译器可知的各种基本数据类型、对象引用和returnAddress类型(指向了一条字节码指令的地址);</p>
-</li>
-<li>
-<p><u>局部变量表所需的内存空间在编译期间完成分配，在方法运行期间不会改变局部变量表的大小</u>。</p>
-</li>
-<li>
-<p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出<strong>StackOverflowError</strong>异常；如果虚拟机可以动态扩展，如果扩展时无法申请到足够的内存，将会抛出<strong>OutOfMemoryErro</strong>异常。</p>
-</li>
-</ol>
-<h2> 三、本地方法栈</h2>
-<p>与虚拟机栈作用类似，本地方法栈是虚拟机栈使用到的Native方法服务；SunHotSpot虚拟机把本地方法栈和虚拟机栈结合; 本地方法栈也会报虚拟机栈的两种异常。</p>
-<h2> 四、java堆</h2>
-<ol>
-<li>
-<p>java虚拟机管理的最大的一块内存；</p>
-</li>
-<li>
-<p>所有线程共享的内存区域；</p>
-</li>
-<li>
-<p>目的：存放对象实例，几乎所有的对象实例都在这里分配内存；（所有的对象实例以及数组都要在堆上分配）特别注意的是： 随着JIT编译器的发展与逃逸分析技术的成熟，<strong>栈上分配、标量替换优化技术</strong>带来了变化。不是所有对象都在堆上分配内存了。</p>
-</li>
-<li>
-<p>java虚拟机规范规定，java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可；实现时，即可是固定大小的，也可是可扩展的；当前主流的虚拟机都是可扩展的，通过-Xmx和-Xms控制； 如果堆中没有内存，并且堆也无法扩展 ，抛出OutOfMemoryError异常。</p>
-</li>
-<li>
-<p>java堆是垃圾收集的主要区域，也称为“GC堆”;</p>
-<ul>
-<li>从内存回收的角度：基本采用分代收集算法，java堆分为新生代(Eden空间、From Survivor空间、To Survivor空间)和老年代；</li>
-<li>从内存分配的角度：线程共享的java堆中可能划分出多个线程私有的分配缓冲区。目的是为了更好地、更快地回收内存。</li>
-</ul>
-</li>
-</ol>
-<h2> 五、方法区</h2>
-<ol>
-<li>存储已被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。</li>
-<li>所有线程共享的内存区域。</li>
-<li>在HostSpot虚拟机中，使用永久代来实现方法区，这样的话垃圾收集器可以像管理Java堆一样管理这部分内存； Jdk1.7中，永久代中的字符串常量池移出。 为Native Memory实现方法区做准备。1.8称为元空间，默认的大小为MetaspaceSize 值21M.</li>
-<li>方法区和java堆一样不需要连续的内存和可以选择固定大小或者可扩展外，还可以选择不实现垃圾收集；垃圾收集行为在方法区较少出现，方法区的内存回收目标主要是针对常量池的回收和对类型的卸载；（回收效果差，类型卸载要求高）回收非常有必要，当方法区无法满足内存分配需求时，将抛出<strong>OutOfMemoryError</strong>异常。</li>
-</ol>
-<h2> 六、运行时常量池</h2>
-<ol>
-<li>方法区的一部分;</li>
-<li>存放的是类加载后<strong>class文件中常量池的信息</strong>;Class文件包括： 1 常量池(用于存放编译器生成的各种字面量和符号引用，这部分内容在类加载后存放到方法区的运行时常量池中) 2 类的基本描述信息（字段、方法、接口）</li>
-</ol>
-<p>运行时常量池，细节要求不高，可以根据不同的需求来实现该内存区域； Class包括其中的常量池，格式要求严格，具体到每一个字节存储的数据都必须符合才能被虚拟机认可、装载和执行；运行时常量池，不仅保存Class文件中描述的符号引用，而且也保存翻译的直接引用。</p>
-<p>java语言的动态性，意味着并不要求常量一定只有编译器才能产生，也就是说不是只有提前放置在Class文件常量池中的内容才能进入方法区的运行时常量池； 在运行期也可以将新的常量放入运行时常量池，比如String的intern（）方法(调用该方法，如果常量池中包含了一个和当前对象相等的字符串则返回常量池中的字符串， 否则把改字符串放到常量池中，并返回字符串的引用.)；常量池可能报<strong>OutOfMemoryError</strong>异常。</p>
-<p>常量池在运行时加载到内存中后,称为运行时常量池。</p>
-<h2> 七、直接内存</h2>
-<ol>
-<li>NIO类，一种基于通道与缓存区的I/o方式，可以使用Native函数库直接分配堆外内存，通过存储在java堆中的DirectByteBuffer对象作为这块内存的引用；</li>
-<li>NIO的使用在某些场合避免了在java堆和Native堆中来回复制数据，提高了性能；</li>
-<li>直接内存不受java堆大小的控制，但是受到本机总内存大小以及处理器寻址空间的限制；</li>
-<li>也是会报<strong>OutOfMemoryError</strong>异常。</li>
-</ol>
-<h1> 知识补充：</h1>
-<h2> 逃逸分析</h2>
-<p>目的就是减少内存堆分配压力；</p>
-<p>逃逸分析(Escape Analysis)是目前Java虚拟机中比较前沿的优化技术。</p>
-<p>逃逸分析的基本行为就是分析对象动态作用域：当一个对象在方法中被定义后，它有可能被外部方法所引用，例如，作为调用参数传递到其他地方中，称为方法逃逸。</p>
-<h3> 基于逃逸分析，可以进行 同步消除、栈上分配以及标量替换的优化。</h3>
-<h3> 例子：</h3>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>StringBuffer sb是一个方法内部变量，上述代码中直接将sb返回，这样这个StringBuffer有可能被其他方法所改变，这样它的作用域就不只是在方法内部，虽然它是一个局部变量，称其逃逸到了方法外部
-。甚至还有可能被外部线程访问到，譬如赋值给类变量或可以在其他线程中访问的实例变量，称为线程逃逸。</p>
-<p>上述代码如果想要StringBuffer sb不逃出方法，可以做一些修改：</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>逃逸分析包括：</p>
-<ul>
-<li>全局变量赋值逃逸</li>
-<li>方法返回值逃逸</li>
-<li>实例引用发生逃逸</li>
-<li>线程逃逸：赋值给类变量或可以在其他线程中访问的实例变量</li>
-</ul>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2> 同步消除(锁消除)</h2>
-<ol>
-<li>
-<p>如果一个对象被发现只能从一个线程被访问到，那么对于这个对象的操作可以不考虑同步。</p>
-</li>
-<li>
-<p>在动态编译同步块的时候，JIT编译器可以借助逃逸分析来判断同步块所使用的锁对象是否只能够被一个线程访问而没有被发布到其他线程。</p>
-</li>
-<li>
-<p>如果同步块所使用的锁对象通过这种分析被证实只能够被一个线程访问，那么JIT编译器在编译这个同步块的时候就会取消对这部分代码的同步。这个取消同步的过程就叫同步省略，也叫锁消除。</p>
-</li>
-<li>
-<p>虚拟机会根据自己的代码检测结果取消一些加锁逻辑。</p>
-</li>
-<li>
-<p>虚拟机通过检测会发现一些代码中不可能出现数据竞争，但是代码中又有加锁逻辑，为了提高性能，就消除这些锁。</p>
-</li>
-</ol>
-<p>如果一段代码中，在堆上的所有数据都不会被其他线程访问到，那就可以把它们当成线程私有数据，自然就不需要同步加锁了。</p>
-<h3> 经典例子：</h3>
-<p>String 字符串拼接：</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>打开编译后的字节码我们可以发现加号拼接字符串jvm底层其实是调用StringBuilder来实现的，也就是说”a” + “b”等效于下面的代码片。</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>append方法时一个同步方法，它的方法签名是：</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>这时候，编译器就会判断出sb这个对象并不会被这段代码块以外的地方访问到，更不会被其他线程访问到，这时候的加锁就是完全没必要的，编译器就会把这里的加锁代码消除掉，
-体现到java源码上就是把append方法的synchronized修饰符给去掉了。</p>
-<h2> 栈上分配</h2>
-<ol>
-<li>虚拟机提供的一种优化技术，基本思想是，对于线程私有的对象，将它打散分配在栈上，而不分配在堆上。好处是对象跟着方法调用自行销毁，不需要进行垃圾回收，可以提高性能。</li>
-<li>栈上分配需要的技术基础，逃逸分析。逃逸分析的目的是判断对象的作用域是否会逃逸出方法体。注意，任何可以在多个线程之间共享的对象，一定都属于逃逸对象。</li>
-<li>如果逃逸分析能够证明某些新建的 <strong>对象不逃逸</strong> ，那么 Java 虚拟机完全可以将其分配至栈上，并且在 new 语句所在的方法退出时，通过弹出当前方法的栈桢来自动回收所分配的内存空间。</li>
-</ol>
-<h2> 标量替换</h2>
-<p>定义：通过逃逸分析确定该对象不会被外部访问，并且对象可以被进一步分解时，JVM不会创建该对象，而会将该对象成员变量分解若干个被这个方法使用的成员变量所代替。这些代替的成员变量在栈帧或寄存器上分配空间。</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>以上代码中，point对象并没有逃逸出alloc方法，并且point对象是可以拆解成标量的。那么，JIT就会不会直接创建Point对象，而是直接使用两个标量int x ，int y来替代Point对象。</p>
-<p>以上代码，经过标量替换后，就会变成：</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>减少堆内存的占用。因为一旦不需要创建对象了，那么就不再需要分配堆内存了。</p>
-<p>标量替换为栈上分配提供了很好的基础。</p>
-<p>由于该对象没有被实际分配，因此和栈上分配一样，它同样可以减轻垃圾回收的压力。与栈上分配相比，它对字段的内存连续性不做要求，而且，这些字段甚至可以直接在寄存器中维护，无须浪费任何内存空间。</p>
 ]]></content:encoded>
     </item>
   </channel>
