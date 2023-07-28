@@ -30,7 +30,7 @@
       }
     </script>
     <link rel="preload" href="/assets/style-d663afd4.css" as="style"><link rel="stylesheet" href="/assets/style-d663afd4.css">
-    <link rel="modulepreload" href="/assets/app-8160df4d.js"><link rel="modulepreload" href="/assets/010_PracticeOne.html-5ffc5c04.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper-c27b6911.js"><link rel="modulepreload" href="/assets/010_PracticeOne.html-20ea955a.js">
+    <link rel="modulepreload" href="/assets/app-666fe8ad.js"><link rel="modulepreload" href="/assets/010_PracticeOne.html-20ea955a.js"><link rel="modulepreload" href="/assets/010_PracticeOne.html-027d8812.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper-c27b6911.js">
 
     <!-- Matomo 此区块为统计代码，请删除-->
     <script>
@@ -144,7 +144,7 @@
    free     = 2113574400 (2015.66162109375MB)
    46.43827486630572% used
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>老年代： 总的大小是3763M，使用1747M,空闲2015M,使用率是46%。</li></ul><ol start="4"><li>总结： 为java 进程分配了 4096M 的内存； Eden Space + From Space + To Space + concurrent mark-sweep generation = 4096</li></ol><h1 id="_3-使用jstat" tabindex="-1"><a class="header-anchor" href="#_3-使用jstat" aria-hidden="true">#</a> 3. 使用jstat</h1><p>jstat -gc -t 1028098 60000 20</p><p><img src="/assets/image-2-0a1a1af0.png" alt="Alt text" loading="lazy"> 从图中红框标记的的两条数据分析：</p><ul><li>一分钟采集1次gc 的数据，第一条和最后一条就是 19分钟。</li></ul><ol><li>GCT 总的gc 时间是 891.076秒</li><li>GCT 总的gc 时间是 895.115 秒 系统的吞吐量 = 1- （895.115-891.076）/ 19 *60 = 1- 0.0035 = 0.9965 = 99.65%</li></ol></div><!----><footer class="page-meta"><!----><div class="meta-item git-info"><div class="update-time"><span class="label">上次编辑于: </span><!----></div><!----></div></footer><nav class="page-nav"><a href="/moyu/jvm/09_9CMS.html" class="nav-link prev" aria-label="CMS"><div class="hint"><span class="arrow start"></span>上一页</div><div class="link"><!---->CMS</div></a><a href="/moyu/jvm/09001_SLA.html" class="nav-link next" aria-label="SLA"><div class="hint">下一页<span class="arrow end"></span></div><div class="link">SLA<!----></div></a></nav><!----><!----><!--]--></main><!--]--><!----></div><!--]--><!--]--><!----><!--]--></div>
-    <script type="module" src="/assets/app-8160df4d.js" defer></script>
+    <script type="module" src="/assets/app-666fe8ad.js" defer></script>
     <!-- 看板娘区块 -->
     <script src="/live2d-widget/autoload.js"></script>
     <!-- End 看板娘区块 -->

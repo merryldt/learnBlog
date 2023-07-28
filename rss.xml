@@ -6,26 +6,33 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 28 Jul 2023 15:31:04 GMT</pubDate>
-    <lastBuildDate>Fri, 28 Jul 2023 15:31:04 GMT</lastBuildDate>
+    <pubDate>Fri, 28 Jul 2023 15:58:00 GMT</pubDate>
+    <lastBuildDate>Fri, 28 Jul 2023 15:58:00 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>redis</category>
     <category>算法 链表</category>
     <category>算法</category>
-    <category>JVM</category>
+    <item>
+      <title>Redis⾼效的数据结构</title>
+      <link>https://merryldt.github.io/moyu/redis/05_redis.html</link>
+      <guid>https://merryldt.github.io/moyu/redis/05_redis.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">Redis⾼效的数据结构</source>
+      <category>redis</category>
+      <pubDate>Fri, 28 Jul 2023 15:56:31 GMT</pubDate>
+    </item>
     <item>
       <title>Redis 为什么这么快？</title>
       <link>https://merryldt.github.io/moyu/redis/04_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/04_redis.html</guid>
       <source url="https://merryldt.github.io/rss.xml">Redis 为什么这么快？</source>
-      <description>概述 根据官⽅数据，Redis 的 QPS 可以达到约 100000（每秒请求数）; 横轴是连接数，纵轴是 QPS 基于内存实现 Redis 是基于内存的数据库，想对于磁盘来说,速度快了很多。 磁盘和内存的区别： 访问速度 内存是电子存储介质，可以在纳秒级别（10-9秒）的时间内完成读写操作。而磁盘是机械设备，需要寻找和移动读写头，这会导致较高的延迟，通常在毫秒级别（10-3秒）或更长的时间内完成读写。 物理性能 内存芯片位于计算机主板上，与处理器之间的距离非常近，数据传输路径很短。而磁盘通常是通过数据线连接到主板，数据传输路径较长，因此内存的物理性能更高。</description>
+      <description>概述 根据官⽅数据，Redis 的 QPS 可以达到约 100000（每秒请求数); 一、基于内存实现 Redis 是基于内存的数据库，想对于磁盘来说,速度快了很多。 磁盘和内存的区别： 访问速度 内存是电子存储介质，可以在纳秒级别（10-9秒）的时间内完成读写操作。而磁盘是机械设备，需要寻找和移动读写头，这会导致较高的延迟，通常在毫秒级别（10-3秒）或更长的时间内完成读写。 物理性能 内存芯片位于计算机主板上，与处理器之间的距离非常近，数据传输路径很短。而磁盘通常是通过数据线连接到主板，数据传输路径较长，因此内存的物理性能更高。 读写方式 内存以随机存取的方式工作，可以直接通过内存地址访问任何数据。这使得内存的读写速度不受数据位置的影响。磁盘则需要按照物理磁道上的顺序读取数据，因此在读取大量非连续数据时会有明显的性能下降。 缓存 现代计算机通常配备高速缓存，其中包括一级缓存（L1 Cache）和二级缓存（L2 Cache）。这些缓存通常位于处理器内部，速度更快，作为内存和处理器之间的缓冲区域，可以加快数据的访问速度。相比之下，磁盘并不具备这样的缓存功能</description>
       <category>redis</category>
       <pubDate>Fri, 28 Jul 2023 11:34:22 GMT</pubDate>
       <content:encoded><![CDATA[<h2> 概述</h2>
-<p>根据官⽅数据，Redis 的 QPS 可以达到约 100000（每秒请求数）;</p>
-<figure><figcaption>横轴是连接数，纵轴是 QPS</figcaption></figure>
-<h2> 基于内存实现</h2>
+<p>根据官⽅数据，Redis 的 QPS 可以达到约 100000（每秒请求数);<br>
+</p>
+<h2> 一、基于内存实现</h2>
 <p>Redis 是基于内存的数据库，想对于磁盘来说,速度快了很多。</p>
 <blockquote>
 <blockquote>
@@ -35,26 +42,14 @@
 内存是电子存储介质，可以在纳秒级别（10<sup>-9秒）的时间内完成读写操作。而磁盘是机械设备，需要寻找和移动读写头，这会导致较高的延迟，通常在毫秒级别（10</sup>-3秒）或更长的时间内完成读写。</li>
 <li>物理性能<br>
 内存芯片位于计算机主板上，与处理器之间的距离非常近，数据传输路径很短。而磁盘通常是通过数据线连接到主板，数据传输路径较长，因此内存的物理性能更高。</li>
-</ol>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<ol start="3">
 <li>读写方式<br>
 内存以随机存取的方式工作，可以直接通过内存地址访问任何数据。这使得内存的读写速度不受数据位置的影响。磁盘则需要按照物理磁道上的顺序读取数据，因此在读取大量非连续数据时会有明显的性能下降。</li>
-</ol>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<ol start="4">
 <li>缓存<br>
 现代计算机通常配备高速缓存，其中包括一级缓存（L1 Cache）和二级缓存（L2 Cache）。这些缓存通常位于处理器内部，速度更快，作为内存和处理器之间的缓冲区域，可以加快数据的访问速度。相比之下，磁盘并不具备这样的缓存功能</li>
 </ol>
 </blockquote>
 </blockquote>
-<h2> ⾼效的数据结构</h2>
+<h2> 二、⾼效的数据结构</h2>
 <p>Redis ⼀共有 5 种数据类型， String、List、Hash、Set、SortedSet<br>
 不同的数据类型底层使⽤了⼀种或者多种数据结构来⽀撑，⽬的就是为了追求更快的速度。</p>
 <figure><figcaption>Alt text</figcaption></figure>
@@ -65,7 +60,7 @@
 <li>skipList 跳跃表</li>
 <li>整数数组（intset）</li>
 </ul>
-<h2> 线程模型</h2>
+<h2> 三、线程模型</h2>
 <h3> 6.0之前的单线程模型</h3>
 <ul>
 <li>
@@ -94,7 +89,7 @@
 </ul>
 </li>
 </ul>
-<h2> I/O 多路复⽤模型</h2>
+<h2> 四、I/O多路复⽤模型</h2>
 <p>Redis 采⽤ I/O 多路复⽤技术，并发处理连接。采⽤了 epoll + ⾃⼰实现的简单的事件框架。</p>
 <p>epoll 中的读、写、关闭、连接都转化成了事件，然后利⽤ epoll 的多路复⽤特性，绝不在IO上浪费⼀点时间</p>
 <h2> 高性能总结：</h2>
@@ -261,26 +256,26 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
       <link>https://merryldt.github.io/moyu/redis/02_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/02_redis.html</guid>
       <source url="https://merryldt.github.io/rss.xml">讲讲 Redis 缓存更新一致性</source>
-      <description>自己使用的场景 通常我们是先从缓存中读取,如果有,返回；如果没有,则从数据库中读取，返回写入缓存,设置缓存时间,并返回。 代码如下： public String getUserName(Integer userId){ // 因为key 通常会加一些前缀，作为指定作用的key; 这里id实际是userId. String userIdkey = &amp;quot;redis:userId:&amp;quot;+userId; String userName = redis.get(userIdkey); int cacheTimeSin = 60; if(StringUtils.isNotEmppty()){ return userName; } userName = userMapper.getOne(1); redis.set(userIdkey,userName,cacheTimeSin, TimeUnit.SECONDS); return userName; }</description>
+      <description>想想自己使用的场景 通常我们是先从缓存中读取,如果有,返回;如果没有,则从数据库中读取，写入缓存,设置缓存时间,并返回。 代码如下： public String getUserName(Integer userId){ // 因为key 通常会加一些前缀，作为指定作用的key; 这里id实际是userId. String userIdkey = &amp;quot;redis:userId:&amp;quot;+userId; String userName = redis.get(userIdkey); int cacheTimeSin = 60; if(StringUtils.isNotEmppty()){ return userName; } userName = userMapper.getOne(1); redis.set(userIdkey,userName,cacheTimeSin, TimeUnit.SECONDS); return userName; }</description>
       <category>redis</category>
       <pubDate>Thu, 27 Jul 2023 14:40:18 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 自己使用的场景</h2>
-<p>通常我们是先从缓存中读取,如果有,返回；如果没有,则从数据库中读取，返回写入缓存,设置缓存时间,并返回。<br>
+      <content:encoded><![CDATA[<h2> 想想自己使用的场景</h2>
+<p>通常我们是先从缓存中读取,如果有,返回;如果没有,则从数据库中读取，写入缓存,设置缓存时间,并返回。<br>
 代码如下：</p>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>写到这里是不是发现还会有一个问题？就是如果 userName 在其他地方更新了呢？ 所以一定还有一段：</p>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>写到这里是不是发现还会有一个问题？就是如果 userName 在其他地方还会更新呢？ 所以一定还有一段：</p>
 <div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>想一想，如果这两个操作是两个线程操作？并且交叉操作呢？会发生什么问题？</p>
-<h2> 在使用redis作为缓存时,写操作</h2>
-<p>当执行写操作后，因为需要保证从缓存读取到的数据与数据库中的数据是一致的，这就需要对缓存进行更新。</p>
-<h2> 旧key 是删除还是更新？缓存和数据库的更新顺序？</h2>
+<h2> 想想如何保证缓存和数据库一致性的？</h2>
 <ol>
+<li>对于旧key的处理</li>
+<li>更新缓存和数据库的前后顺序</li>
 <li>想想，自己目前使用的方式是什么？</li>
 <li>想想，还有什么方式？以及对比自己使用的，优劣对比？</li>
 </ol>
-<h2> 四大策略</h2>
+<h2> 目前已知的四大组合策略</h2>
 <h3> 1. 先删除缓存，再更新数据库</h3>
-<ul>
+<ol>
 <li>并发问题:</li>
-</ul>
+</ol>
 <blockquote>
 <blockquote>
 <p>写： 线程张三<br>
@@ -512,12 +507,16 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
 </tr>
 </tbody>
 </table>
-<h2> 对于旧key,目前已知的两种策略</h2>
+<h3> 分析四大策略</h3>
+<ul>
+<li>只有第一种只有一个问题，就是并发问题。显然是最优的选择</li>
+</ul>
+<h4> 1. 对于旧key,目前已知的两种策略</h4>
 <ol>
 <li>删除失效缓存: 读取时会因为未命中缓存而从数据库中读取新的数据并更新到缓存中</li>
 <li>更新缓存: 直接将新的数据写入缓存覆盖过期数据</li>
 </ol>
-<h2> 更新缓存和数据库的前后顺序，也有两种</h2>
+<h4> 2. 更新缓存和数据库的前后顺序，也有两种</h4>
 <ol>
 <li>先数据库后缓存</li>
 <li>先缓存后数据库</li>
@@ -688,83 +687,6 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
 @tab npm</p>
 <p>npm init vuepress-theme-hope [dir]
 :::</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>纯Java自带工具排查JVM</title>
-      <link>https://merryldt.github.io/moyu/jvm/010_PracticeOne.html</link>
-      <guid>https://merryldt.github.io/moyu/jvm/010_PracticeOne.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">纯Java自带工具排查JVM</source>
-      <description>1. 获取java 进程的pid ps -ef | grep java jps 2. 使用jmap jmap -heap pid 获取整个堆空间的详细信息。包括GC的使用、堆的配置信息，以及内存的使用信息等。 root@iZuf64eg43tiam73abxiweZ:~# /usr/local/btjdk/jdk8/bin/jmap -heap 1028098 Attaching to process ID 1028098, please wait... Debugger attached successfully. Server compiler detected. JVM version is 25.71-b00 #1. using parallel threads in the new generation. using thread-local object allocation. Concurrent Mark-Sweep GC # 2. Heap Configuration: MinHeapFreeRatio = 40 MaxHeapFreeRatio = 70 MaxHeapSize = 4294967296 (4096.0MB) NewSize = 348913664 (332.75MB) MaxNewSize = 348913664 (332.75MB) OldSize = 3946053632 (3763.25MB) NewRatio = 2 SurvivorRatio = 8 MetaspaceSize = 21807104 (20.796875MB) CompressedClassSpaceSize = 1073741824 (1024.0MB) MaxMetaspaceSize = 17592186044415 MB G1HeapRegionSize = 0 (0.0MB) #3. Heap Usage: New Generation (Eden + 1 Survivor Space): capacity = 314048512 (299.5MB) used = 166875944 (159.14530181884766MB) free = 147172568 (140.35469818115234MB) 53.136995598947465% used Eden Space: capacity = 279183360 (266.25MB) used = 132010792 (125.89530181884766MB) free = 147172568 (140.35469818115234MB) 47.28462040144513% used From Space: capacity = 34865152 (33.25MB) used = 34865152 (33.25MB) free = 0 (0.0MB) 100.0% used To Space: capacity = 34865152 (33.25MB) used = 0 (0.0MB) free = 34865152 (33.25MB) 0.0% used concurrent mark-sweep generation: capacity = 3946053632 (3763.25MB) used = 1832479232 (1747.58837890625MB) free = 2113574400 (2015.66162109375MB) 46.43827486630572% used 38355 interned Strings occupying 4029456 bytes.</description>
-      <category>JVM</category>
-      <pubDate>Wed, 19 Jul 2023 04:48:17 GMT</pubDate>
-      <content:encoded><![CDATA[<h1> 1. 获取java 进程的pid</h1>
-<ol>
-<li>ps -ef | grep java
-</li>
-<li>jps
-</li>
-</ol>
-<h1> 2. 使用jmap</h1>
-<h2> jmap -heap pid</h2>
-<p>获取整个堆空间的详细信息。包括GC的使用、堆的配置信息，以及内存的使用信息等。</p>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
-<li>第一部分：</li>
-</ol>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
-<li>使用的是serial收集器（也叫串行收集器）即 Mark Sweep Compact GC。</li>
-</ul>
-<ol start="2">
-<li>第二部分：</li>
-</ol>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
-<li>MinHeapFreeRatio和MaxHeapFreeRatio: 设置堆的最小最大空闲比例。</li>
-<li>MaxHeapSize: 堆的最大大小。</li>
-<li>NewSize: 新生代的默认值。</li>
-<li>MaxNewSize: 新生代的最大值</li>
-<li>OldSize: 老年代的默认值。</li>
-<li>NewRatio: 新生代和老年代的大小比例，即老年代:新生代=2:1,默认为2.</li>
-<li>SurvivorRatio: 新生代中的eden区与survivor的比例=8:1.</li>
-<li>MetaspaceSize: 1.8 开始叫元空间大小,使用本地内存的</li>
-<li>CompressedClassSpaceSize: 类指针压缩空间大小, 默认为1G</li>
-<li>MaxMetaspaceSize: 元空间的最大值。一般设置和MetaspaceSize一样大小。</li>
-<li>G1HeapRegionSize: G1区块的大小, 取值为1M至32M. 其取值是要根据最小Heap大小划分出2048个区块</li>
-</ul>
-<ol start="3">
-<li>第三部分:</li>
-</ol>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
-<li>新生代: 指eden加上一个survivor空间。容量有300M这样，使用了159M，还有140M空闲. 接近53%的使用率。（根据分代的思想，新生代都是一个eden 加上2个survivor）</li>
-</ul>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
-<li>单独的eden区: 大小为266M,使用125M,空闲140, 使用率47%</li>
-</ul>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
-<li>一个surivor区，是在使用着的</li>
-</ul>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
-<li>另一个survivor的使用情况。此时没有被使用。和From Space 大小一致；</li>
-</ul>
-<div class="language-text line-numbers-mode" data-ext="text"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
-<li>老年代： 总的大小是3763M，使用1747M,空闲2015M,使用率是46%。</li>
-</ul>
-<ol start="4">
-<li>总结：
-为java 进程分配了 4096M 的内存；
-Eden Space + From Space + To Space + concurrent mark-sweep generation = 4096</li>
-</ol>
-<h1> 3. 使用jstat</h1>
-<p>jstat -gc -t 1028098  60000 20</p>
-<p>
-从图中红框标记的的两条数据分析：</p>
-<ul>
-<li>一分钟采集1次gc 的数据，第一条和最后一条就是 19分钟。</li>
-</ul>
-<ol>
-<li>GCT 总的gc 时间是 891.076秒</li>
-<li>GCT 总的gc 时间是  895.115 秒
-系统的吞吐量 = 1- （895.115-891.076）/ 19 *60   = 1- 0.0035  = 0.9965 = 99.65%</li>
-</ol>
 ]]></content:encoded>
     </item>
   </channel>
