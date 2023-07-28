@@ -24,7 +24,7 @@ export default hopeTheme({
   // 页面元数据：贡献者，最后修改时间，编辑链接
   contributors: false,
   lastUpdated: true,
-  editLink: true,
+  editLink: false,
 
   // 深色模式配置
   darkmode: "switch",
@@ -70,6 +70,9 @@ export default hopeTheme({
     description: "满满好奇心的小猿一枚",
     intro: "/intro.html",
     roundAvatar: true,
+    imgSize: true,
+    breadcrumb: true,
+    headerDepth: [1,2,3],
     medias: {
       GitHub: "https://github.com/merryldt/merryldt.github.io"
       // Zhihu: "https://www.zhihu.com/people/qingwhat",
@@ -150,6 +153,7 @@ export default hopeTheme({
       // flowchart: true,
       gfm: true,
       imgLazyload: true,
+      
       // imgMark: true,
       imgSize: true,
       figure: true,
