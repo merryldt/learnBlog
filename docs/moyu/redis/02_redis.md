@@ -8,18 +8,19 @@ tag:
 order: 2
 ---
 ## 自己使用的场景
-通常我们是先从缓存中读取，如果有，返回；如果没有，则从数据库中读取，返回写入缓存，并返回。   
+通常我们是先从缓存中读取,如果有,返回；如果没有,则从数据库中读取，返回写入缓存,设置缓存时间,并返回。   
 代码如下：
 ``` java
 public String getUserName(Integer userId){
    // 因为key 通常会加一些前缀，作为指定作用的key; 这里id实际是userId.
    String  userIdkey = "redis:userId:"+userId;
    String  userName = redis.get(userIdkey);
+   int cacheTimeSin  = 60;
    if(StringUtils.isNotEmppty()){
       return userName;
    }
    userName = userMapper.getOne(1);
-   redis.set(userIdkey,userName);
+   redis.set(userIdkey,userName,cacheTimeSin, TimeUnit.SECONDS);
    return userName;
 }  
 ```
@@ -70,6 +71,8 @@ public boolean updateUserName(Integer userId,String userName){
 ### 3. 先更新缓存，再更新数据库
 1. 缓存更新成功，数据库有更新失败的风险；导致最新的数据未持久化，风险很高。
 2. 并发问题。  
+>>写： 线程张三  
+>>写： 线程李四
 
 |顺序|线程:张三|线程:李四|数据库|缓存|
 |:----|:----:|----:|----:|----:|
@@ -82,6 +85,8 @@ public boolean updateUserName(Integer userId,String userName){
 ### 4. 先更新数据库，再更新缓存
 1. 同删除缓存策略一样，若数据库更新成功缓存更新失败则会造成数据不一致问题。
 2. 并发问题。 
+>>写： 线程张三  
+>>写： 线程李四
 
 |顺序|线程:张三|线程:李四|数据库|缓存|
 |:----|:----:|----:|----:|----:|
