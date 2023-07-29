@@ -1,5 +1,5 @@
 ---
-title: Redis 为什么这么快？
+title: 04) Redis 为什么这么快？
 subtitle: Redis 为什么这么快？
 category:
   - redis

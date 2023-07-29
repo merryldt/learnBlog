@@ -1,5 +1,5 @@
 ---
-title: 缓存击穿、穿透、雪崩
+title: 03) 缓存击穿、穿透、雪崩
 subtitle: 缓存击穿、缓存穿透、缓存雪崩
 category:
   - redis

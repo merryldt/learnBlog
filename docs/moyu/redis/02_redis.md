@@ -1,5 +1,5 @@
 ---
-title: 讲讲 Redis 缓存更新一致性
+title: 02) 讲讲 Redis 缓存更新一致性
 subtitle: 讲讲 Redis 缓存更新一致性
 category:
   - redis
