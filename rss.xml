@@ -6,18 +6,73 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Sat, 29 Jul 2023 03:12:12 GMT</pubDate>
-    <lastBuildDate>Sat, 29 Jul 2023 03:12:12 GMT</lastBuildDate>
+    <pubDate>Sat, 29 Jul 2023 15:25:08 GMT</pubDate>
+    <lastBuildDate>Sat, 29 Jul 2023 15:25:08 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>redis</category>
-    <category>算法 链表</category>
-    <category>算法</category>
     <item>
-      <title>布隆过滤器</title>
+      <title>01) Redis 概览</title>
+      <link>https://merryldt.github.io/moyu/redis/01_redis.html</link>
+      <guid>https://merryldt.github.io/moyu/redis/01_redis.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">01) Redis 概览</source>
+      <category>redis</category>
+      <pubDate>Sat, 29 Jul 2023 15:23:28 GMT</pubDate>
+    </item>
+    <item>
+      <title>07) redis分布式锁</title>
+      <link>https://merryldt.github.io/moyu/redis/07_redis.html</link>
+      <guid>https://merryldt.github.io/moyu/redis/07_redis.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">07) redis分布式锁</source>
+      <description>需要了解的问题 什么时候需要分布式锁？ 加、解锁的代码位置有讲究么？ 如何避免出现锁再也⽆法删除？「」 超时时间设置多少合适呢？ 如何避免锁被其他线程释放 如何实现重⼊锁？ 主从架构会带来什么安全问题？ 什么是 Redlock Redisson 分布式锁最佳实战 看⻔狗实现原理 什么时候需要分布式锁？ 为了并发问题； 重复请求；</description>
+      <category>redis</category>
+      <pubDate>Sat, 29 Jul 2023 15:23:28 GMT</pubDate>
+      <content:encoded><![CDATA[<h2> 需要了解的问题</h2>
+<ol>
+<li>什么时候需要分布式锁？</li>
+<li>加、解锁的代码位置有讲究么？</li>
+<li>如何避免出现锁再也⽆法删除？「」</li>
+<li>超时时间设置多少合适呢？</li>
+<li>如何避免锁被其他线程释放</li>
+<li>如何实现重⼊锁？</li>
+<li>主从架构会带来什么安全问题？</li>
+<li>什么是 Redlock</li>
+<li>Redisson 分布式锁最佳实战</li>
+<li>看⻔狗实现原理</li>
+</ol>
+<h2> 什么时候需要分布式锁？</h2>
+<ul>
+<li>为了并发问题；</li>
+<li>重复请求；</li>
+</ul>
+<h2> 使用分布式锁需要考虑的问题</h2>
+<ol>
+<li>锁加在什么地方</li>
+</ol>
+<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
+<li>超时设置<br>
+目的：为了解决锁一直被占用的问题。
+<ul>
+<li><strong>需要正确设置锁超时的时间</strong>；
+<ol>
+<li>在测试环境多次测试，压测多轮，计算出平均<strong>执行时间</strong>m。</li>
+<li>锁的超时时间设置为平均执行时间的5倍左右，为程序执行期间可能发生的网络IO操作、GC、网络延迟等。留点buffer。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>释放了不是自己加的锁</li>
+<li>锁续期<br>
+锁快过期，但是业务逻辑还没执行完成；需要给锁重新设置过期时间。<br>
+Redisson 可以自动完成；</li>
+</ol>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>06) 布隆过滤器</title>
       <link>https://merryldt.github.io/moyu/redis/06_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/06_redis.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">布隆过滤器</source>
+      <source url="https://merryldt.github.io/rss.xml">06) 布隆过滤器</source>
       <description>使用场景 你遇到数据量⼤，⼜需要去重的时候就可以考虑布隆过滤器 解决 Redis 缓存穿透问题（⾯试重点）； 邮件过滤，使⽤布隆过滤器实现邮件⿊名单过滤； 触发过的事件,不触发； 定义 布隆过滤器 (Bloom Filter)是由 Burton Howard Bloom 于 1970 年提出，它是⼀种 space efficient 的概率型数据结构，⽤于判断⼀个元素是否在集合中。 当布隆过滤器说，某个数据存在时，这个数据可能不存在；当布隆过滤器说，某个数据不存在时，那么这个数据⼀定不存在。 哈希表也能⽤于判断元素是否在集合中，但是布隆过滤器只需要哈希表的 1/8 或 1/4 的空间复杂度就能完成同样的问题。 布隆过滤器可以插⼊元素，但不可以删除已有元素。 其中的元素越多，false positive rate(误报率)越⼤，但是 false negative (漏报)是不可能的。</description>
       <category>redis</category>
       <pubDate>Sat, 29 Jul 2023 03:10:42 GMT</pubDate>
@@ -55,21 +110,38 @@
 <li>删除意味着需要将对应的 k 个 bits 位置设置为 0，其中有可能是其他元素对应的位。</li>
 <li>因此 remove 会引⼊ false negative，这是绝对不被允许的</li>
 </ul>
+<h2> 优劣</h2>
+<h3> 优点：</h3>
+<ol>
+<li>支持海量数据场景下高效判断元素是否存在</li>
+<li>存储空间小，并且节省空间，不存储数据本身，仅存储hash结果取模运算后的位标记</li>
+</ol>
+<h3> 缺点：</h3>
+<ol>
+<li>不能删除；</li>
+<li>存在误判；</li>
+<li>容量越大，hash碰撞的概率变大</li>
+</ol>
+<h2> 实现方式：</h2>
+<h3> Google开源的Guava自带布隆过滤器</h3>
+<p>单机</p>
+<h3> redis(redisson)</h3>
+<p>分布式 redisson</p>
 ]]></content:encoded>
     </item>
     <item>
-      <title>Redis⾼效的数据结构</title>
+      <title>05) Redis⾼效的数据结构</title>
       <link>https://merryldt.github.io/moyu/redis/05_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/05_redis.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">Redis⾼效的数据结构</source>
+      <source url="https://merryldt.github.io/rss.xml">05) Redis⾼效的数据结构</source>
       <category>redis</category>
       <pubDate>Fri, 28 Jul 2023 15:56:31 GMT</pubDate>
     </item>
     <item>
-      <title>Redis 为什么这么快？</title>
+      <title>04) Redis 为什么这么快？</title>
       <link>https://merryldt.github.io/moyu/redis/04_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/04_redis.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">Redis 为什么这么快？</source>
+      <source url="https://merryldt.github.io/rss.xml">04) Redis 为什么这么快？</source>
       <description>概述 根据官⽅数据，Redis 的 QPS 可以达到约 100000（每秒请求数); 一、基于内存实现 Redis 是基于内存的数据库，想对于磁盘来说,速度快了很多。 磁盘和内存的区别： 访问速度 内存是电子存储介质，可以在纳秒级别（10-9秒）的时间内完成读写操作。而磁盘是机械设备，需要寻找和移动读写头，这会导致较高的延迟，通常在毫秒级别（10-3秒）或更长的时间内完成读写。 物理性能 内存芯片位于计算机主板上，与处理器之间的距离非常近，数据传输路径很短。而磁盘通常是通过数据线连接到主板，数据传输路径较长，因此内存的物理性能更高。 读写方式 内存以随机存取的方式工作，可以直接通过内存地址访问任何数据。这使得内存的读写速度不受数据位置的影响。磁盘则需要按照物理磁道上的顺序读取数据，因此在读取大量非连续数据时会有明显的性能下降。 缓存 现代计算机通常配备高速缓存，其中包括一级缓存（L1 Cache）和二级缓存（L2 Cache）。这些缓存通常位于处理器内部，速度更快，作为内存和处理器之间的缓冲区域，可以加快数据的访问速度。相比之下，磁盘并不具备这样的缓存功能</description>
       <category>redis</category>
       <pubDate>Fri, 28 Jul 2023 11:34:22 GMT</pubDate>
@@ -187,10 +259,10 @@
 ]]></content:encoded>
     </item>
     <item>
-      <title>缓存击穿、穿透、雪崩</title>
+      <title>03) 缓存击穿、穿透、雪崩</title>
       <link>https://merryldt.github.io/moyu/redis/03_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/03_redis.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">缓存击穿、穿透、雪崩</source>
+      <source url="https://merryldt.github.io/rss.xml">03) 缓存击穿、穿透、雪崩</source>
       <description>1 一、缓存击穿（热点失效） 原因: 缓存不存在 背景: 缓存被删除或者失效 现象：热点数据，直接请求数据库，由于⾼并发，可能会把 DB 压垮，导致服务不可⽤。 关键字：单⼀热点数据、⾼并发、数据失效 描述： ⾼并发流量，访问的这个数据是热点数据，请求的数据在 DB 中存在，但是 Redis 存的那⼀份已经过期，后端需要从 DB 从加载数据并写到 Redis。 解决方案： 过期时间 + 随机值 对于热点数据，我们不设置过期时间，这样就可以把请求都放在缓存中处理，充分把 Redis ⾼吞吐量性能利⽤起来。 过期时间再加⼀个随机值。设计缓存的过期时间时，使⽤公式：过期时间=baes 时间+随机时间。即相同业务数据写缓存时，在基础过期时间之上，再加⼀个随机的过期时间，让数据在未来⼀段时间内慢慢过期，避免瞬时全部过期，对 DB 造成过⼤压⼒ 预热 分析热门数据,单独处理。预先把热⻔数据提前存⼊ Redis 中，并设热⻔数据的过期时间超⼤值。 加锁 当发现缓存失效的时候，不是⽴即从数据库加载数据。 ⽽是先获取分布式锁，获取锁成功，再去查询一次缓存，如果为null,才执⾏数据库查询和写数据到缓存的操作，获取锁失败，则说明当前有线程在执数据库查询操作，当前线程睡眠⼀段时间在重试。 这样只让⼀个请求去数据库读取数据 public Object getData(String id) { String desc = redis.get(id); // 缓存为空，过期了 if (desc == null) { // 互斥锁，只有⼀个请求可以成功 if (redis(lockName)) { try{ // 这里一定要再读一次，不然大量请求到了这一步，就算缓存中有了，也要全部请求一次数据库。 desc = redis.get(id); if(null != desc) return desc; // 从数据库取出数据 desc = getFromDB(id); // 写到 Redis redis.set(id, desc, 60 * 60 * 24); } catch (Exception ex) { LogHelper.error(ex); } finally { // 确保最后删除，释放锁 redis.del(lockName); return desc; } } else { // 否则睡眠200ms，接着获取锁 Thread.sleep(200); return getData(id); } } }</description>
       <category>redis</category>
       <pubDate>Thu, 27 Jul 2023 17:43:37 GMT</pubDate>
@@ -296,10 +368,10 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
 ]]></content:encoded>
     </item>
     <item>
-      <title>讲讲 Redis 缓存更新一致性</title>
+      <title>02) 讲讲 Redis 缓存更新一致性</title>
       <link>https://merryldt.github.io/moyu/redis/02_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/02_redis.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">讲讲 Redis 缓存更新一致性</source>
+      <source url="https://merryldt.github.io/rss.xml">02) 讲讲 Redis 缓存更新一致性</source>
       <description>想想自己使用的场景 通常我们是先从缓存中读取,如果有,返回;如果没有,则从数据库中读取，写入缓存,设置缓存时间,并返回。 代码如下： public String getUserName(Integer userId){ // 因为key 通常会加一些前缀，作为指定作用的key; 这里id实际是userId. String userIdkey = &amp;quot;redis:userId:&amp;quot;+userId; String userName = redis.get(userIdkey); int cacheTimeSin = 60; if(StringUtils.isNotEmppty()){ return userName; } userName = userMapper.getOne(1); redis.set(userIdkey,userName,cacheTimeSin, TimeUnit.SECONDS); return userName; }</description>
       <category>redis</category>
       <pubDate>Thu, 27 Jul 2023 14:40:18 GMT</pubDate>
@@ -685,52 +757,6 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
 <li>如果使用的分布式锁，用的哪种？了解其原理不？</li>
 <li>如果采用先删除缓存/缓存失效？导致大量请求到数据库？</li>
 </ol>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>双指针技巧</title>
-      <link>https://merryldt.github.io/moyu/algorithm/basic/01_0.html</link>
-      <guid>https://merryldt.github.io/moyu/algorithm/basic/01_0.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">双指针技巧</source>
-      <description>七道题: 合并两个有序链表 链表的分解 合并 k 个有序链表 寻找单链表的倒数第 k 个节点 寻找单链表的中点 判断单链表是否包含环并找出环起点 判断两个单链表是否相交并找出交点 合并两个有序链表 力扣</description>
-      <category>算法 链表</category>
-      <pubDate>Tue, 25 Jul 2023 00:32:46 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 七道题:</h2>
-<ol>
-<li>合并两个有序链表</li>
-<li>链表的分解</li>
-<li>合并 k 个有序链表</li>
-<li>寻找单链表的倒数第 k 个节点</li>
-<li>寻找单链表的中点</li>
-<li>判断单链表是否包含环并找出环起点</li>
-<li>判断两个单链表是否相交并找出交点</li>
-</ol>
-<h3> 合并两个有序链表</h3>
-<p>
-<a href="https://leetcode.cn/problems/merge-two-sorted-lists/" target="_blank" rel="noopener noreferrer">力扣</a></p>
-
-<h3> 单链表的分解</h3>
-<p>
-<a href="https://leetcode.cn/problems/partition-list/" target="_blank" rel="noopener noreferrer">力扣链接</a></p>
-
-]]></content:encoded>
-    </item>
-    <item>
-      <title>算法入门开始</title>
-      <link>https://merryldt.github.io/moyu/algorithm/01_total.html</link>
-      <guid>https://merryldt.github.io/moyu/algorithm/01_total.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">算法入门开始</source>
-      <description>::: code-tabs#shell @tab pnpm pnpm create vuepress-theme-hope [dir] @tab yarn yarn create vuepress-theme-hope [dir] @tab npm npm init vuepress-theme-hope [dir] :::</description>
-      <category>算法</category>
-      <pubDate>Sat, 22 Jul 2023 11:47:07 GMT</pubDate>
-      <content:encoded><![CDATA[<p>::: code-tabs#shell</p>
-<p>@tab pnpm</p>
-<p>pnpm create vuepress-theme-hope [dir]
-@tab yarn</p>
-<p>yarn create vuepress-theme-hope [dir]
-@tab npm</p>
-<p>npm init vuepress-theme-hope [dir]
-:::</p>
 ]]></content:encoded>
     </item>
   </channel>
