@@ -6,11 +6,43 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Sat, 29 Jul 2023 15:25:08 GMT</pubDate>
-    <lastBuildDate>Sat, 29 Jul 2023 15:25:08 GMT</lastBuildDate>
+    <pubDate>Fri, 04 Aug 2023 15:30:32 GMT</pubDate>
+    <lastBuildDate>Fri, 04 Aug 2023 15:30:32 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+    <category>算法 二叉堆</category>
     <category>redis</category>
+    <item>
+      <title>二叉堆</title>
+      <link>https://merryldt.github.io/moyu/algorithm/datastructure/PriorityQueue.html</link>
+      <guid>https://merryldt.github.io/moyu/algorithm/datastructure/PriorityQueue.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">二叉堆</source>
+      <description>二叉堆 二叉堆在逻辑上其实是一种特殊的二叉树（完全二叉树），只不过存储在数组里。一般的链表二叉树，我们操作节点的指针，而在数组里，我们把数组索引作为指针： 两种类型: 最大堆和最小堆： 最大堆的性质是：每个节点都大于等于它的两个子节点; 最小堆的性质是：每个节点都小于等于它的子节点。 两个操作： swim(上浮) 和 sink(下沉) 在插入元素和删除元素时，难免破坏堆的性质，这就需要通过这两个操作来恢复堆的性质了。 最大堆的实现：</description>
+      <category>算法 二叉堆</category>
+      <pubDate>Fri, 04 Aug 2023 15:28:34 GMT</pubDate>
+      <content:encoded><![CDATA[<h2> 二叉堆</h2>
+<p>二叉堆在逻辑上其实是一种特殊的二叉树（完全二叉树），只不过存储在数组里。一般的链表二叉树，我们操作节点的指针，而在数组里，我们把数组索引作为指针：</p>
+<h2> 两种类型: 最大堆和最小堆：</h2>
+<ul>
+<li>最大堆的性质是：每个节点都大于等于它的两个子节点;</li>
+<li>最小堆的性质是：每个节点都小于等于它的子节点。</li>
+</ul>
+<h2> 两个操作： swim(上浮) 和 sink(下沉)</h2>
+<p>在插入元素和删除元素时，难免破坏堆的性质，这就需要通过这两个操作来恢复堆的性质了。</p>
+<h3> 最大堆的实现：</h3>
+<p>对于最大堆，会破坏堆性质的有两种情况：</p>
+<p>1、如果某个节点 A 比它的子节点（中的一个）小，那么 A 就不配做父节点，应该下去，下面那个更大的节点上来做父节点，这就是对 A 进行<strong>下沉</strong>。</p>
+<p>2、如果某个节点 A 比它的父节点大，那么 A 不应该做子节点，应该把父节点换下来，自己去做父节点，这就是对 A 的<strong>上浮</strong>。</p>
+<h3> 最小堆的实现：</h3>
+<p>对于最小堆，会破坏堆性质的有两种情况：</p>
+<p>1、如果某个节点 A 比它的子节点（中的一个）大，那么 A 就不配做父节点，应该下去，下面那个更小的节点上来做父节点，这就是对 A 进行<strong>下沉</strong>。</p>
+<p>2、如果某个节点 A 比它的父节点小，那么 A 不应该做子节点，应该把父节点换下来，自己去做父节点，这就是对 A 的<strong>上浮</strong>。</p>
+<h2> 基本操作代码</h2>
+<h3> 节点操作</h3>
+
+<h3> 上浮和下沉</h3>
+]]></content:encoded>
+    </item>
     <item>
       <title>01) Redis 概览</title>
       <link>https://merryldt.github.io/moyu/redis/01_redis.html</link>
@@ -126,7 +158,8 @@ Redisson 可以自动完成；</li>
 <h3> Google开源的Guava自带布隆过滤器</h3>
 <p>单机</p>
 <h3> redis(redisson)</h3>
-<p>分布式 redisson</p>
+<p>redis 需要安装插件才可以。阿里云的redis 应该是支持的。
+分布式 redisson</p>
 ]]></content:encoded>
     </item>
     <item>
@@ -134,8 +167,72 @@ Redisson 可以自动完成；</li>
       <link>https://merryldt.github.io/moyu/redis/05_redis.html</link>
       <guid>https://merryldt.github.io/moyu/redis/05_redis.html</guid>
       <source url="https://merryldt.github.io/rss.xml">05) Redis⾼效的数据结构</source>
+      <description>常用的主要数据类型有五种 字符串/REDIS_STRING：适用于 缓存、计数、共享Session、IP统计、分布式锁等。 列表/REDIS_LIST： 链表、消息队列、栈、有序的对象列表（如朋友圈的点赞顺序列表、评论顺序列表）。 哈希表/REDIS_HASH： 购物车信息、用户信息、Hash类型的(key, field, value)存储对象等。 集合/REDIS_SET：无序的唯一的键值结构： 好友、关注、粉丝、感兴趣的人集合等。 有序集合/REDIS_ZSET：访问排行榜、点赞排行、粉丝数排行等。</description>
       <category>redis</category>
       <pubDate>Fri, 28 Jul 2023 15:56:31 GMT</pubDate>
+      <content:encoded><![CDATA[<h2> 常用的主要数据类型有五种</h2>
+<ol>
+<li>字符串/REDIS_STRING：适用于 缓存、计数、共享Session、IP统计、分布式锁等。</li>
+<li>列表/REDIS_LIST： 链表、消息队列、栈、有序的对象列表（如朋友圈的点赞顺序列表、评论顺序列表）。</li>
+<li>哈希表/REDIS_HASH： 购物车信息、用户信息、Hash类型的(key, field, value)存储对象等。</li>
+<li>集合/REDIS_SET：无序的唯一的键值结构： 好友、关注、粉丝、感兴趣的人集合等。</li>
+<li>有序集合/REDIS_ZSET：访问排行榜、点赞排行、粉丝数排行等。</li>
+</ol>
+<h2> SDS 简单动态字符串</h2>
+<p>Redis使用简单动态字符串（simple dynamic string，SDS）来表示字符串，Redis中字符串类型包含的数据结构有：整数（R_INT） 、 字符串（R_RAW）。<br>
+我们以字符串为例子，常规的字符串，如 "Brand"，如果要获取他的长度，需要从头开始遍历，直至遇到 \0 空字符代表结尾,如 C字符串。</p>
+<blockquote>
+<blockquote>
+<p>redis 是用c 语言写的，为啥不用c语言的字符串呢？</p>
+</blockquote>
+</blockquote>
+<h3> SDS与c语言字符串的区别：</h3>
+<ol>
+<li>
+<p>获取字符串长度时间复杂度不同 。
+C字符串不记录自身长度，获取C字符串长度时必须遍历整个字符串计数得到，复杂度是O(N)<br>
+SDS字符串自身记录维护len长度属性，获得SDS字符串长度的复杂度是O(1)</p>
+</li>
+<li>
+<p>避免缓冲区溢出。
+C字符串不记录长度，由于两个C字符串在内存存储上紧邻，在执行字符串拼接strcat时，如果不提前分配足够空间，很可能发生修改s1的数据溢出到s2所在的空间中（缓冲区溢出）。<br>
+SDS杜绝了缓冲区溢出问题，它记录了长度，当修改SDS字符串之前，API都会检查SDS的空间是否满足修改的要求，不满足API会自动进行空间扩展。</p>
+</li>
+<li>
+<p>空间预分配，减少修改时的内存重分配次数
+SDS 被修改后，程序不仅会为 SDS 分配所需要的空间，还会分配额外的未使用空间。这样，Redis可以减少连续执行字符串增长操作所需的内存重分配次数。</p>
+<p>redis的SDS中内置一个sdscat函数，也是用于字符串的拼接。</p>
+<p><strong>具体的分配策略有两种</strong>:</p>
+<ul>
+<li>如修改后长度len小于1MB，就分配和len属性相同大小的未使用空间：free=len。比如：修改后字符串长度为 10bit.那么程序也会分配10bit的未使用空间，SDS的buf数组的总长度 =  10(字符串) + 10(未使用空间)+1（空字符串）= 21 bit</li>
+<li>如修改后长度len大于等于1MB，就分配1M的未使用空间：free=1MB。比如：修改后字符串长度为 10M.那么程序也会分配1M的未使用空间,SDS的buf数组的总长度 =  10 M (字符串) + 1(未使用空间)= 11 M</li>
+</ul>
+<p><strong>第一次执行sdscat函数</strong></p>
+<ol>
+<li>sdscat(s,"jidfkqeqwe")</li>
+<li>假如分配了 15 + 15 + 1 = 31 bit</li>
+</ol>
+<p><strong>第二次执行sdscat函数</strong></p>
+<ol>
+<li>sdscat(s,"jdfwe")</li>
+<li>发现未使用的15bit， 大于“jdfwe”的长度，好了，不用再执行内存分配了。</li>
+</ol>
+<p>上述机制，避免了redis字符串增长情况下频繁申请空间的情况。每次字符串增长之前，sds会先检查空间是否足够，如果足够则直接使用预分配的空间，否则按照上述机制申请使用空间。该机制，使得字符串增长n次，需要申请空间的次数，从必定为n次的情况，降为最多n次的情况。</p>
+</li>
+<li>
+<p>惰性空间释放
+懒惰空间释放用于优化sds字符串缩短的操作，实现方式为：当需要缩短sds的长度时，并不立即释放空间，而是使用free来保存剩余可用长度，并等待将来使用。当有剩余空间，而有有增长字符串操作时，则又会调用空间预分配机制。</p>
+<p>当redis内存空间不足时，会自动释放sds中未使用的空间，因此也不需要担心内存泄漏问题。</p>
+</li>
+<li>
+<p>二进制安全</p>
+<p>C语言的字符必须符合某种编码，例如ascii，且字符串除了末尾之外，不能有空格，否则会被当作是另一个字符串。这些限制使得c语言的字符串只能保存不含空格的文本，不能保存图片、视频等二进制数据，也不能保存包含空格的文本。<br>
+而保存图片、大段文本等内容，也是redis的常用场景。因此，redis也对此进行优化。因此，sds是二进制安全的，写入的是什么内容，返回的也是什么内容，并没有限制。<br>
+在 C 中遇到 '\0' 则表示字符串的结束，但SDS不是，它是以len长度标识结尾。</p>
+</li>
+</ol>
+<h2> Redis缓冲区溢出及解决方案</h2>
+]]></content:encoded>
     </item>
     <item>
       <title>04) Redis 为什么这么快？</title>
@@ -365,6 +462,25 @@ BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不⼤，10
 <li>缓存雪崩指的是⼤量的热点数据⽆法在 Redis 缓存中处理（⼤⾯积热点数据缓存失效、Redis 宕机），流量全部打到数据库，导致数据库极⼤压⼒。</li>
 </ul>
 <h2> 思考</h2>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>最后</title>
+      <link>https://merryldt.github.io/apps/st/03_730.html</link>
+      <guid>https://merryldt.github.io/apps/st/03_730.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">最后</source>
+      <description>1girl, 1boy, princess carry, bedroom, lora:princess_carry_v0.1:1,,, masterpiece, best quality, highly detailed Negative prompt: (worst quality, low quality:1.4), (extra fingers, deformed hands, polydactyl:1.3), ugly, (worst quality, low quality, poor quality, bad quality, muted colors:1.35), artist logo, signature, FastNegativeV2, badhandsv5-neg, By bad artist -neg, negative_hand-neg, ng_deepnegative_v1_75t, verybadimagenegative_v1.3, Steps: 25, Size: 512x768, Seed: 2078843282, Model: My-Checkpoint_Not-Real-Anime-Style-V1.2-VAE, Version: v1.4.0, Sampler: DPM++ 2M SDE Karras, CFG scale: 7, Clip skip: 2, Model hash: 8b60d5a2ef, Token merging ratio: 0.5, &amp;quot;princess_carry_v0.1: 49015541157a&amp;quot;</description>
+      <pubDate>Thu, 27 Jul 2023 14:40:18 GMT</pubDate>
+      <content:encoded><![CDATA[<p>1girl, 1boy, princess carry, bedroom, <a href="lora:princess_carry_v0.1:1">lora:princess_carry_v0.1:1</a>,,, masterpiece, best quality, highly detailed
+Negative prompt: (worst quality, low quality:1.4), (extra fingers, deformed hands, polydactyl:1.3), ugly, (worst quality, low quality, poor quality, bad quality, muted colors:1.35), artist logo, signature, FastNegativeV2, badhandsv5-neg, By bad artist -neg, negative_hand-neg, ng_deepnegative_v1_75t, verybadimagenegative_v1.3,
+Steps: 25, Size: 512x768, Seed: 2078843282, Model: My-Checkpoint_Not-Real-Anime-Style-V1.2-VAE, Version: v1.4.0, Sampler: DPM++ 2M SDE Karras, CFG scale: 7, Clip skip: 2, Model hash: 8b60d5a2ef, Token merging ratio: 0.5, "princess_carry_v0.1: 49015541157a"</p>
+<p><a href="lora:u149-v4.0:0.85">lora:u149-v4.0:0.85</a>,, (masterpiece:1.2),best quality,extremely detailed, cute girl, 1girl, 1boy, happy,princess carry,shiny skin,small breasts, detailed eyes,perfect anatomy, cute eyes, ((wedding dress)), city,garden,flower, Tachibana Arisu, Yonai P, u149ani, <a href="lora:princess_carry_v0.1:0.85">lora:princess_carry_v0.1:0.85</a>
+Negative prompt: ((nsfw)), (worst quality, low quality:1.4), (low quality, worst quality:1.4), (bad anatomy), (inaccurate limb:1.2), bad composition, inaccurate eyes, extra digit, fewer digits, (extra arms:1.2), (low quality, worst quality:1.4), (bad anatomy), (inaccurate limb:1.2), bad composition, inaccurate eyes, extra digit, fewer digits, (extra arms:1.2)
+Steps: 28, Size: 512x768, Seed: 501474873, Model: HimawariMix_HimawariMix-v8, Version: v1.4.1, Sampler: DPM++ 2M Karras, CFG scale: 7, "u149-v4.0: 10b37828bd52", Model hash: b334cb73d8</p>
+<h1> 最后</h1>
+<p><a href="lora:u149-v4.0:0.85">lora:u149-v4.0:0.85</a>,, (masterpiece:1.2),best quality,extremely detailed, cute girl, 1girl, 1boy, happy,princess carry,shiny skin,small breasts, detailed eyes,perfect anatomy, cute eyes, ((wedding dress)), city,garden,flower, Tachibana Arisu, Yonai P, u149ani, <a href="lora:princess_carry_v0.1:0.85">lora:princess_carry_v0.1:0.85</a>
+Negative prompt: ((nsfw)), (worst quality, low quality:1.4), (low quality, worst quality:1.4), (bad anatomy), (inaccurate limb:1.2), bad composition, inaccurate eyes, extra digit, fewer digits, (extra arms:1.2), (low quality, worst quality:1.4), (bad anatomy), (inaccurate limb:1.2), bad composition, inaccurate eyes, extra digit, fewer digits, (extra arms:1.2)(((extra fingers, missing hands, missing fingers, strange fingers, bad hands, fewer fingers, extra digit, fewer digits)))
+Steps: 30, Sampler: Euler a, CFG scale: 7, Seed: 501474873, Size: 512x768, Model hash: 79a2037d72, Model: himawari_v10, Denoising strength: 0.7, Hires upscale: 2, Hires upscaler: Latent, Lora hashes: "u149-v4.0: 10b37828bd52, princess_carry_v0.1: 49015541157a", Version: v1.3.2</p>
 ]]></content:encoded>
     </item>
     <item>
