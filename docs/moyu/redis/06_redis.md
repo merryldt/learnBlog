@@ -57,6 +57,6 @@ BloomFilter 的算法
 单机
 
 ### redis(redisson)
-
+redis 需要安装插件才可以。阿里云的redis 应该是支持的。
 分布式 redisson
 
