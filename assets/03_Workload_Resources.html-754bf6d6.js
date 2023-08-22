@@ -1,0 +1,1 @@
+import{_ as e}from"./plugin-vue_export-helper-c27b6911.js";import{o,c as r}from"./app-4a5cae44.js";const _={};function c(t,s){return o(),r("div")}const l=e(_,[["render",c],["__file","03_Workload_Resources.html.vue"]]);export{l as default};
