@@ -6,12 +6,101 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Mon, 21 Aug 2023 12:19:51 GMT</pubDate>
-    <lastBuildDate>Mon, 21 Aug 2023 12:19:51 GMT</lastBuildDate>
+    <pubDate>Tue, 22 Aug 2023 00:37:10 GMT</pubDate>
+    <lastBuildDate>Tue, 22 Aug 2023 00:37:10 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>算法 二叉堆</category>
     <category>redis</category>
+    <item>
+      <title>Kubernetes 组件</title>
+      <link>https://merryldt.github.io/moyu/k8s/04_Kubernetes_Components.html</link>
+      <guid>https://merryldt.github.io/moyu/k8s/04_Kubernetes_Components.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">Kubernetes 组件</source>
+      <description>Kubernetes 组件 前提 部署完 Kubernetes，便拥有了一个完整的集群。 一组工作机器，称为节点， 会运行容器化应用程序。每个集群至少有一个工作节点。 工作节点会托管 Pod，而 Pod 就是作为应用负载的组件。 控制平面管理集群中的工作节点和 Pod。 在生产环境中，控制平面通常跨多台计算机运行， 一个集群通常运行多个节点，提供容错性和高可用性。 image.png 控制平面组件（Control Plane Components） 控制平面组件会为集群做出全局决策，比如资源的调度。 以及检测和响应集群事件.(例如当不满足部署的 replicas 字段时， 要启动新的 pod）。控制平面组件可以在集群中的任何节点上运行。 然而，为了简单起见，设置脚本通常会在同一个计算机上启动所有控制平面组件， 并且不会在此计算机上运行用户容器。</description>
+      <pubDate>Tue, 22 Aug 2023 00:34:47 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> Kubernetes 组件</h1>
+<h2> 前提</h2>
+<p>部署完 Kubernetes，便拥有了一个完整的集群。</p>
+<p>一组工作机器，称为节点， 会运行容器化应用程序。每个集群至少有一个工作节点。
+工作节点会托管 Pod，而 Pod 就是作为应用负载的组件。 控制平面管理集群中的工作节点和 Pod。
+在生产环境中，控制平面通常跨多台计算机运行， 一个集群通常运行多个节点，提供容错性和高可用性。</p>
+<p>image.png</p>
+<h2> 控制平面组件（Control Plane Components）</h2>
+<p>控制平面组件会为集群做出全局决策，比如资源的调度。 以及检测和响应集群事件.(例如当不满足部署的 replicas 字段时， 要启动新的 pod）。控制平面组件可以在集群中的任何节点上运行。
+然而，为了简单起见，设置脚本通常会在同一个计算机上启动所有控制平面组件， 并且不会在此计算机上运行用户容器。</p>
+<h3> kube-apiserver</h3>
+<p>API 服务器是 Kubernetes 控制平面的组件， 该组件负责公开了 Kubernetes API，负责处理接受请求的工作。 API 服务器是 Kubernetes 控制平面的前端。
+Kubernetes API 服务器的主要实现是 kube-apiserver。 kube-apiserver 设计上考虑了水平扩缩，也就是说，它可通过部署多个实例来进行扩缩。 你可以运行 kube-apiserver 的多个实例，并在这些实例之间平衡流量。</p>
+<h3> etcd</h3>
+<p>一致且高可用的键值存储，用作 Kubernetes 所有集群数据的后台数据库。
+如果你的 Kubernetes 集群使用 etcd 作为其后台数据库， 请确保你针对这些数据有一份 备份计划。</p>
+<h3> kube-scheduler</h3>
+<p>kube-scheduler 是控制平面的组件， 负责监视新创建的、未指定运行节点（node）的 Pods， 并选择节点来让 Pod 在上面运行。</p>
+<p>调度决策考虑的因素包括单个 Pod 及 Pods 集合的资源需求、软硬件及策略约束、 亲和性及反亲和性规范、数据位置、工作负载间的干扰及最后时限。</p>
+<h3> kube-controller-manager</h3>
+<p>kube-controller-manager 是控制平面的组件， 负责<strong>运行控制器进程</strong>。
+从逻辑上讲， 每个控制器都是一个单独的进程， 但是为了降低复杂性，它们都被编译到同一个可执行文件，并在同一个进程中运行。
+例如:</p>
+<ul>
+<li>节点控制器（Node Controller）：负责在节点出现故障时进行通知和响应</li>
+<li>任务控制器（Job Controller）：监测代表一次性任务的 Job 对象，然后创建 Pods 来运行这些任务直至完成</li>
+<li>端点分片控制器（EndpointSlice controller）：填充端点分片（EndpointSlice）对象（以提供 Service 和 Pod 之间的链接）。</li>
+<li>服务账号控制器（ServiceAccount controller）：为新的命名空间创建默认的服务账号（ServiceAccount）。</li>
+</ul>
+<h3> cloud-controller-manager</h3>
+<p>cloud-controller-manager 仅运行特定于云平台的控制器。
+一个 Kubernetes 控制平面组件， 嵌入了特定于云平台的控制逻辑。 云控制器管理器（Cloud Controller Manager）允许你将你的集群连接到云提供商的 API 之上， 并将与该云平台交互的组件同与你的集群交互的组件分离开来。</p>
+<h2> Node 组件</h2>
+<p>节点组件会在每个节点上运行，负责维护运行的 Pod 并提供 Kubernetes 运行环境。</p>
+<h3> kubelet</h3>
+<p>kubelet 会在集群中每个节点（node）上运行。 它保证容器（containers）都运行在 Pod 中。
+kubelet 接收一组通过各类机制提供给它的 PodSpecs， 确保这些 PodSpecs 中描述的容器处于运行状态且健康。 kubelet 不会管理不是由 Kubernetes 创建的容器。</p>
+<h3> kube-proxy</h3>
+<p>kube-proxy 是集群中每个节点（node）上所运行的网络代理， 实现 Kubernetes 服务（Service） 概念的一部分。
+kube-proxy 维护节点上的一些网络规则， 这些网络规则会允许从集群内部或外部的网络会话与 Pod 进行网络通信。
+如果操作系统提供了可用的数据包过滤层，则 kube-proxy 会通过它来实现网络规则。 否则，kube-proxy 仅做流量转发。</p>
+<h3> Container Runtime</h3>
+<p>容器运行环境是负责运行容器的软件。
+Kubernetes 支持许多容器运行环境，例如 containerd、 CRI-O 以及 Kubernetes CRI (容器运行环境接口) 的其他任何实现。</p>
+<h2> 插件(Addons)</h2>
+<p>插件使用 Kubernetes 资源（DaemonSet、 Deployment 等）实现集群功能。 因为这些插件提供集群级别的功能，插件中命名空间域的资源属于 kube-system 命名空间。</p>
+<h3> DNS</h3>
+<p>集群 DNS 是一个 DNS 服务器，和环境中的其他 DNS 服务器一起工作，它为 Kubernetes 服务提供 DNS 记录。</p>
+<p>Kubernetes 启动的容器自动将此 DNS 服务器包含在其 DNS 搜索列表中。
+几乎所有 Kubernetes 集群都应该有集群 DNS。</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Kubernetes API</title>
+      <link>https://merryldt.github.io/moyu/k8s/05_Kubernetes_API.html</link>
+      <guid>https://merryldt.github.io/moyu/k8s/05_Kubernetes_API.html</guid>
+      <source url="https://merryldt.github.io/rss.xml">Kubernetes API</source>
+      <description>Kubernetes API Kubernetes 控制面的核心是 API 服务器。 API 服务器负责提供 HTTP API，以供用户、集群中的不同部分和集群外部组件相互通信。 Kubernetes API 使你可以在 Kubernetes 中查询和操纵 API 对象 （例如 Pod、Namespace、ConfigMap 和 Event）的状态。 操作工具 kubectl 命令行接口 kubeadm 持久化 Kubernetes 通过将序列化状态的对象写入到 etcd 中完成存储操作。</description>
+      <pubDate>Tue, 22 Aug 2023 00:34:47 GMT</pubDate>
+      <content:encoded><![CDATA[<h1> Kubernetes API</h1>
+<p>Kubernetes 控制面的核心是 API 服务器。 API 服务器负责提供 HTTP API，以供用户、集群中的不同部分和集群外部组件相互通信。</p>
+<p>Kubernetes API 使你可以在 Kubernetes 中查询和操纵 API 对象 （例如 Pod、Namespace、ConfigMap 和 Event）的状态。</p>
+<h2> 操作工具</h2>
+<ul>
+<li>kubectl 命令行接口</li>
+<li>kubeadm</li>
+</ul>
+<h2> 持久化</h2>
+<p>Kubernetes 通过将序列化状态的对象写入到 etcd 中完成存储操作。</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title></title>
+      <link>https://merryldt.github.io/moyu/k8s/06_Cluster_Architecture.html</link>
+      <guid>https://merryldt.github.io/moyu/k8s/06_Cluster_Architecture.html</guid>
+      <source url="https://merryldt.github.io/rss.xml"></source>
+      <description>Nodes Communication between Nodes and the Control Plane</description>
+      <pubDate>Tue, 22 Aug 2023 00:34:47 GMT</pubDate>
+      <content:encoded><![CDATA[<h2> Nodes</h2>
+<h2> Communication between Nodes and the Control Plane</h2>
+]]></content:encoded>
+    </item>
     <item>
       <title>二叉堆</title>
       <link>https://merryldt.github.io/moyu/algorithm/datastructure/PriorityQueue.html</link>
@@ -50,189 +139,6 @@
       <source url="https://merryldt.github.io/rss.xml">01) Redis 概览</source>
       <category>redis</category>
       <pubDate>Sat, 29 Jul 2023 15:23:28 GMT</pubDate>
-    </item>
-    <item>
-      <title>07) redis分布式锁</title>
-      <link>https://merryldt.github.io/moyu/redis/07_redis.html</link>
-      <guid>https://merryldt.github.io/moyu/redis/07_redis.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">07) redis分布式锁</source>
-      <description>需要了解的问题 什么时候需要分布式锁？ 加、解锁的代码位置有讲究么？ 如何避免出现锁再也⽆法删除？「」 超时时间设置多少合适呢？ 如何避免锁被其他线程释放 如何实现重⼊锁？ 主从架构会带来什么安全问题？ 什么是 Redlock Redisson 分布式锁最佳实战 看⻔狗实现原理 什么时候需要分布式锁？ 为了并发问题； 重复请求；</description>
-      <category>redis</category>
-      <pubDate>Sat, 29 Jul 2023 15:23:28 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 需要了解的问题</h2>
-<ol>
-<li>什么时候需要分布式锁？</li>
-<li>加、解锁的代码位置有讲究么？</li>
-<li>如何避免出现锁再也⽆法删除？「」</li>
-<li>超时时间设置多少合适呢？</li>
-<li>如何避免锁被其他线程释放</li>
-<li>如何实现重⼊锁？</li>
-<li>主从架构会带来什么安全问题？</li>
-<li>什么是 Redlock</li>
-<li>Redisson 分布式锁最佳实战</li>
-<li>看⻔狗实现原理</li>
-</ol>
-<h2> 什么时候需要分布式锁？</h2>
-<ul>
-<li>为了并发问题；</li>
-<li>重复请求；</li>
-</ul>
-<h2> 使用分布式锁需要考虑的问题</h2>
-<ol>
-<li>锁加在什么地方</li>
-</ol>
-<div class="language-java line-numbers-mode" data-ext="java"><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
-<li>超时设置<br>
-目的：为了解决锁一直被占用的问题。
-<ul>
-<li><strong>需要正确设置锁超时的时间</strong>；
-<ol>
-<li>在测试环境多次测试，压测多轮，计算出平均<strong>执行时间</strong>m。</li>
-<li>锁的超时时间设置为平均执行时间的5倍左右，为程序执行期间可能发生的网络IO操作、GC、网络延迟等。留点buffer。</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>释放了不是自己加的锁</li>
-<li>锁续期<br>
-锁快过期，但是业务逻辑还没执行完成；需要给锁重新设置过期时间。<br>
-Redisson 可以自动完成；</li>
-</ol>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>06) 布隆过滤器</title>
-      <link>https://merryldt.github.io/moyu/redis/06_redis.html</link>
-      <guid>https://merryldt.github.io/moyu/redis/06_redis.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">06) 布隆过滤器</source>
-      <description>使用场景 你遇到数据量⼤，⼜需要去重的时候就可以考虑布隆过滤器 解决 Redis 缓存穿透问题（⾯试重点）； 邮件过滤，使⽤布隆过滤器实现邮件⿊名单过滤； 触发过的事件,不触发； 定义 布隆过滤器 (Bloom Filter)是由 Burton Howard Bloom 于 1970 年提出，它是⼀种 space efficient 的概率型数据结构，⽤于判断⼀个元素是否在集合中。 当布隆过滤器说，某个数据存在时，这个数据可能不存在；当布隆过滤器说，某个数据不存在时，那么这个数据⼀定不存在。 哈希表也能⽤于判断元素是否在集合中，但是布隆过滤器只需要哈希表的 1/8 或 1/4 的空间复杂度就能完成同样的问题。 布隆过滤器可以插⼊元素，但不可以删除已有元素。 其中的元素越多，false positive rate(误报率)越⼤，但是 false negative (漏报)是不可能的。</description>
-      <category>redis</category>
-      <pubDate>Sat, 29 Jul 2023 03:10:42 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 使用场景</h2>
-<p>你遇到数据量⼤，⼜需要去重的时候就可以考虑布隆过滤器</p>
-<ul>
-<li>解决 Redis 缓存穿透问题（⾯试重点）；</li>
-<li>邮件过滤，使⽤布隆过滤器实现邮件⿊名单过滤；</li>
-<li>触发过的事件,不触发；</li>
-</ul>
-<h2> 定义</h2>
-<ul>
-<li>布隆过滤器 (Bloom Filter)是由 Burton Howard Bloom 于 1970 年提出，它是⼀种 space efficient 的概率型数据结构，⽤于判断⼀个元素是否在集合中。</li>
-<li>当布隆过滤器说，某个数据存在时，这个数据可能不存在；当布隆过滤器说，某个数据不存在时，那么这个数据⼀定不存在。</li>
-<li>哈希表也能⽤于判断元素是否在集合中，但是布隆过滤器只需要哈希表的 1/8 或 1/4 的空间复杂度就能完成同样的问题。</li>
-<li>布隆过滤器可以插⼊元素，但不可以删除已有元素。</li>
-<li>其中的元素越多，false positive rate(误报率)越⼤，但是 false negative (漏报)是不可能的。</li>
-</ul>
-<h2> 原理</h2>
-<p>BloomFilter 的算法</p>
-<ol>
-<li>首先分配一块内存空间做bit 数组，数组的bit位初始值全部设为0.</li>
-<li>加入元素时，采用k个相互独立的Hash 函数计算，然后将元素Hash 映射的K个位置全部设置为1.</li>
-<li>检测key是否存在，仍然用这k个Hash函数计算出k个位置，如果位置全部为1，则表明key存在，否则不存在。</li>
-</ol>
-<h3> 误判率是为甚么？</h3>
-<p><strong>哈希函数会出现碰撞，所以布隆过滤器会存在误判</strong></p>
-<ul>
-<li>误判率是指： BloomFilter判断某个key存在，但它实际不存在的概率，因为它存的是key的Hash值，而非key的值。</li>
-<li>所以有概率存在这样的 key，它们内容不同，但多次 Hash 后的 Hash 值都相同</li>
-</ul>
-<p><em>对于 BloomFilter 判断不存在的 key ，则是 100% 不存在的，反证法，如果这个 key 存在，那它每次 Hash 后对应的 Hash 值位置肯定是 1，⽽不会是 0。布隆过滤器判断存在不⼀定真的存在。</em></p>
-<h3> 为什么不允许删除元素呢？</h3>
-<ul>
-<li>删除意味着需要将对应的 k 个 bits 位置设置为 0，其中有可能是其他元素对应的位。</li>
-<li>因此 remove 会引⼊ false negative，这是绝对不被允许的</li>
-</ul>
-<h2> 优劣</h2>
-<h3> 优点：</h3>
-<ol>
-<li>支持海量数据场景下高效判断元素是否存在</li>
-<li>存储空间小，并且节省空间，不存储数据本身，仅存储hash结果取模运算后的位标记</li>
-</ol>
-<h3> 缺点：</h3>
-<ol>
-<li>不能删除；</li>
-<li>存在误判；</li>
-<li>容量越大，hash碰撞的概率变大</li>
-</ol>
-<h2> 实现方式：</h2>
-<h3> Google开源的Guava自带布隆过滤器</h3>
-<p>单机</p>
-<h3> redis(redisson)</h3>
-<p>redis 需要安装插件才可以。阿里云的redis 应该是支持的。
-分布式 redisson</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>05) Redis⾼效的数据结构</title>
-      <link>https://merryldt.github.io/moyu/redis/05_redis.html</link>
-      <guid>https://merryldt.github.io/moyu/redis/05_redis.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">05) Redis⾼效的数据结构</source>
-      <description>常用的主要数据类型有五种 字符串/REDIS_STRING：适用于 缓存、计数、共享Session、IP统计、分布式锁等。 列表/REDIS_LIST： 链表、消息队列、栈、有序的对象列表（如朋友圈的点赞顺序列表、评论顺序列表）。 哈希表/REDIS_HASH： 购物车信息、用户信息、Hash类型的(key, field, value)存储对象等。 集合/REDIS_SET：无序的唯一的键值结构： 好友、关注、粉丝、感兴趣的人集合等。 有序集合/REDIS_ZSET：访问排行榜、点赞排行、粉丝数排行等。</description>
-      <category>redis</category>
-      <pubDate>Fri, 28 Jul 2023 15:56:31 GMT</pubDate>
-      <content:encoded><![CDATA[<h2> 常用的主要数据类型有五种</h2>
-<ol>
-<li>字符串/REDIS_STRING：适用于 缓存、计数、共享Session、IP统计、分布式锁等。</li>
-<li>列表/REDIS_LIST： 链表、消息队列、栈、有序的对象列表（如朋友圈的点赞顺序列表、评论顺序列表）。</li>
-<li>哈希表/REDIS_HASH： 购物车信息、用户信息、Hash类型的(key, field, value)存储对象等。</li>
-<li>集合/REDIS_SET：无序的唯一的键值结构： 好友、关注、粉丝、感兴趣的人集合等。</li>
-<li>有序集合/REDIS_ZSET：访问排行榜、点赞排行、粉丝数排行等。</li>
-</ol>
-<h2> SDS 简单动态字符串</h2>
-<p>Redis使用简单动态字符串（simple dynamic string，SDS）来表示字符串，Redis中字符串类型包含的数据结构有：整数（R_INT） 、 字符串（R_RAW）。<br>
-我们以字符串为例子，常规的字符串，如 "Brand"，如果要获取他的长度，需要从头开始遍历，直至遇到 \0 空字符代表结尾,如 C字符串。</p>
-<blockquote>
-<blockquote>
-<p>redis 是用c 语言写的，为啥不用c语言的字符串呢？</p>
-</blockquote>
-</blockquote>
-<h3> SDS与c语言字符串的区别：</h3>
-<ol>
-<li>
-<p>获取字符串长度时间复杂度不同 。
-C字符串不记录自身长度，获取C字符串长度时必须遍历整个字符串计数得到，复杂度是O(N)<br>
-SDS字符串自身记录维护len长度属性，获得SDS字符串长度的复杂度是O(1)</p>
-</li>
-<li>
-<p>避免缓冲区溢出。
-C字符串不记录长度，由于两个C字符串在内存存储上紧邻，在执行字符串拼接strcat时，如果不提前分配足够空间，很可能发生修改s1的数据溢出到s2所在的空间中（缓冲区溢出）。<br>
-SDS杜绝了缓冲区溢出问题，它记录了长度，当修改SDS字符串之前，API都会检查SDS的空间是否满足修改的要求，不满足API会自动进行空间扩展。</p>
-</li>
-<li>
-<p>空间预分配，减少修改时的内存重分配次数
-SDS 被修改后，程序不仅会为 SDS 分配所需要的空间，还会分配额外的未使用空间。这样，Redis可以减少连续执行字符串增长操作所需的内存重分配次数。</p>
-<p>redis的SDS中内置一个sdscat函数，也是用于字符串的拼接。</p>
-<p><strong>具体的分配策略有两种</strong>:</p>
-<ul>
-<li>如修改后长度len小于1MB，就分配和len属性相同大小的未使用空间：free=len。比如：修改后字符串长度为 10bit.那么程序也会分配10bit的未使用空间，SDS的buf数组的总长度 =  10(字符串) + 10(未使用空间)+1（空字符串）= 21 bit</li>
-<li>如修改后长度len大于等于1MB，就分配1M的未使用空间：free=1MB。比如：修改后字符串长度为 10M.那么程序也会分配1M的未使用空间,SDS的buf数组的总长度 =  10 M (字符串) + 1(未使用空间)= 11 M</li>
-</ul>
-<p><strong>第一次执行sdscat函数</strong></p>
-<ol>
-<li>sdscat(s,"jidfkqeqwe")</li>
-<li>假如分配了 15 + 15 + 1 = 31 bit</li>
-</ol>
-<p><strong>第二次执行sdscat函数</strong></p>
-<ol>
-<li>sdscat(s,"jdfwe")</li>
-<li>发现未使用的15bit， 大于“jdfwe”的长度，好了，不用再执行内存分配了。</li>
-</ol>
-<p>上述机制，避免了redis字符串增长情况下频繁申请空间的情况。每次字符串增长之前，sds会先检查空间是否足够，如果足够则直接使用预分配的空间，否则按照上述机制申请使用空间。该机制，使得字符串增长n次，需要申请空间的次数，从必定为n次的情况，降为最多n次的情况。</p>
-</li>
-<li>
-<p>惰性空间释放
-懒惰空间释放用于优化sds字符串缩短的操作，实现方式为：当需要缩短sds的长度时，并不立即释放空间，而是使用free来保存剩余可用长度，并等待将来使用。当有剩余空间，而有有增长字符串操作时，则又会调用空间预分配机制。</p>
-<p>当redis内存空间不足时，会自动释放sds中未使用的空间，因此也不需要担心内存泄漏问题。</p>
-</li>
-<li>
-<p>二进制安全</p>
-<p>C语言的字符必须符合某种编码，例如ascii，且字符串除了末尾之外，不能有空格，否则会被当作是另一个字符串。这些限制使得c语言的字符串只能保存不含空格的文本，不能保存图片、视频等二进制数据，也不能保存包含空格的文本。<br>
-而保存图片、大段文本等内容，也是redis的常用场景。因此，redis也对此进行优化。因此，sds是二进制安全的，写入的是什么内容，返回的也是什么内容，并没有限制。<br>
-在 C 中遇到 '\0' 则表示字符串的结束，但SDS不是，它是以len长度标识结尾。</p>
-</li>
-</ol>
-<h2> Redis缓冲区溢出及解决方案</h2>
-]]></content:encoded>
     </item>
   </channel>
 </rss>
