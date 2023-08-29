@@ -68,6 +68,14 @@ export default sidebar([
           // },
         ],
       }
+      ,{
+        text: "k8s",
+        icon: "load",
+        prefix: "k8s/",
+        link: "",
+        collapsible: true,
+        children: "structure",
+      }, 
     ],
   },
   {
