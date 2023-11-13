@@ -30,7 +30,7 @@
       }
     </script>
     <link rel="preload" href="/assets/style-d663afd4.css" as="style"><link rel="stylesheet" href="/assets/style-d663afd4.css">
-    <link rel="modulepreload" href="/assets/app-7325671e.js"><link rel="modulepreload" href="/assets/07_redis.html-c6088f40.js"><link rel="modulepreload" href="/assets/07_redis.html-716e0923.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper-c27b6911.js">
+    <link rel="modulepreload" href="/assets/app-fc25c749.js"><link rel="modulepreload" href="/assets/07_redis.html-c6088f40.js"><link rel="modulepreload" href="/assets/07_redis.html-4b1cd401.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper-c27b6911.js">
 
     <!-- Matomo 此区块为统计代码，请删除-->
     <script>
@@ -63,7 +63,7 @@
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2"><li>超时设置<br> 目的：为了解决锁一直被占用的问题。 <ul><li><strong>需要正确设置锁超时的时间</strong>； <ol><li>在测试环境多次测试，压测多轮，计算出平均<strong>执行时间</strong>m。</li><li>锁的超时时间设置为平均执行时间的5倍左右，为程序执行期间可能发生的网络IO操作、GC、网络延迟等。留点buffer。</li></ol></li></ul></li><li>释放了不是自己加的锁</li><li>锁续期<br> 锁快过期，但是业务逻辑还没执行完成；需要给锁重新设置过期时间。<br> Redisson 可以自动完成；</li></ol></div><!----><footer class="page-meta"><!----><div class="meta-item git-info"><div class="update-time"><span class="label">上次编辑于: </span><!----></div><!----></div></footer><nav class="page-nav"><a href="/moyu/redis/06_redis.html" class="nav-link prev" aria-label="06) 布隆过滤器"><div class="hint"><span class="arrow start"></span>上一页</div><div class="link"><!---->06) 布隆过滤器</div></a><!----></nav><!----><!----><!--]--></main><!--]--><!----></div><!--]--><!--]--><!----><!--]--></div>
-    <script type="module" src="/assets/app-7325671e.js" defer></script>
+    <script type="module" src="/assets/app-fc25c749.js" defer></script>
     <!-- 看板娘区块 -->
     <script src="/live2d-widget/autoload.js"></script>
     <!-- End 看板娘区块 -->
