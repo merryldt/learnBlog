@@ -77,6 +77,13 @@ export default sidebar([
         children: "structure",
       }, 
     ],
+  },{
+    text: "jVM 相关",
+    icon: "",
+    prefix: "/moyu/jvm/",
+    link: "",
+    collapsible: true,
+    children: "structure",
   },
   {
     text: "🧰 应用手册",
