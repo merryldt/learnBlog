@@ -1,6 +1,6 @@
 ---
 home: ture
-layout: BlogHome
+#layout: BlogHome
 icon: home
 title: 魔力社区
 heroImage: /logo.svg
