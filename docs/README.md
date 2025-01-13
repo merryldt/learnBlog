@@ -13,7 +13,6 @@ actions:
   - text: 知识
     link: /family/Diet.md
     type: default
-bgImage: https://img.newzone.top/home-bg-1.jpg
 heroFullScreen: false
 ---
 
@@ -27,6 +26,7 @@ heroFullScreen: false
 
 基于 VuePress 和 vuepress-theme-hope 建立，将所有笔记与文章重新整合，聚合到同一页面形成知识库，方便自己使用和分享。
 
-
+## 关于网站
+## 关于作者
 ## 🧱 笔记结构
 
