@@ -1,7 +1,20 @@
 ---
-article: false
+home: ture
+layout: BlogHome
+icon: home
 title: 魔力社区
-icon: note
+heroImage: /logo.svg
+heroText: 互联网小白
+tagline: 盛年不重来，一日难再晨
+actions:
+  - text: 开始阅读
+    link: /home.md
+    type: primary
+  - text: 知识
+    link: /family/Diet.md
+    type: default
+bgImage: https://img.newzone.top/home-bg-1.jpg
+heroFullScreen: false
 ---
 
 > 系统的梳理自己的逻辑思路
