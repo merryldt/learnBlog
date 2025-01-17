@@ -16,7 +16,7 @@ export default hopeTheme({
     url: "https://merryldt.github.io/",
   },
 
-  logo: "/logo.svg",
+  logo: "/logo.png",
   favicon: "/favicon.ico",
   // 是否全局启用路径导航
   breadcrumb: false,
@@ -36,7 +36,7 @@ export default hopeTheme({
   // 自定义仓库链接文字。默认从 `repo` 中自动推断为 "GitHub" / "GitLab" / "Gitee" / "Bitbucket" 其中之一，或是 "Source"。
   repoLabel: "GitHub",
   // 是否在导航栏内显示仓库链接，默认为 `true`
-  repoDisplay: true,
+  repoDisplay: false,
   // 文档存放路径
   docsDir: "docs",
 
