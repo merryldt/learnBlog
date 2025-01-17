@@ -17,7 +17,7 @@ export default hopeTheme({
   },
 
   logo: "/logo.svg",
-
+  favicon: "/favicon.ico",
   // 是否全局启用路径导航
   breadcrumb: false,
 
@@ -56,8 +56,8 @@ export default hopeTheme({
   // 侧边栏排序规则
   // sidebarSorter: ['readme', 'order', 'title'],
 
-  // footer: "默认页脚",
-  // displayFooter: true,
+  footer: "默认页脚",
+  displayFooter: true,
 
   // 页面布局 Frontmatter 配置：https://theme-hope.vuejs.press/zh/config/frontmatter/layout.html#pageinfo
   pageInfo: ["Category", "Tag", "Word", "ReadingTime", "PageView"],
@@ -86,7 +86,24 @@ export default hopeTheme({
       // RSS: "https://newzone.top/rss.xml",
     },
   },
+  markdown: {
+    align: true,
+    codeTabs: true,
+    gfm: true,
+    include: {
+      resolvePath: (file, cwd) => {
+        if (file.startsWith("@"))
+          return path.resolve(
+            __dirname,
+            "../snippets",
+            file.replace("@", "./"),
+          );
 
+        return path.resolve(cwd, file);
+      },
+    },
+    tasklist: true,
+  },
   // 隐藏打印按钮
   // print: false,
 
@@ -174,6 +191,9 @@ export default hopeTheme({
     feed: {
       rss: true,
       count: 10,
+    },
+    icon: {
+      assets: "//at.alicdn.com/t/c/font_2922463_o9q9dxmps9.css",
     },
   },
 
