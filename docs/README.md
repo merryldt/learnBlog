@@ -3,7 +3,10 @@ home: ture
 #layout: BlogHome
 icon: home
 title: 魔力社区
-heroImage: /logo.svg
+bgImage: https://theme-hope-assets.vuejs.press/bg/6-light.svg
+bgImageDark: https://theme-hope-assets.vuejs.press/bg/6-dark.svg
+bgImageStyle:
+  background-attachment: fixed
 heroText: 互联网小白
 tagline: 盛年不重来，一日难再晨
 actions:
@@ -14,6 +17,8 @@ actions:
     link: /family/Diet.md
     type: default
 heroFullScreen: false
+copyright: false
+footer: MIT Licensed | Copyright © 2019-present Mr.Hope
 ---
 
 > 系统的梳理自己的逻辑思路
