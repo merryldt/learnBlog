@@ -18,7 +18,7 @@ footer: |-
 
 ## 关于网站
 
-- [项目介绍](./javaguide/intro.md)
+- [项目介绍](/intro.md)
 ## 关于作者
 
 - [我曾经也是网瘾少年](./about-the-author/internet-addiction-teenager.md)
