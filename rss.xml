@@ -6,22 +6,65 @@
     <link>https://merryldt.github.io/</link>
     <description>系统的梳理,可以让人思路清晰</description>
     <language>zh-CN</language>
-    <pubDate>Mon, 20 Jan 2025 09:43:38 GMT</pubDate>
-    <lastBuildDate>Mon, 20 Jan 2025 09:43:38 GMT</lastBuildDate>
+    <pubDate>Mon, 20 Jan 2025 10:57:44 GMT</pubDate>
+    <lastBuildDate>Mon, 20 Jan 2025 10:57:44 GMT</lastBuildDate>
     <generator>vuepress-plugin-feed2</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <category>设计模式</category>
     <category>算法 二分搜索法</category>
     <category>JVM</category>
     <item>
-      <title>互联网小白</title>
+      <title>程序员社畜一枚</title>
       <link>https://merryldt.github.io/home.html</link>
       <guid>https://merryldt.github.io/home.html</guid>
-      <source url="https://merryldt.github.io/rss.xml">互联网小白</source>
-      <description>友情提示</description>
+      <source url="https://merryldt.github.io/rss.xml">程序员社畜一枚</source>
+      <description>友情提示 公众号爆文经验整理 如何注册多个账号？ 3.1如何使用自己（家人朋友）信息注册公众号？ a.手机登录公众号后台网站：https://mp.weixin.qq.com/ b.填写注册资料 （公众号主体）微信扫码、人脸识别 c.邮箱 提前准备未绑定微信/公众号的邮箱，可使用2925无限邮箱 https://www.2925.com/login/ d.管理员手机号 同一手机只能绑定5个微信号 e.公众号类型选择订阅号 f.取关亲戚的“公众平台安全助手” g.把自己绑定为运营人 需要亲戚微信扫码 h.取消群发消息保护 绑定财务信息-委托他人结算 提前打印委托结算单、提前准备（公众号主体）身份证正反面照片 左右手换着签字，填写日期 拍照作为附件上传并填写财务信息、审核 3.2如何快速搭建一个公众号？ a.头像：直接参照对标账号设置 b.名称：和自己领域相关，如职言不讳、职场人35等 c.简介：包含本领域的关键词，职场干货、职场经验、职场潜规则等 3.3如何快速开通流量主？ a.可以找人买粉 3.4 如何选择文章领域？ a.热门：所选领域近期有多个新号在1个月内起号成功 b.垂直：确定领域后至少保证垂直类目更新15天 c.细分：保证领域热门的前提下，尽量细分。如职场领域，细分裁员降薪赛道；民生领域，细分养老金赛道等 d.推荐赛道：养老金、律例、数码、民生政策、职场人情世故 如何寻找对标文章和对标账号？ 如何使用AI创作文章？</description>
       <pubDate>Mon, 13 Jan 2025 09:20:06 GMT</pubDate>
       <content:encoded><![CDATA[<div class="hint-container tip">
 <p class="hint-container-title">友情提示</p>
+<h1> 公众号爆文经验整理</h1>
+<h3> 如何注册多个账号？</h3>
+<h3> 3.1如何使用自己（家人朋友）信息注册公众号？</h3>
+<p>a.手机登录公众号后台网站：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/</a></p>
+<p>b.填写注册资料</p>
+<ul>
+<li>（公众号主体）微信扫码、人脸识别</li>
+</ul>
+<p>c.邮箱</p>
+<ul>
+<li>提前准备未绑定微信/公众号的邮箱，可使用<a href="https://www.2925.com/#/" target="_blank" rel="noopener noreferrer">2925</a>无限邮箱</li>
+<li><a href="https://www.2925.com/login/" target="_blank" rel="noopener noreferrer">https://www.2925.com/login/</a></li>
+</ul>
+<p>d.管理员手机号</p>
+<ul>
+<li>同一手机只能绑定5个微信号</li>
+</ul>
+<p>e.公众号类型选择订阅号</p>
+<p>f.取关亲戚的“公众平台安全助手”</p>
+<p>g.把自己绑定为运营人</p>
+<ul>
+<li>需要亲戚微信扫码</li>
+</ul>
+<p>h.取消群发消息保护</p>
+<ol>
+<li>绑定财务信息-委托他人结算</li>
+<li>提前打印委托结算单、提前准备（公众号主体）身份证正反面照片</li>
+<li>左右手换着签字，填写日期</li>
+<li>拍照作为附件上传并填写财务信息、审核</li>
+</ol>
+<h3> 3.2如何快速搭建一个公众号？</h3>
+<p>a.头像：直接参照对标账号设置</p>
+<p>b.名称：和自己领域相关，如职言不讳、职场人35等</p>
+<p>c.简介：包含本领域的关键词，职场干货、职场经验、职场潜规则等</p>
+<h3> 3.3如何快速开通流量主？</h3>
+<p>a.可以找人买粉</p>
+<h3> 3.4 如何选择文章领域？</h3>
+<p>a.热门：所选领域近期有多个新号在1个月内起号成功</p>
+<p>b.垂直：确定领域后至少保证垂直类目更新15天</p>
+<p>c.细分：保证领域热门的前提下，尽量细分。如职场领域，细分裁员降薪赛道；民生领域，细分养老金赛道等</p>
+<p>d.推荐赛道：养老金、律例、数码、民生政策、职场人情世故</p>
+<h3> 如何寻找对标文章和对标账号？</h3>
+<h3> 如何使用AI创作文章？</h3>
 </div>
 ]]></content:encoded>
     </item>
