@@ -2,7 +2,7 @@
 home: true
 icon: home
 title: Java 面试指南
-heroImage: /logo.svg
+heroImage: /logo.png
 heroText: 魔力社区
 tagline: 「程序猿学习 + 面试指南」涵盖 Java 程序员需要掌握的核心知识
 actions:
